@@ -13,7 +13,7 @@ public class Product {
     // Primary Key로 설정된 품목코드
     @Id
     @Column(name = "id")
-    private String id;
+    private String id; 
 
     // 단위 필드, Enum으로 지정
     @Enumerated(EnumType.STRING)
