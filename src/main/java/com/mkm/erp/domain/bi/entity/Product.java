@@ -1,20 +1,22 @@
-package com.mkm.erp.bi.entity;
+package com.mkm.erp.domain.bi.entity;
 
+import com.mkm.erp.domain.bi.dto.request.ProductRequest;
+import com.mkm.erp.domain.common.entity.Timestamped;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Materials {
+public class Product extends Timestamped {
 
     // Primary Key로 설정된 품목코드
-    @Id
-    @Column(name = "id", length = 50, nullable = false)
-    private String id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
     // 단위 필드, Enum으로 지정
     @Enumerated(EnumType.STRING)
@@ -43,5 +45,11 @@ public class Materials {
         PACK,     // 팩 (포장 단위)
         BAG,      // 봉지 (밀봉 포장된 상품)
         BOX,      // 상자 (대량 포장 단위)
+    }
+
+    public Product(ProductRequest request) {
+        this.unit = UnitType.valueOf(request.getUnit());
+        this.name = request.getName();
+        this.quantity = request.getQuantity();
     }
 }
