@@ -3,7 +3,7 @@ package com.mkm.erp.domain.bi.entity;
 import com.mkm.erp.domain.bi.dto.request.ProductRequest;
 import com.mkm.erp.domain.common.entity.Timestamped;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+        import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
@@ -30,6 +30,10 @@ public class Product extends Timestamped {
     // 수량 필드
     @Column(name = "quantity")
     private int quantity = 0;
+
+    // BOM과의 양방향 관계 설정
+    @OneToOne(mappedBy = "product")  // BOM 엔티티의 product 필드와 연결
+    private BOM bom;
 
     // 단위에 대한 Enum 정의
     public enum UnitType {
