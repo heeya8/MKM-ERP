@@ -1,0 +1,90 @@
+/* Only Sidebar dark Area Style
+============================================*/
+[sidebar-dark-light-data-theme=sidebar-dark] {
+    .sidebar-burger-menu  {
+        svg {
+            stroke: $white;
+        }
+    }
+    .sidebar-area {
+        background-color: $dark-card-bg;
+        .logo {
+            border-color: $dark-border;
+            .logo-text {
+                color: $white !important;
+            }
+        }
+        .admin {
+            .admin-info {
+                .name {
+                    color: $white;
+                }
+            }
+        }
+    }
+    .menu-vertical {
+        .menu-item {
+            .menu-link {
+                .title {
+                    color: $white;
+                }
+                .material-symbols-outlined {
+                    color: $white;
+                }
+                &:hover {
+                    background-color: $dark-input-bg;
+                }
+                &.logout {
+                    background-color: $dark-input-bg !important;
+                }
+            }
+            &.open {
+                .menu-link {
+                    &.active {
+                        background-color: $dark-input-bg;
+                        color: $primary;
+                        .title {
+                            color: $white;
+                        }
+                        &::before {
+                            border-color: $primary;
+                        }
+                    }
+                }
+            }
+        }
+        .menu-title {
+            .menu-title-text {
+                color: $dark-body-color;
+            }
+        }
+        .menu-sub {
+            .menu-item {
+                .menu-link {
+                    color: #c5c5c5;
+                    &::before {
+                        border-color: $dark-body-color;
+                    }
+                    &.active {
+                        color: $white;
+                    }
+                    &:hover {
+                        &::before {
+                            border-color: $primary;
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .sidebar-dark-btn {
+        background-color: $primary;
+    }
+    .light1 {
+        display: inline-block;
+    }
+    .dark1 {
+        display: none;
+    }
+}

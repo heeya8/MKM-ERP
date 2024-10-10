@@ -1,0 +1,44 @@
+// Color
+$body-color: #64748B; 
+$primary: #605DFF; 
+$secondary: #3A4252;
+$info: #2DB6F5; 
+$success: #37D80A;
+$warning: #FFBC2B;
+$danger: #FD5812; 
+$light: #D5D9E2;
+$dark: #000000;
+$border-color: #ECEEF2;
+$body-bg: #F6F7F9;
+$primary-div: #AD63F6; 
+$danger-div: #FFCEA9;
+$gray-light: #445164;
+$rating-color: #FE7A36;
+$card-bg-c: #3584FC;
+$card-text-c: #FFE8D4;
+$gary-light: #F4F6FC;
+$gray-div: #f7f8f7;
+$transition: all ease .5s;
+$box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+$body-font-family: "Inter", sans-serif;
+$logo-font-family: "Epilogue", sans-serif;
+
+// For Dark Mode Color
+$dark-body-bg: #0A0E19;
+$dark-body-color: #8695AA;
+$dark-card-bg: #0C1427;
+$dark-input-bg: #15203c;
+$dark-border: #172036;
+
+// Font Size
+$font-size-root: null;
+$font-size-base: .88rem; // Assumes the browser default, typically `16px`
+$font-size-sm: $font-size-base * .875;
+$font-size-lg: $font-size-base * 1.25;
+
+$h1-font-size: $font-size-base * 2.5; // Updated 43.2px
+$h2-font-size: $font-size-base * 2.3; // Updated 36.8px
+$h3-font-size: $font-size-base * 1.8; // Updated 28.8px
+$h4-font-size: $font-size-base * 1.4; // Updated 22.4px
+$h5-font-size: $font-size-base * 1; // Updated 17.6px
+$h6-font-size: $font-size-base; // Updated 16px

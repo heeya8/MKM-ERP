@@ -1,0 +1,85 @@
+/* Priceing Area Style
+============================================*/
+.priceing-border {
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -130px;
+        width: 1px;
+        height: 100%;
+        border-left: 1px dashed $border-color;
+    }
+    &.style-two {
+        &::before {
+            left: 0 !important;
+        }
+    }
+}
+.popular-tag {
+    top: 25px;
+    left: 227px;
+    transform: rotate(-15deg);
+}
+.populartsgs {
+    top: 20px;
+    right: 20px;
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px)  {
+
+    .priceing-border {
+        &::before {
+            left: -51px;
+        }
+    }
+    .popular-tag {
+        left: 144px;
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width : 1200px) and (max-width : 1399px) {
+
+    .priceing-border {
+        &::before {
+            left: -51px;
+        }
+    }
+    .popular-tag {
+        left: 130px;
+    }
+
+}
+
+/* Min width 1400px to Max width 1799px */
+@media only screen and (min-width : 1400px) and (max-width : 1799px) {
+
+    .priceing-border {
+        &::before {
+            left: -68px;
+        }
+    }
+    .popular-tag {
+        left: 160px;
+    }
+
+}
+
+@media only screen and (max-width : 991px) {
+
+    .priceing-border {
+        &::before {
+            display: none;
+        }
+    }
+    .popular-tag {
+        left: auto;
+        right: 25px;
+        top: 25px;
+    }
+
+}

@@ -1,0 +1,578 @@
+/* Default Table Area Style
+============================================*/
+.default-table-area {
+    .table-responsive {
+        border-radius: 8px 8px 0 0 !important;
+        .table {
+            margin-bottom: 0;
+            border: 1px solid $body-bg;
+            thead {
+                tr {
+                    th {
+                        background-color: $body-bg;
+                        color: $gray-light;
+                        font-weight: 500;
+                        font-size: 12px;
+                        padding: 15px 15px;
+                        border: none;
+                        border-bottom: 1px solid $border-color;
+                        &:first-child {
+                            border-radius: 8px 0 0 0;
+                            padding-left: 25px !important;
+                        }
+                        &:last-child {
+                            border-radius: 0 8px 0 0;
+                            padding-right: 25px !important;
+                        }
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        background-color: transparent;
+                        color: $secondary;
+                        border-color: $border-color;
+                        padding: 15px 15px;
+                        &:first-child {
+                            border-left: 1px solid $border-color;
+                            padding-left: 25px !important;
+                        }
+                        &:last-child {
+                            border-right: 1px solid $border-color;
+                            padding-right: 25px !important;
+                        }
+                        a {
+                            text-decoration: none;
+                            h6 {
+                                margin-bottom: 0;
+                                transition: $transition;
+                            }
+                            &:hover {
+                                h6 {
+                                    color: $primary;
+                                }
+                            }
+                        }
+                        .badge {
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    &.top-selling-products {
+        .table-responsive {
+            .table {
+                tbody {
+                    tr {
+                        td {
+                            padding: 18.5px 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.recent-orders {
+        .table-responsive {
+            .table {
+                tbody {
+                    tr {
+                        td {
+                            padding: 18.5px 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.recent-leads {
+        &.style-two {
+            .table-responsive {
+                .table {
+                    tbody {
+                        tr {
+                            td {
+                                padding: 10.8px 8px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .showing-wrap {
+        border: 1px solid $border-color;
+        border-top: none;
+        padding: 13px 25px;
+        border-radius: 0 0 8px 8px;
+    }
+    &.style-two {
+        .table-responsive {
+            border-radius: 0 !important;
+            .table {
+                thead {
+                    tr {
+                        th {
+                            background-color: #ECF0FF;
+                            font-size: 14px;
+                            padding: 15px 8px;
+                            border: none !important;
+                            &:first-child {
+                                border-radius: 0;
+                            }
+                            &:last-child {
+                                border-radius: 0;
+                            }
+                        }
+                    }
+                }
+                tbody {
+                    tr {
+                        td {
+                            padding: 15px 8px;
+                            border-left: none;
+                            border-right: none;
+                        }
+                    }
+                }
+            }
+        }
+        .showing-wrap {
+            border: 0;
+            padding: 0;
+        }
+    }
+    &.to-do-list {
+        .table-responsive {
+            .table {
+                thead {
+                    tr {
+                        th {
+                            padding: 15px 7px;
+                        }
+                    }
+                }
+                tbody {
+                    tr {
+                        td {
+                            padding: 15px 7px;
+                        }
+                    }
+                }
+            }
+        }
+        &.padding-style {
+            .table-responsive {
+                .table {
+                    thead {
+                        tr {
+                            th {
+                                padding: 9.5px 7px;
+                            }
+                        }
+                    }
+                    tbody {
+                        tr {
+                            td {
+                                padding: 11.5px 7px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.email-list {
+        .table-responsive {
+            border: none;
+            .table {
+                border: none;
+                tbody {
+                    tr {
+                        td {
+                            border: none;
+                            border-bottom: 1px solid $border-color;
+                            &:first-child {
+                                padding-left: 0 !important;
+                            }
+                            &:last-child {
+                                padding-right: 0 !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.recent-files {
+        .table-responsive {
+            .table {
+                tbody {
+                    tr {
+                        td {
+                            padding: 15px 5px;
+                        }
+                    }
+                }
+                thead {
+                    tr {
+                        th {
+                            padding: 15px 5px;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    &.deals-table {
+        .table-responsive {
+            .table {
+                tbody {
+                    tr {
+                        td {
+                            padding-top: 20px;
+                            padding-bottom: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.connected-table {
+        .table-responsive {
+            .table {
+                tbody {
+                    tr {
+                        td {
+                            &.ps-0 {
+                                padding-left: 0 !important;
+                            }
+                            &.pe-0 {
+                                padding-right: 0 !important;
+                            }
+                            border: 0 !important; 
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.table-src-form {
+    margin-right: 20px;
+    i {
+        left: 15px !important;
+        font-size: 20px;
+    }
+    .form-control {
+        padding-left: 40px;
+        background-color: #F6F7F9;
+        height: 35px;
+        width: 240px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+    .default-table-area {
+        &.to-do-list {
+            .table {
+                width: 738.66px;
+            }
+        }
+        &.recent-files {
+            .table {
+                width: 819px;
+            }
+        }
+        &.manage-reviews-table {
+            .table {
+                width: 1100px;
+            }
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 380px) {
+
+    .default-table-area {
+        &.team-members {
+            .table {
+                width: 357.33px;
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width : 576px) {
+
+    .default-table-area {
+        &.top-selling-products {
+            .table {
+                width: 595.33px;
+            }
+        }
+        &.recent-orders {
+            .table {
+                width: 690px;
+            }
+        }
+        &.my-tasks {
+            .table {
+                width: 547px;
+            }
+        }
+        &.to-do-list {
+            .table {
+                width: 738.66px;
+            }
+        }
+        &.top-instructors {
+            .table {
+                width: 551.5px;
+            }
+        }
+        &.recent-customer-ratings {
+            .table {
+                width: 551.5px;
+            }
+        }
+        &.speaker-table {
+            .table {
+                width: 525px;
+            }
+        }
+        &.connected-table  {
+            .table {
+                width: 522px;
+            }
+        }
+    }
+    .table-src-form {
+        margin-right: 10px;
+        .form-control {
+            width: 140px;
+        }
+    }
+    
+}
+
+@media only screen and (max-width : 685px) {
+
+    .default-table-area {
+        &.recent-orders {
+            .table {
+                width: 690px;
+            }
+        }
+        &.recent-leads {
+            .table {
+                width: 690px;
+            }
+        }
+        &.email-list {
+            .table {
+                width: 680px;
+            }
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 992px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    .default-table-area {
+        &.to-do-list {
+            .table {
+                width: 738.66px;
+            }
+        }
+        &.email-list {
+            .table {
+                width: 680px;
+            }
+        }
+        &.recent-files {
+            .table {
+                width: 819px;
+            }
+        }
+        &.manage-reviews-table {
+            .table {
+                width: 1100px;
+            }
+        }
+    }
+    
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px)  {
+
+   
+    .default-table-area {
+        &.top-selling-products {
+            .table {
+                width: 595.33px;
+            }
+        }
+        &.recent-orders {
+            .table {
+                width: 690px;
+            }
+        }
+        &.recent-leads {
+            .table {
+                width: 690px;
+            }
+        }
+        &.to-do-list {
+            .table {
+                width: 738.66px;
+            }
+        }
+        &.recent-customer-ratings {
+            .table {
+                width: 551.5px;
+            }
+        }
+        &.recent-files {
+            .table {
+                width: 819px;
+            }
+        }
+        &.manage-reviews-table {
+            .table {
+                width: 1100px;
+            }
+        }
+        &.speaker-table {
+            .table {
+                width: 525px;
+            }
+        }
+        &.team-members {
+            .table {
+                width: 370px;
+            }
+        }
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width : 1200px) and (max-width : 1399px) {
+
+    .default-table-area {
+        &.top-selling-products {
+            .table {
+                width: 595.33px;
+            }
+        }
+        &.recent-orders {
+            .table {
+                width: 690px;
+            }
+        }
+        &.recent-leads {
+            .table {
+                width: 690px;
+            }
+        }
+        &.to-do-list {
+            .table {
+                width: 738.66px;
+            }
+        }
+        &.recent-customer-ratings {
+            .table {
+                width: 551.5px;
+            }
+        }
+        &.email-list {
+            .table {
+                width: 680px;
+            }
+        }
+        &.recent-files {
+            .table {
+                width: 819px;
+            }
+        }
+        &.manage-reviews-table {
+            .table {
+                width: 1100px;
+            }
+        }
+        &.speaker-table {
+            .table {
+                width: 525px;
+            }
+        }
+    }
+
+}
+
+/* Min width 1400px to Max width 1799px */
+@media only screen and (min-width : 1400px) and (max-width : 1799px) {
+
+   
+
+}
+
+@media only screen and (max-width: 1399px) {
+
+    .default-table-area {
+        &.all-projects {
+            .table {
+                width: 1120px;
+            }
+        }
+        &.default-table-width {
+            .table {
+                width: 1120px;
+            }
+        }
+        &.all-products {
+            .table {
+                width: 1300px;
+            }
+            #myTable {
+                width: 1300px !important;
+            }
+        }
+    }
+    
+
+}
+
+@media only screen and (max-width: 1550px) {
+
+    .default-table-area {
+        &.all-products {
+            .table {
+                width: 1300px;
+            }
+            #myTable {
+                width: 1300px !important;
+            }
+        }
+        &.all-carts {
+            .table {
+                width: 926px;
+            }
+        }
+    }
+
+}

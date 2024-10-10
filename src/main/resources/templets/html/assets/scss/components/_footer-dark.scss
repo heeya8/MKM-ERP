@@ -1,0 +1,16 @@
+/* Only Footer dark Area Style
+============================================*/
+[footer-dark-light-data-theme=footer-dark] {
+    .footer-area {
+        background-color: $dark-card-bg !important;
+    }
+    .footer-dark-btn {
+        background-color: $primary;
+    }
+    .light3 {
+        display: inline-block;
+    }
+    .dark3 {
+        display: none;
+    }
+}

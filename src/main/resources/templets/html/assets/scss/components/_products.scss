@@ -1,0 +1,109 @@
+/* Products Area Style
+============================================*/
+.products-tabs {
+    .nav-item {
+        .nav-link {
+            &.active {
+                border-color: $warning;
+            }
+        }
+    }
+}
+.select-style {
+    .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+        border-color: $warning !important;
+    }
+}
+.select-color {
+    li {
+        width: 30px;
+        height: 30px;
+        border: 1px solid $white;
+        cursor: pointer;
+        &.color1 {
+            background-color: #ECEEF2;
+            border-radius: 50px;
+            &.active {
+                border-color: $warning;
+            }
+        }
+        &.color2 {
+            background-color: #D5D9E2;
+            border-radius: 50px;
+        }
+        &:hover {
+            border-color: $warning;
+        }
+    }
+}
+.add-to-cart-counter {
+	display: flex;
+	input {
+		background-color: #ECF0FF;
+		color: $body-color;
+		border: 1px solid #ECF0FF;
+		max-width: 50px;
+		text-align: center;
+		font-size: 16px;
+        border: 0;
+        &:focus {
+            box-shadow: none;
+            border: none;
+            outline: none;
+        }
+	}
+	.minusBtn, .plusBtn {
+		border-right: 1px solid #ECF0FF;
+		width: 35px;
+		height: 42px;
+		line-height: 31.9px;
+		background-color: #ECF0FF;
+		border-radius: 0 7px 7px 0 !important;
+	}
+    .minusBtn {
+        border-radius: 7px 0 0 7px !important;
+    }
+}
+.review-tabs {
+    margin-bottom: 1px;
+    .nav-item {
+        .nav-link {
+            color: $body-color;
+            border-bottom: 2px solid $body-bg !important;
+            padding: 11px 30px;
+            &.active {
+               background-color: $white;
+               border-color: $primary !important;
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+}
+
+/* Min width 768px to Max width 992px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px)  {
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width : 1200px) and (max-width : 1399px) {
+
+}
+
+/* Min width 1400px to Max width 1799px */
+@media only screen and (min-width : 1400px) and (max-width : 1799px) {
+
+}
+
+@media only screen and (max-width : 1199px) {
+
+}

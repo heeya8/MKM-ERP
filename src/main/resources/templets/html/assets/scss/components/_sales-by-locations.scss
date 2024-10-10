@@ -1,0 +1,35 @@
+/* Sales By Locations Area Style
+============================================*/
+.sales_by_locations {
+    li {
+        margin-bottom: 25px;
+        position: relative;
+        padding-right: 48px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        .progress {
+            overflow: unset;
+            border-radius: 50px;
+            height: 5px;
+            background-color: #ECF0FF;
+        }
+        .progress-bar {
+            border-radius: 50px;
+            .count {
+                position: absolute;
+                top: 20px;
+                right: 0;
+                font-size: 15px;
+            }
+        }
+    }
+    &.style-two {
+        li {
+            margin-bottom: 22px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
