@@ -1,0 +1,302 @@
+/* Calendar Style
+============================================*/
+.calendar-wrap {
+	background-color: $white;
+	border-radius: 0;
+	.fc {
+		.fc-non-business {
+			background-color: transparent;
+		}
+		.fc-toolbar-title {
+			font-size: 18px;
+            font-weight: 700;
+		}
+		.fc-button-primary {
+			background-color: $body-color;
+			color: $white;
+			border: none;
+			text-transform: capitalize;
+			border-radius: 5px !important;
+		}
+        .fc-prev-button, .fc-next-button {
+            border-color: #ECEEF2;
+            background-color: transparent;
+            color: $secondary;
+            border: 1px solid $secondary;
+            width: 30px;
+            height: 30px;
+            line-height: 19px;
+            padding: 0;
+            transition: $transition;
+            &:hover {
+                background-color: $primary;
+                color: $white;
+                border-color: $primary;
+            }
+        }
+		.fc-button-group > .fc-button:focus, .fc .fc-button-group > .fc-button:active, .fc .fc-button-group > .fc-button.fc-button-active {
+			border: none;
+			outline: none;
+			box-shadow: none;
+		}
+		.fc-prev-button.fc-button.fc-button-primary {
+			margin-right: 13px;
+		}
+        .fc-today-button {
+            background-color: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: $secondary;
+            margin-right: 10px;
+            &:hover {
+                background-color: transparent;
+                color: $secondary;
+            }
+        }
+		tbody {
+			tr {
+				th {
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+					border-color: #ECF0FF;
+                    background-color: #ECF0FF;
+				}
+			}
+		}
+		.fc-col-header-cell-cushion {
+			color: $secondary;
+			font-size: 14px;
+            text-decoration: none;
+            font-weight: 500;
+		}
+		.fc-daygrid-day-top {
+			justify-content: center;
+		}
+	}
+	.fc-theme-standard {
+		.fc-scrollgrid {
+			border-top: none;
+			border-color: $gray-div;
+		}
+	}
+	.fc-theme-standard td, .fc-theme-standard th {
+		border-color: $gray-div;
+	}
+	.fc-h-event {
+		border: none;
+		text-align: center;
+		font-size: 10px;
+        padding: 4px;
+        &.success {
+            background-color: $success !important;
+        }
+        &.primary {
+            background-color: $primary !important;
+        }
+        &.primary-div {
+            background-color: $primary-div !important;
+        }
+        &.danger{
+            background-color: $danger !important;
+        }
+	}
+	.fc-daygrid-day-number {
+        text-decoration: none;
+        color: $secondary;
+        padding: 20px 0;
+        padding-bottom: 0;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    .fc-theme-standard .fc-scrollgrid {
+        border-top: 1px solid #ECF0FF;
+    }
+    .fc-button {
+        cursor: pointer;
+        transition: $transition;
+        &:disabled {
+            color: $primary;
+            opacity: 1;
+        }
+    }
+    .fc-daygrid-block-event .fc-event-time, .fc-daygrid-block-event .fc-event-title {
+        white-space: break-spaces;
+        text-align: left;
+        font-size: 10px;
+        font-weight: 500;
+    }
+    .fc-view-harness.fc-view-harness-active {
+        height: 600px !important;
+    }
+    .fc .fc-view-harness-active > .fc-view {
+        overflow: auto;
+    }
+}
+
+/* Calendar Area Style
+============================================*/
+.calendar-wraps {
+    #calendari {
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        height: 275px;
+        width: 100%;
+        font-size: 14px;
+        
+    }
+    table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(0);
+     
+    }
+    td {
+        text-align: center;
+        &:last-child {
+            border-right: none;
+            >span {
+                color: $danger;
+            }
+        }
+        >span {
+            color: $secondary;
+            display: block;
+            border: 2px solid transparent;
+            width: 30px;
+            height: 30px;
+            line-height: 28px;
+            border-radius: 50px;
+            margin: auto;
+            text-align: center;
+            transition: $transition;
+            cursor: pointer;
+            font-size: 14px;
+            &:hover {
+                background: $primary;
+                color: $white;
+            }
+        }
+        &:nth-child(6) {
+            >span {
+                color: $danger;
+            }
+        }
+    }
+    th {
+        text-align: center;
+		padding: 20px 0;
+		padding-top: 0;
+        font-weight: normal;
+        color: $secondary;
+        font-size: 14px;
+        &:last-child {
+            border-right: none;
+        }
+        .any {
+            font-weight: normal;
+            display: inline-block;
+            text-shadow: none;
+            color: $secondary;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+    }
+    tr {
+        &:first-child {
+            th {
+                font-size: 12px;
+                font-weight: 600;
+                border-left: none;
+                border-top: none;
+            }
+        }
+        &:nth-child(2) {
+            th {
+                padding: 5px;
+            }
+        }
+    }
+    td {
+        &.avui {
+            >span {
+                font-weight: 400;
+                background-color: $primary;
+                color: $white;
+            }
+        }
+        &.fora {
+            >span {
+                opacity: 0.2;
+            }
+        }
+    }
+    .boto-next, .boto-prev {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        border: none;
+		padding: 0;
+		background-color: transparent;
+        &::before {
+            content: url(../../assets/images/chevron-right.svg);
+			width: 40px;
+        }
+    }
+    .boto-prev {
+        right: auto;
+        left: 5px;
+        &::before {
+            content: url(../../assets/images/chevron-left.svg);
+        }
+    }
+}
+
+.calendar-content {
+    #month-year {
+        font-size: 18px;
+        font-family: $body-font-family;
+        text-align: center;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #F4F5FA;
+    }
+    th, td {
+        padding: 12.6px 8px;
+        text-align: center;
+        background-color: #F4F5FA;
+        color: $dark;
+        font-size: 16px;
+    }
+    th {
+        background-color: #F4F5FA;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .active-date {
+        background-color: $white;
+        color: $primary;
+        border-radius: 50px;
+        width: 47px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+
+    table.fc-scrollgrid.fc-scrollgrid-liquid {
+        width: 691px !important;
+    }
+
+}

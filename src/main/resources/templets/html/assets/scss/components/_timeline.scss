@@ -1,0 +1,177 @@
+/* Terminals Area Style
+============================================*/
+.timeline-wrap {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 15px;
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+        border: 1px dashed $primary;
+        height: calc(100% / 5 * 4);
+    }
+    .timeline-item-2 {
+        display: flex;
+        .text {
+            flex: 1 1 calc(50% - 50px);
+            position: relative;
+            background-color: #ECF0FF;
+        }
+        .icon {
+            flex: 1 1 100px;
+            div {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                margin: auto;
+                background: $primary;
+                box-shadow: $box-shadow;
+                position: relative;
+                z-index: 1;
+            }
+            &.two {
+                div {
+                    background: $success;
+                }
+            }
+            &.three {
+                div {
+                    background: $primary-div;
+                }
+            }
+            &.four {
+                div {
+                    background: $danger;
+                }
+            }
+        }
+        .time {
+            flex: 1 1 calc(50% - 50px);
+            time {
+                font-size: 12px; 
+                background-color: $primary;
+                color: $white;
+                display: inline-block;
+                padding: 9px 15px;
+                border-radius: 7px;
+                position: relative;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 10px;
+                    left: -6px;
+                    width: 15px;
+                    height: 15px;
+                    background-color: $primary;
+                    transform: rotate(45deg);
+                    border-radius: 2px;
+                }
+            }
+        }
+        &:nth-child(even) {
+            flex-direction: row-reverse;
+            .time {
+                time {
+                    &::before {
+                        left: auto;
+                        right: -6px;
+                    }
+                }
+            }
+        }
+        &:nth-child(even) > div:last-child {
+            text-align: end;
+        }
+    }
+}
+.timeline-item {
+    position: relative;
+    padding-left: 90px;
+    .time-line-date {
+        position: absolute;
+        top: -5px;
+        left: 0;
+    }
+    .border-style-for-timeline {
+        border-left: 1px dashed #D5D9E2;
+        padding-left: 30px;
+        position: relative;
+        padding-bottom: 30px;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -6px;
+            width: 12px;
+            height: 12px;
+            background-color: #37D80A;
+            border-radius: 50px;
+        }
+        &.dot-2 {
+            &::before {
+                background-color: #FD5812;
+            }
+        }
+        &.dot-3 {
+            &::before {
+                background-color: #AD63F6;
+            }
+        }
+        &.dot-4 {
+            &::before {
+                background-color: #3584FC;
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+    .timeline-wrap {
+        margin: 0;
+        &::before {
+            display: none;
+        }
+        .timeline-item-2 {
+            flex-flow: column wrap;
+            height: auto;
+            &:nth-child(even) {
+                flex-direction: column;
+            }
+            &:nth-child(even) > .time:last-child {
+                text-align: start;
+            }
+            &:nth-child(odd) {
+                h3 {
+                    &::after {
+                        border: none;
+                    }
+                }
+            }
+            .icon {
+                order: 1;
+                flex: 1 1 100%;
+                width: 100px;
+                div {
+                    display: none !important;
+                }
+            }
+            .time {
+                order: 2;
+                flex: 1 1 50px;
+                width: calc(100% - 90px);
+            }
+            .text {
+                order: 3;
+                flex: 1 1 calc(100% - 50px);
+                width: calc(100% - -1px);
+            }
+        }
+    }
+
+}

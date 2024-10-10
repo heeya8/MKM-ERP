@@ -1,0 +1,38 @@
+/* Fluid & Boxed Area Style
+============================================*/
+[boxed-style-data-theme=boxed-style-boxed] {
+    &.boxed-size {
+        width: 1440px;
+        margin: auto;
+    }
+    .fluid-boxed-btn {
+        background-color: $primary;
+    }
+    .fluid {
+        display: inline-block;
+    }
+    .boxed {
+        display: none;
+    }
+    .sidebar-area {
+        inset-inline-start: auto !important;
+    }
+    .priceing-border {
+        &::before {
+            left: -67px;
+        }
+    }
+    .popular-tag {
+        left: 160px;
+    }
+    @media only screen and (min-width : 1920px) {
+        .custom-xxxl-10 {
+            flex: 0 0 auto;
+            width: 66.6666666667%;
+        }
+        .custom-xxxl-2 {
+            flex: 0 0 auto;
+            width: 33.3333333333%;
+        }
+    }
+}

@@ -1,0 +1,114 @@
+/* Only Header dark Area Style
+============================================*/
+[header-dark-light-data-theme=header-dark] {
+    .header-area {
+        background-color: $dark-card-bg !important;
+    }
+    .left-header-content {
+        ul {
+            li {
+                .notifications {
+                    &.dropdown {
+                        .dropdown-menu {
+                            background-color: $dark-card-bg;
+                            .dropdown-item {
+                                span {
+                                    color: $dark-body-color;
+                                }
+                            }
+                        }
+                    }
+                }
+                .header-burger-menu {
+                    .material-symbols-outlined {
+                        color: $dark-body-color;
+                    }
+                }
+                .src-form {
+                    .form-control {
+                        background-color: $dark-input-bg;
+                        border-color: $dark-input-bg;
+                        color: $white !important;
+                        &:focus {
+                            border-color: $primary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .right-header-content {
+        .header-right-item {
+            .notifications {
+                &.dropdown {
+                    .dropdown-menu {
+                        background-color: $dark-body-bg !important;
+                        .notification-menu {
+                            border-color: #1b212a !important;
+                        }
+                        .title {
+                            color: $white !important; 
+                            span {
+                                color: $white !important; 
+                            }
+                            button {
+                                color: $white !important; 
+                            }
+                        }
+                        .dropdown-item {
+                            span {
+                                transition: $transition;
+                                color: $white !important;
+                            }
+                            p {
+                                span {
+                                    color: $white !important;
+                                }
+                            }
+                            &:hover {
+                                background-color: $dark-card-bg !important;
+                            }
+                        }
+                        .view-all {
+                            border-color: $dark-border;
+                            span {
+                                color: $white !important;
+                            }
+                        }
+                    }
+                }
+            }
+            .admin-profile {
+                .dropdown-menu {
+                    background-color: $dark-body-bg !important;
+                    .admin-link {
+                        border-color: $dark-border;
+                    }
+                }
+                h3 {
+                    color: $white;
+                }
+                span {
+                    color: $dark-body-color;
+                }
+                i {
+                    color: $dark-body-color !important;
+                }
+            }
+            .theme-settings-btn {
+                i {
+                    color: $dark-body-color;
+                }
+            }
+        }
+    }
+    .header-dark-btn {
+        background-color: $primary;
+    }
+    .light2 {
+        display: inline-block;
+    }
+    .dark2 {
+        display: none;
+    }
+}

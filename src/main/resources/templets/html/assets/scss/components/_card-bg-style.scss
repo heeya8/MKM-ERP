@@ -1,0 +1,38 @@
+/* Only Card Background Area Style
+============================================*/
+[card-bg-data-theme=card-bg-gray] {
+    background-color: $white !important;
+    .card-bg-style-btn {
+        background-color: $primary;
+    }
+    .card {
+        background-color: $body-bg !important;
+        &.bg-primary-div {
+            background-color: $primary !important;
+        }
+        &.bg-primary {
+            background-color: $primary !important;
+        }
+    }
+    .header-area {
+        background-color: $body-bg !important;
+    }
+    .sidebar-area {
+        background-color: $body-bg !important;
+    }
+    .footer-area {
+        background-color: $body-bg !important;
+    }
+    .sidebar-area .admin .admin-info {
+        background-color: $body-bg !important;
+    }
+    .offcanvas {
+        background-color: $body-bg !important;
+    }
+    .white {
+        display: inline-block;
+    }
+    .gray {
+        display: none;
+    }
+}

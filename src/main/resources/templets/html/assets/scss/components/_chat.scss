@@ -1,0 +1,103 @@
+/* Chat Area Style
+============================================*/
+.status-position {
+    top: 2px;
+    right: -5px;
+}
+.status-position2 {
+    bottom: 4px;
+    right: -2px;
+}
+.chat-tabs {
+    .nav-item {
+        .nav-link {
+            position: relative;
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 0;
+                height: 2px;
+                background-color: $primary;
+                transition: $transition;
+            }
+            &.active {
+                color: $primary !important;
+                background-color: transparent;
+                &::before {
+                    width: 100%;
+                    right: auto;
+                    left: 0;
+                }
+            }
+        }
+    }
+}
+.chat-details {
+    li {
+        max-width: 800px;
+        p {
+            border-radius: 0px 15px 15px 15px;
+            background-color: #F5F6FA;
+            margin-bottom: 0;
+            padding: 15px 20px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        .dropdown {
+            &.action-opt {
+                opacity: 0;
+                transition: $transition;
+            }
+        }
+        &.own-chat {
+            p {
+                border-radius: 15px 0 15px 15px;
+                background-color: $primary;
+                color: $white;
+            }
+        }
+        &:hover {
+            .dropdown {
+                &.action-opt {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+    
+    .chat-details {
+        li {
+            p {
+                padding: 10px;
+            }
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 992px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    
+    .chat-details {
+        li {
+            p {
+                padding: 10px;
+            }
+        }
+    }
+
+}
+
+/* Min width 1400px to Max width 1799px */
+@media only screen and (min-width : 1400px) and (max-width : 1799px) {
+
+    
+
+}
