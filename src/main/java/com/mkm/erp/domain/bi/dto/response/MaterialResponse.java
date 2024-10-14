@@ -7,7 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public class MaterialResponse {
     private Long id;
+    private String itemCode;
     private String name;
     private int quantity;
     private String unit;
+    private String subcategoryName;
 }

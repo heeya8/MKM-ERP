@@ -8,6 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ProductResponse {
     private Long id;
+    private String itemCode;
     private String name;
     private int quantity;
     private String unit;

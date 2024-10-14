@@ -18,6 +18,9 @@ public class Material extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "item_code", unique = true, nullable = false)
+    private String itemCode;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "unit", nullable = false)
     private UnitType unit;
@@ -28,10 +31,15 @@ public class Material extends Timestamped {
     @Column(name = "quantity")
     private int quantity = 0;
 
-    public Material(MaterialRequest request) {
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id", nullable = false)
+    private Subcategory subcategory; // 소분류와의 관계
+
+    public Material(MaterialRequest request, Subcategory subcategory) {
         this.unit = UnitType.valueOf(request.getUnit());
         this.name = request.getName();
         this.quantity = request.getQuantity();
+        this.subcategory = subcategory; // 소분류와 연결
     }
 
     public enum UnitType {

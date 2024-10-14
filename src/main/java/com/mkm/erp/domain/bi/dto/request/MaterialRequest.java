@@ -10,4 +10,5 @@ public class MaterialRequest {
     private String name;
     private int quantity;
     private String unit;
+    private String subcategoryName;
 }

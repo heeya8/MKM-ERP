@@ -3,9 +3,8 @@ package com.mkm.erp.domain.bi.entity;
 import com.mkm.erp.domain.bi.dto.request.ProductRequest;
 import com.mkm.erp.domain.common.entity.Timestamped;
 import jakarta.persistence.*;
-        import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -17,6 +16,9 @@ public class Product extends Timestamped {
     // Primary Key로 설정된 품목코드
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @Column(name = "item_code", unique = true, nullable = false)
+    private String itemCode;
 
     // 단위 필드, Enum으로 지정
     @Enumerated(EnumType.STRING)
@@ -50,6 +52,10 @@ public class Product extends Timestamped {
         BAG,      // 봉지 (밀봉 포장된 상품)
         BOX,      // 상자 (대량 포장 단위)
     }
+
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id", nullable = false)
+    private Subcategory subcategory; // 소분류와의 관계
 
     public Product(ProductRequest request) {
         this.unit = UnitType.valueOf(request.getUnit());
