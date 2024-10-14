@@ -4,8 +4,10 @@ import com.mkm.erp.domain.bi.dto.request.MaterialRequest;
 import com.mkm.erp.domain.bi.dto.response.MaterialResponse;
 import com.mkm.erp.domain.bi.dto.response.ResponseDto;
 import com.mkm.erp.domain.bi.entity.Material;
+import com.mkm.erp.domain.bi.entity.Subcategory;
 import com.mkm.erp.domain.bi.exception.ResourceNotFoundException;
 import com.mkm.erp.domain.bi.repository.MaterialRepository;
+import com.mkm.erp.domain.bi.repository.SubcategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 public class MaterialService {
 
     private final MaterialRepository materialRepository;
+    private final SubcategoryRepository subcategoryRepository;
 
     // 원자재 CRUD - 페이징 처리된 원자재 목록을 반환
     public ResponseDto<MaterialResponse> getMaterials(int page, int size) {
@@ -31,9 +34,11 @@ public class MaterialService {
                 materialsPage.getContent().stream()
                         .map(material -> new MaterialResponse(
                                 material.getId(),
+                                material.getItemCode(),
                                 material.getName(),
                                 material.getQuantity(),
-                                material.getUnit().toString()
+                                material.getUnit().toString(),
+                                material.getSubcategory().getName()  // 소분류 이름 반환
                         ))
                         .collect(Collectors.toList()),  // content 변환
                 materialsPage.getNumber() + 1,          // 현재 페이지 번호 (0-based에서 1-based로)
@@ -46,9 +51,29 @@ public class MaterialService {
 
     @Transactional
     public void createMaterial(MaterialRequest request) {
-        Material material = new Material(request);
+        Subcategory subcategory = subcategoryRepository.findByName(request.getSubcategoryName())
+                .orElseThrow(() -> new ResourceNotFoundException("소분류를 찾을 수 없습니다. 이름: " + request.getSubcategoryName()));
+
+        // 가장 큰 품목코드 가져오기
+        String maxCode = materialRepository.findMaxItemCode();
+        String nextCode = generateNextItemCode("M", maxCode);
+
+        Material material = new Material(request, subcategory);
+        material.setItemCode(nextCode);  // 품목코드 설정
         materialRepository.save(material);
     }
+
+    private String generateNextItemCode(String prefix, String maxCode) {
+        if (maxCode == null) {
+            // 첫 번째 품목인 경우 M0001부터 시작
+            return prefix + "0001";
+        }
+        // 마지막 숫자 부분 추출 후 1을 더한 값으로 새 코드 생성
+        int nextNumber = Integer.parseInt(maxCode.substring(1)) + 1;
+        return prefix + String.format("%04d", nextNumber);
+    }
+
+
 
     @Transactional
     public void updateMaterial(Long id, MaterialRequest request) {
@@ -58,6 +83,11 @@ public class MaterialService {
             material.setName(request.getName());
             material.setQuantity(request.getQuantity());
             material.setUnit(Material.UnitType.valueOf(request.getUnit()));
+
+            // 소분류 이름을 통해 소분류 엔티티 조회 후 업데이트
+            Subcategory subcategory = subcategoryRepository.findByName(request.getSubcategoryName())
+                    .orElseThrow(() -> new ResourceNotFoundException("소분류를 찾을 수 없습니다. 이름: " + request.getSubcategoryName()));
+            material.setSubcategory(subcategory);
 
             materialRepository.save(material);
         } else {
