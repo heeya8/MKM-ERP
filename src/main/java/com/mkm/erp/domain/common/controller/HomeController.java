@@ -9,7 +9,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        System.out.println("호출");
         return "lock";
     }
 }
