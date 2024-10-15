@@ -31,7 +31,7 @@ public class Material extends Timestamped {
     @Column(name = "quantity")
     private int quantity = 0;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subcategory_id", nullable = false)
     private Subcategory subcategory; // 소분류와의 관계
 

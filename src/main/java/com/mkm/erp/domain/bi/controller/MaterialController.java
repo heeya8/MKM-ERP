@@ -22,8 +22,10 @@ public class MaterialController {
     public ResponseEntity<ResponseDto<MaterialResponse>> getMaterials(
             @Auth AuthUser authUser,
             @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return ResponseEntity.ok(materialService.getMaterials(page, size));
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String unitType) {
+        return ResponseEntity.ok(materialService.getMaterials(page, size, sortBy, unitType));
     }
 
     @PostMapping("/materials")
