@@ -22,7 +22,7 @@
     <!-- Favicon -->
     <link rel="icon" type="/image/png" href="/assets/images/favicon.png">
     <!-- Title -->
-    <title>MKM - 품목 등록</title>
+    <title>MKM - 품목 등록 및 품목 조회</title>
 
     <style>
         .form-container {
@@ -180,7 +180,7 @@
         <!-- Tabs for 품목 등록 and 품목 조회 -->
         <div class="card bg-white border-0 rounded-3 mb-4">
             <div class="card-body p-4">
-                <h3 class="fs-24 mb-4">품목등록 및 품목 조회</h3>
+                <h3 class="fs-24 mb-4">품목 등록 및 품목 조회</h3>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="register-tab" data-bs-toggle="tab"
@@ -198,16 +198,11 @@
                          aria-labelledby="register-tab" tabindex="0">
                         <div>
                             <h4 class="fw-bold mb-3">품목 등록</h4>
-                            <form>
+                            <form onsubmit="submitProductForm(event); return false;">
                                 <div class="mb-3">
                                     <label for="productName" class="form-label">품목명</label>
                                     <input type="text" class="form-control" id="productName"
                                            placeholder="품목명을 입력하세요">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="productCode" class="form-label">품목 코드</label>
-                                    <input type="text" class="form-control" id="productCode"
-                                           placeholder="품목 코드를 입력하세요">
                                 </div>
                                 <div class="mb-3 row">
                                     <div class="col-4">
@@ -274,6 +269,54 @@
                                         subCategory.appendChild(option);
                                     });
                                 }
+
+                                function submitProductForm(event) {
+                                    // 폼 기본 동작 막기
+                                    event.preventDefault();
+
+                                    // 폼 데이터 수집
+                                    const productName = document.getElementById("productName").value;
+                                    const quantity = 0;
+                                    const unit = document.getElementById("unit").value;
+                                    const subcategoryName = document.getElementById("subCategory").value;
+
+                                    console.log("Product Name: " + productName);
+                                    console.log("Quantity: " + quantity);
+                                    console.log("Unit: " + unit);
+                                    console.log("Subcategory Name: " + subcategoryName);
+
+
+                                    // JSON 데이터 생성
+                                    const productData = {
+                                        name: productName,
+                                        quantity: parseInt(quantity),
+                                        unit: unit,
+                                        subcategoryName: subcategoryName
+                                    };
+
+                                    // 서버로 데이터 전송
+                                    fetch('/information/products', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(productData)
+                                    })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                return response.text();
+                                            } else {
+                                                throw new Error('상품 등록 중 오류가 발생했습니다.');
+                                            }
+                                        })
+                                        .then(data => {
+                                            alert(data); // 서버에서의 응답 메시지 출력
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert(error.message);
+                                        });
+                                }
                             </script>
                         </div>
                     </div>
@@ -338,6 +381,95 @@
                                     </ul>
                                 </nav>
                             </div>
+                            <script>
+                                fetch('http://localhost:8080/information/products?page=1&size=5')
+                                    .then(function (response) {
+                                        if (!response.ok) {
+                                            throw new Error('네트워크 응답에 문제가 있습니다.');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(function (data) {
+                                        // 백엔드에서 반환된 데이터를 사용
+                                        const content = data.content;
+
+                                        // 테이블 바디 요소를 찾는다
+                                        const tbody = document.querySelector('.table tbody');
+                                        tbody.innerHTML = ''; // 기존 내용을 제거하고 새 데이터를 채운다.
+
+                                        // 반환된 각 항목을 테이블 행으로 추가
+                                        content.forEach(item => {
+                                            const row = document.createElement('tr');
+
+                                            // 각 데이터를 테이블 셀(td)로 생성
+                                            const itemCodeCell = document.createElement('td');
+                                            itemCodeCell.textContent = item.itemCode;
+                                            itemCodeCell.classList.add('text-secondary');
+
+                                            const nameCell = document.createElement('td');
+                                            nameCell.textContent = item.name;
+                                            nameCell.classList.add('text-secondary');
+
+                                            const categoryCell = document.createElement('td');
+                                            categoryCell.textContent = item.unit; // 대분류와 소분류가 없는 경우 "unit"을 대신 사용함
+                                            categoryCell.classList.add('text-secondary');
+
+                                            const subCategoryCell = document.createElement('td');
+                                            subCategoryCell.textContent = item.quantity === 0 ? 'N/A' : item.quantity;
+                                            subCategoryCell.classList.add('text-secondary');
+
+                                            // 생성한 셀을 행에 추가
+                                            row.appendChild(itemCodeCell);
+                                            row.appendChild(nameCell);
+                                            row.appendChild(categoryCell);
+                                            row.appendChild(subCategoryCell);
+
+                                            // 생성한 행을 테이블 바디에 추가
+                                            tbody.appendChild(row);
+                                        });
+
+                                        // 페이지 네이션 업데이트
+                                        const pagination = document.querySelector('.pagination');
+                                        pagination.innerHTML = ''; // 기존의 페이지네이션을 초기화
+
+                                        // 이전 버튼
+                                        const prevLi = document.createElement('li');
+                                        prevLi.classList.add('page-item');
+                                        if (data.pageNumber === 1) prevLi.classList.add('disabled');
+                                        const prevLink = document.createElement('a');
+                                        prevLink.classList.add('page-link', 'icon');
+                                        prevLink.href = `#`;
+                                        prevLink.setAttribute('aria-label', 'Previous');
+                                        prevLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_left</i>';
+                                        prevLi.appendChild(prevLink);
+                                        pagination.appendChild(prevLi);
+
+                                        // 현재 페이지 번호 표시
+                                        const currentLi = document.createElement('li');
+                                        currentLi.classList.add('page-item', 'active');
+                                        const currentLink = document.createElement('a');
+                                        currentLink.classList.add('page-link');
+                                        currentLink.href = '#';
+                                        currentLink.textContent = data.pageNumber;
+                                        currentLi.appendChild(currentLink);
+                                        pagination.appendChild(currentLi);
+
+                                        // 다음 버튼
+                                        const nextLi = document.createElement('li');
+                                        nextLi.classList.add('page-item');
+                                        if (data.last) nextLi.classList.add('disabled');
+                                        const nextLink = document.createElement('a');
+                                        nextLink.classList.add('page-link', 'icon');
+                                        nextLink.href = `#`;
+                                        nextLink.setAttribute('aria-label', 'Next');
+                                        nextLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_right</i>';
+                                        nextLi.appendChild(nextLink);
+                                        pagination.appendChild(nextLi);
+                                    })
+                                    .catch(function (error) {
+                                        console.error('API 요청 중 오류 발생:', error);
+                                    });
+                            </script>
                         </div>
                     </div>
                 </div>

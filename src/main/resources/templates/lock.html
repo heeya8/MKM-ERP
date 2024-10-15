@@ -55,11 +55,11 @@
                         <form>
                             <div class="form-group mb-4">
                                 <label class="label text-secondary">이메일</label>
-                                <input type="email" class="form-control h-55" placeholder="example@mkm.com">
+                                <input id="email" type="email" class="form-control h-55" placeholder="example@mkm.com">
                             </div>
                             <div class="form-group mb-4">
                                 <label class="label text-secondary">비밀번호</label>
-                                <input type="password" class="form-control h-55" placeholder="패스워드를 입력하세요.">
+                                <input id="password" type="password" class="form-control h-55" placeholder="패스워드를 입력하세요.">
                             </div>
                             <div class="form-group mb-4">
                                 <a href="forget-password.html" class="text-decoration-none text-primary fw-semibold">비밀번호 재설정</a>
@@ -148,6 +148,47 @@
     <span class="dark"><i class="material-symbols-outlined">light_mode</i></span>
     <span class="light"><i class="material-symbols-outlined">dark_mode</i></span>
 </button>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.btn-primary').addEventListener('click', function(event) {
+            event.preventDefault(); // 기본 동작 막기
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const requestData = {
+                email: email,
+                password: password
+            };
+
+            fetch('http://localhost:8080/auth/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+                .then(response => response.text())  // 서버 응답을 텍스트로 처리
+                .then(data => {
+                    // 서버에서 받은 텍스트 응답 처리
+                    console.log('Server Response:', data);
+                    // 예: 로그인 성공 시 다른 페이지로 이동
+                    if (data === "로그인이 완료되었습니다.") {
+                        alert("로그인 성공");
+                        //window.location.href = 'index.html'; // 성공 시 페이지 이동
+                    } else {
+                        // 실패 메시지를 화면에 표시하거나 처리
+                        alert(data); // 응답을 사용자에게 알림으로 표시
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+    });
+</script>
 
 <!-- Link Of JS File -->
 <script src="assets/js/bootstrap.bundle.min.js"></script>

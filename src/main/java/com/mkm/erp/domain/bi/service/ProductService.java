@@ -6,6 +6,7 @@ import com.mkm.erp.domain.bi.dto.response.ProductResponse;
 import com.mkm.erp.domain.bi.dto.response.ResponseDto;
 import com.mkm.erp.domain.bi.entity.Product;
 import com.mkm.erp.domain.bi.entity.Subcategory;
+import com.mkm.erp.domain.bi.entity.UnitType;
 import com.mkm.erp.domain.bi.exception.ResourceNotFoundException;
 import com.mkm.erp.domain.bi.repository.ProductRepository;
 import com.mkm.erp.domain.bi.repository.SubcategoryRepository;
@@ -63,8 +64,6 @@ public class ProductService {
         );
     }
 
-
-
     @Transactional
     public void createProduct(ProductRequest request) {
         Subcategory subcategory = subcategoryRepository.findByName(request.getSubcategoryName())
@@ -98,7 +97,7 @@ public class ProductService {
             Product product = existingProduct.get();
             product.setName(request.getName());
             product.setQuantity(request.getQuantity());
-            product.setUnit(Product.UnitType.valueOf(request.getUnit()));
+            product.setUnit(UnitType.valueOf(request.getUnit()));
 
             // 소분류 이름으로 소분류 찾기
             Subcategory subcategory = subcategoryRepository.findByName(request.getSubcategoryName())
