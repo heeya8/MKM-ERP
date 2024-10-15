@@ -23,8 +23,10 @@ public class ProductController {
     public ResponseEntity<ResponseDto<ProductResponse>> getProducts(
             @Auth AuthUser authUser,
             @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return ResponseEntity.ok(productService.getProducts(page, size));
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String unitType) {
+        return ResponseEntity.ok(productService.getProducts(page, size, sortBy, unitType));
     }
 
     @PostMapping("/products")
