@@ -4,6 +4,7 @@ import com.mkm.erp.domain.bi.dto.request.MaterialRequest;
 import com.mkm.erp.domain.bi.dto.response.MaterialResponse;
 import com.mkm.erp.domain.bi.dto.response.ResponseDto;
 import com.mkm.erp.domain.bi.entity.Material;
+import com.mkm.erp.domain.bi.entity.Product;
 import com.mkm.erp.domain.bi.entity.Subcategory;
 import com.mkm.erp.domain.bi.exception.ResourceNotFoundException;
 import com.mkm.erp.domain.bi.repository.MaterialRepository;
@@ -12,9 +13,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -26,12 +29,28 @@ public class MaterialService {
     private final SubcategoryRepository subcategoryRepository;
 
     // 원자재 CRUD - 페이징 처리된 원자재 목록을 반환
-    public ResponseDto<MaterialResponse> getMaterials(int page, int size) {
-        Pageable pageable = PageRequest.of(page - 1, size); // 페이지 인덱스는 0부터 시작하므로 -1
+    public ResponseDto<MaterialResponse> getMaterials(int page, int size, String sortBy, String unitType) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "name"); // 기본 정렬을 이름순으로 설정
+
+        // sortBy 값에 따른 정렬 방식 변경
+        if ("recent".equals(sortBy)) {
+            sort = Sort.by(Sort.Direction.DESC, "createdAt"); // 최신추가순
+        } else if ("oldest".equals(sortBy)) {
+            sort = Sort.by(Sort.Direction.ASC, "createdAt"); // 오래된 추가순
+        } else if ("unit".equals(sortBy)) {
+            sort = Sort.by(Sort.Direction.ASC, "unit").and(Sort.by(Sort.Direction.ASC, "name")); // 유닛별, 이름순 정렬
+        }
+
+        Pageable pageable = PageRequest.of(page - 1, size, sort); // 페이지 인덱스는 0부터 시작하므로 -1
         Page<Material> materialsPage = materialRepository.findAll(pageable);
 
+        // 카테고리 및 유닛 필터링
+        List<Material> filteredMaterials = materialsPage.getContent().stream()
+                .filter(material -> (unitType == null || material.getUnit().toString().equals(unitType))) // 유닛 필터
+                .collect(Collectors.toList());
+
         return new ResponseDto<>(
-                materialsPage.getContent().stream()
+                filteredMaterials.stream()
                         .map(material -> new MaterialResponse(
                                 material.getId(),
                                 material.getItemCode(),

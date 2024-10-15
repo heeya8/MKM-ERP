@@ -10,12 +10,11 @@ import com.mkm.erp.domain.bi.exception.ResourceNotFoundException;
 import com.mkm.erp.domain.bi.repository.ProductRepository;
 import com.mkm.erp.domain.bi.repository.SubcategoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -24,14 +23,30 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final SubcategoryRepository subcategoryRepository; // Add this line
+    private final SubcategoryRepository subcategoryRepository;
 
-    public ResponseDto<ProductResponse> getProducts(int page, int size) {
-        Pageable pageable = PageRequest.of(page - 1, size);
+    public ResponseDto<ProductResponse> getProducts(int page, int size, String sortBy, String unitType) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "name"); // 기본 정렬을 이름순으로 설정
+
+        // sortBy 값에 따른 정렬 방식 변경
+        if ("recent".equals(sortBy)) {
+            sort = Sort.by(Sort.Direction.DESC, "createdAt"); // 최신추가순
+        } else if ("oldest".equals(sortBy)) {
+            sort = Sort.by(Sort.Direction.ASC, "createdAt"); // 오래된 추가순
+        } else if ("unit".equals(sortBy)) {
+            sort = Sort.by(Sort.Direction.ASC, "unit").and(Sort.by(Sort.Direction.ASC, "name")); // 유닛별, 이름순 정렬
+        }
+
+        Pageable pageable = PageRequest.of(page - 1, size, sort);
         Page<Product> productPage = productRepository.findAll(pageable);
 
+        // 카테고리 및 유닛 필터링
+        List<Product> filteredProducts = productPage.getContent().stream()
+                .filter(product -> (unitType == null || product.getUnit().toString().equals(unitType))) // 유닛 필터
+                .collect(Collectors.toList());
+
         return new ResponseDto<>(
-                productPage.getContent().stream()
+                filteredProducts.stream() // 필터링된 리스트를 사용
                         .map(product -> new ProductResponse(
                                 product.getId(),
                                 product.getItemCode(),
@@ -47,6 +62,8 @@ public class ProductService {
                 productPage.isLast()
         );
     }
+
+
 
     @Transactional
     public void createProduct(ProductRequest request) {

@@ -53,7 +53,7 @@ public class Product extends Timestamped {
         BOX,      // 상자 (대량 포장 단위)
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subcategory_id", nullable = false)
     private Subcategory subcategory; // 소분류와의 관계
 
