@@ -17,7 +17,7 @@ This files table contents are outlined below>>>>>
 @import "../../node_modules/bootstrap/scss/functions";
 
 // Default variable overrides
-@import "variables";
+@import "./variables";
 
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
@@ -70,26 +70,26 @@ $utilities: (
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 // Components
-@import "components/global";
-@import "components/sidebar-menu";
-@import "components/main-content";
-@import "components/header-area";
-@import "components/footer-area";
-@import "components/status-box";
-@import "components/sales-by-locations";
-@import "components/default-table";
-@import "components/pagination";
-@import "components/calendar";
-@import "components/chat";
-@import "components/timeline";
-@import "components/priceing";
-@import "components/products";
-@import "components/rtl";
-@import "components/dark-mode";
-@import "components/sidebar-dark";
-@import "components/header-dark";
-@import "components/footer-dark";
-@import "components/card-style";
-@import "components/card-bg-style";
-@import "components/fluid-boxed-style";
-@import "components/landing-page";
+@import "./components/global";
+@import "./components/sidebar-menu";
+@import "./components/main-content";
+@import "./components/header-area";
+@import "./components/footer-area";
+@import "./components/status-box";
+@import "./components/sales-by-locations";
+@import "./components/default-table";
+@import "./components/pagination";
+@import "./components/calendar";
+@import "./components/chat";
+@import "./components/timeline";
+@import "./components/priceing";
+@import "./components/products";
+@import "./components/rtl";
+@import "./components/dark-mode";
+@import "./components/sidebar-dark";
+@import "./components/header-dark";
+@import "./components/footer-dark";
+@import "./components/card-style";
+@import "./components/card-bg-style";
+@import "./components/fluid-boxed-style";
+@import "./components/landing-page";

@@ -7,9 +7,9 @@ import com.mkm.erp.domain.bi.service.ProductService;
 import com.mkm.erp.domain.common.annotation.Auth;
 import com.mkm.erp.domain.common.dto.AuthUser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     private final ProductService productService;
+
+    @GetMapping("/product")
+    public String loadProductPage(Model model) {
+        return "product";
+    }
 
     @GetMapping("/products")
     public ResponseEntity<ResponseDto<ProductResponse>> getProducts(

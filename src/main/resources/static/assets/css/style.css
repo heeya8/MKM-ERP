@@ -16482,7 +16482,7 @@ Swiper Slider Style
   background-color: transparent;
 }
 .calendar-wraps .boto-next::before, .calendar-wraps .boto-prev::before {
-  content: url(../images/chevron-right.svg);
+  content: url(../../assets/images/chevron-right.svg);
   width: 40px;
 }
 .calendar-wraps .boto-prev {
@@ -16490,7 +16490,7 @@ Swiper Slider Style
   left: 5px;
 }
 .calendar-wraps .boto-prev::before {
-  content: url(../images/chevron-left.svg);
+  content: url(../../assets/images/chevron-left.svg);
 }
 
 .calendar-content #month-year {

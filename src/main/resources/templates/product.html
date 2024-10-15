@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Links Of CSS File -->
+    <link rel="stylesheet" href="/assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="/assets/css/simplebar.css">
+    <link rel="stylesheet" href="/assets/css/apexcharts.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/rangeslider.css">
+    <link rel="stylesheet" href="/assets/css/sweetalert.min.css">
+    <link rel="stylesheet" href="/assets/css/quill.snow.css">
+    <link rel="stylesheet" href="/assets/css/google-icon.css">
+    <link rel="stylesheet" href="/assets/css/remixicon.css">
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/css/fullcalendar.main.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="/image/png" href="/assets/images/favicon.png">
+    <!-- Title -->
+    <title>MKM - 품목 등록</title>
+
+    <style>
+        .form-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .product-list {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .product-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body class="boxed-size">
+
+<!-- Start Sidebar Area -->
+<div class="sidebar-area" id="sidebar-area">
+    <div class="logo position-relative">
+        <a href="index.html" class="d-block text-decoration-none position-relative">
+            <img src="/assets/images/logo-icon.png" alt="logo-icon">
+            <span class="logo-text fw-bold text-dark">MKM</span>
+        </a>
+        <button
+                class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y"
+                id="sidebar-burger-menu">
+            <i data-feather="x"></i>
+        </button>
+    </div>
+
+    <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
+        <ul class="menu-inner">
+            <!-- 작업 관리 메뉴 -->
+            <li class="menu-title small text-uppercase">
+                <span class="menu-title-text">작업 관리</span>
+            </li>
+            <li class="menu-item open">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">작업 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="index.html" class="menu-link">생산 계획 등록</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="crm.html" class="menu-link">작업 지시 관리</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="project-management.html" class="menu-link">작업 실적 등록</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 자재 관리 메뉴 -->
+            <li class="menu-item open">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">자재 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="12.html" class="menu-link">자재 출고 관리</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="crm.html" class="menu-link">재고 현황</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="project-management.html" class="menu-link">발주 요청</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 기초 정보 관리 메뉴 -->
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">기초 정보 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="product.html" class="menu-link active">품목 등록</a>
+                    </li>
+                    <li class="menu-item after-sub-menu menu-level">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <span class="title">BOM 관리</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="bom-registration.html" class="menu-link">BOM 등록</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="bom-explosion.html" class="menu-link">BOM 정전개</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <!-- Logout -->
+            <li class="menu-item">
+                <a href="login.html" class="menu-link">
+                    <span class="material-symbols-outlined menu-icon">logout</span>
+                    <span class="title">로그아웃</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+</div>
+
+<!-- Start Main Content Area -->
+<div class="container-fluid">
+    <div class="main-content d-flex flex-column">
+        <!-- Start Header Area -->
+        <header class="header-area bg-white mb-4 rounded-bottom-15" id="header-area">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="left-header-content">
+                        <ul
+                                class="d-flex align-items-center ps-0 mb-0 list-unstyled justify-content-center justify-content-sm-start">
+                            <li>
+                                <button class="header-burger-menu bg-transparent p-0 border-0"
+                                        id="header-burger-menu">
+                                    <span class="material-symbols-outlined">menu</span>
+                                </button>
+                            </li>
+                            <li>
+                                <form class="src-form position-relative">
+                                    <input type="text" class="form-control" placeholder="Search here.....">
+                                    <button type="submit"
+                                            class="src-btn position-absolute top-50 end-0 translate-middle-y bg-transparent p-0 border-0">
+                                        <span class="material-symbols-outlined">search</span>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End Header Area -->
+
+        <!-- Tabs for 품목 등록 and 품목 조회 -->
+        <div class="card bg-white border-0 rounded-3 mb-4">
+            <div class="card-body p-4">
+                <h3 class="fs-24 mb-4">품목등록 및 품목 조회</h3>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="register-tab" data-bs-toggle="tab"
+                                data-bs-target="#register-tab-pane" type="button" role="tab"
+                                aria-controls="register-tab-pane" aria-selected="true">품목 등록</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list-tab-pane"
+                                type="button" role="tab" aria-controls="list-tab-pane" aria-selected="false">품목
+                            조회</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent" style="padding: 20px;">
+                    <div class="tab-pane fade show active" id="register-tab-pane" role="tabpanel"
+                         aria-labelledby="register-tab" tabindex="0">
+                        <div>
+                            <h4 class="fw-bold mb-3">품목 등록</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="productName" class="form-label">품목명</label>
+                                    <input type="text" class="form-control" id="productName"
+                                           placeholder="품목명을 입력하세요">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productCode" class="form-label">품목 코드</label>
+                                    <input type="text" class="form-control" id="productCode"
+                                           placeholder="품목 코드를 입력하세요">
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-4">
+                                        <label for="category" class="form-label">대분류</label>
+                                        <select class="form-select form-control" id="category"
+                                                onchange="updateSubCategory()">
+                                            <option value="">대분류를 선택하세요</option>
+                                            <option value="product">생산품</option>
+                                            <option value="material">원자재</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="subCategory" class="form-label">소분류</label>
+                                        <select class="form-select form-control" id="subCategory">
+                                            <option value="">소분류를 선택하세요</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="unit" class="form-label">단위</label>
+                                        <select class="form-select form-control" id="unit">
+                                            <option value="G">G</option>
+                                            <option value="KG">KG</option>
+                                            <option value="ML">ML</option>
+                                            <option value="L">L</option>
+                                            <option value="EA">EA</option>
+                                            <option value="PACK">PACK</option>
+                                            <option value="BAG">BAG</option>
+                                            <option value="BOX">BOX</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="ri-add-line me-1"></i>등록하기
+                                </button>
+                            </form>
+
+                            <script>
+                                function updateSubCategory() {
+                                    const subCategory = document.getElementById("subCategory");
+                                    const category = document.getElementById("category").value;
+
+                                    // 소분류 옵션 초기화
+                                    subCategory.innerHTML = "";
+
+                                    // 기본 선택 옵션 추가
+                                    const defaultOption = document.createElement("option");
+                                    defaultOption.value = "";
+                                    defaultOption.text = "소분류를 선택하세요";
+                                    subCategory.appendChild(defaultOption);
+
+                                    // 대분류에 따른 소분류 옵션 설정
+                                    let options = [];
+                                    if (category === "product") {
+                                        options = ["한식", "일식", "중식", "양식", "기타"];
+                                    } else if (category === "material") {
+                                        options = ["육류", "해산물", "채소", "곡물", "조미료", "기타"];
+                                    }
+
+                                    // 소분류 옵션 추가
+                                    options.forEach(function (item) {
+                                        const option = document.createElement("option");
+                                        option.value = item;
+                                        option.text = item;
+                                        subCategory.appendChild(option);
+                                    });
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="list-tab-pane" role="tabpanel" aria-labelledby="list-tab"
+                         tabindex="0">
+                        <div class="card-body p-0" style="padding-left: 10px; padding-right: 10px;">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 p-4">
+                                <h3 class="mb-0">품목 리스트</h3>
+                                <select class="form-select month-select form-control p-0 h-auto border-0 w-90"
+                                        style="background-position: right 0 center;"
+                                        aria-label="Default select example">
+                                    <option selected>가나다순</option>
+                                    <option value="1">최신 등록순</option>
+                                    <option value="2">오래된 등록순</option>
+                                    <option value="3">카테고리순</option>
+                                </select>
+                            </div>
+
+                            <div class="default-table-area">
+                                <div class="table-responsive" style="max-width: 100%;">
+                                    <table class="table align-middle" style="border: 1px solid #c4c4c4; border-radius: 15px; overflow: hidden;">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">품목코드</th>
+                                            <th scope="col">품목명</th>
+                                            <th scope="col">대분류</th>
+                                            <th scope="col">소분류</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-secondary">품목코드</td>
+                                            <td class="text-secondary">품목명</td>
+                                            <td class="text-secondary">대분류</td>
+                                            <td class="text-secondary">소분류</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-secondary">품목코드</td>
+                                            <td class="text-secondary">품목명</td>
+                                            <td class="text-secondary">대분류</td>
+                                            <td class="text-secondary">소분류</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination mb-0 justify-content-center">
+                                        <li class="page-item disabled">
+                                            <a class="page-link icon" href="#" aria-label="Previous">
+                                                <i class="material-symbols-outlined">keyboard_arrow_left</i>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">1</a>
+                                        </li>
+                                        <li class="page-item disabled">
+                                            <a class="page-link icon" href="#" aria-label="Next">
+                                                <i class="material-symbols-outlined">keyboard_arrow_right</i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Content Area -->
+    </div>
+</div>
+
+<!-- Script -->
+<script>
+    var productName = document.getElementById('productName').value;
+    var productCode = document.getElementById('productCode').value;
+</script>
+
+<!-- Link Of JS File -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/sidebar-menu.js"></script>
+<script src="/assets/js/dragdrop.js"></script>
+<script src="/assets/js/rangeslider.min.js"></script>
+<script src="/assets/js/sweetalert.js"></script>
+<script src="/assets/js/quill.min.js"></script>
+<script src="/assets/js/data-table.js"></script>
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/clipboard.min.js"></script>
+<script src="/assets/js/feather.min.js"></script>
+<script src="/assets/js/simplebar.min.js"></script>
+<script src="/assets/js/apexcharts.min.js"></script>
+<script src="/assets/js/swiper-bundle.min.js"></script>
+<script src="/assets/js/fullcalendar.main.js"></script>
+<script src="/assets/js/custom/apexcharts.js"></script>
+<script src="/assets/js/custom/custom.js"></script>
+
+</body>
+
+</html>
