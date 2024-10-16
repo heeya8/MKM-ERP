@@ -189,7 +189,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list-tab-pane"
-                                type="button" role="tab" aria-controls="list-tab-pane" aria-selected="false">품목
+                                type="button" role="tab" aria-controls="list-tab-pane" aria-selected="false" onclick="fetchData(1)">품목
                             조회</button>
                     </li>
                 </ul>
@@ -325,13 +325,13 @@
                         <div class="card-body p-0" style="padding-left: 10px; padding-right: 10px;">
                             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 p-4">
                                 <h3 class="mb-0">품목 리스트</h3>
-                                <select class="form-select month-select form-control p-0 h-auto border-0 w-90"
+                                <select id="sortSelect" class="form-select month-select form-control p-0 h-auto border-0 w-90"
                                         style="background-position: right 0 center;"
                                         aria-label="Default select example">
-                                    <option selected>가나다순</option>
-                                    <option value="1">최신 등록순</option>
-                                    <option value="2">오래된 등록순</option>
-                                    <option value="3">카테고리순</option>
+                                    <option value="name">이름순</option>
+                                    <option value="recent">최신순</option>
+                                    <option value="oldest">오래된순</option>
+                                    <option value="unit">단위순</option>
                                 </select>
                             </div>
 
@@ -342,6 +342,7 @@
                                         <tr>
                                             <th scope="col">품목코드</th>
                                             <th scope="col">품목명</th>
+                                            <th scope="col">단위</th>
                                             <th scope="col">대분류</th>
                                             <th scope="col">소분류</th>
                                         </tr>
@@ -350,12 +351,14 @@
                                         <tr>
                                             <td class="text-secondary">품목코드</td>
                                             <td class="text-secondary">품목명</td>
+                                            <td class="text-secondary">단위</td>
                                             <td class="text-secondary">대분류</td>
                                             <td class="text-secondary">소분류</td>
                                         </tr>
                                         <tr>
                                             <td class="text-secondary">품목코드</td>
                                             <td class="text-secondary">품목명</td>
+                                            <td class="text-secondary">단위</td>
                                             <td class="text-secondary">대분류</td>
                                             <td class="text-secondary">소분류</td>
                                         </tr>
@@ -382,93 +385,156 @@
                                 </nav>
                             </div>
                             <script>
-                                fetch('http://localhost:8080/information/products?page=1&size=5')
-                                    .then(function (response) {
-                                        if (!response.ok) {
-                                            throw new Error('네트워크 응답에 문제가 있습니다.');
-                                        }
-                                        return response.json();
-                                    })
-                                    .then(function (data) {
-                                        // 백엔드에서 반환된 데이터를 사용
-                                        const content = data.content;
+                                // 정렬 옵션을 저장할 변수를 선언합니다.
+                                let currentSortBy = 'name'; // 기본값은 가나다순
 
-                                        // 테이블 바디 요소를 찾는다
-                                        const tbody = document.querySelector('.table tbody');
-                                        tbody.innerHTML = ''; // 기존 내용을 제거하고 새 데이터를 채운다.
+                                // 데이터를 가져오는 함수를 정의합니다.
+                                function fetchData(pageNumber) {
+                                    fetch(`http://localhost:8080/information/products?page=${pageNumber}&size=5&sortBy=${currentSortBy}`)
+                                        .then(function (response) {
+                                            if (!response.ok) {
+                                                throw new Error('네트워크 응답에 문제가 있습니다.');
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(function (data) {
+                                            // 백엔드에서 반환된 데이터를 사용
+                                            console.log(data);
+                                            const content = data.content;
 
-                                        // 반환된 각 항목을 테이블 행으로 추가
-                                        content.forEach(item => {
-                                            const row = document.createElement('tr');
+                                            // 테이블 바디 요소를 찾는다
+                                            const tbody = document.querySelector('.table tbody');
+                                            tbody.innerHTML = ''; // 기존 내용을 제거하고 새 데이터를 채운다.
 
-                                            // 각 데이터를 테이블 셀(td)로 생성
-                                            const itemCodeCell = document.createElement('td');
-                                            itemCodeCell.textContent = item.itemCode;
-                                            itemCodeCell.classList.add('text-secondary');
+                                            // 반환된 각 항목을 테이블 행으로 추가
+                                            content.forEach(item => {
+                                                const row = document.createElement('tr');
 
-                                            const nameCell = document.createElement('td');
-                                            nameCell.textContent = item.name;
-                                            nameCell.classList.add('text-secondary');
+                                                // 각 데이터를 테이블 셀(td)로 생성
+                                                const itemCodeCell = document.createElement('td');
+                                                itemCodeCell.textContent = item.itemCode;
+                                                itemCodeCell.classList.add('text-secondary');
 
-                                            const categoryCell = document.createElement('td');
-                                            categoryCell.textContent = item.unit; // 대분류와 소분류가 없는 경우 "unit"을 대신 사용함
-                                            categoryCell.classList.add('text-secondary');
+                                                const nameCell = document.createElement('td');
+                                                nameCell.textContent = item.name;
+                                                nameCell.classList.add('text-secondary');
 
-                                            const subCategoryCell = document.createElement('td');
-                                            subCategoryCell.textContent = item.quantity === 0 ? 'N/A' : item.quantity;
-                                            subCategoryCell.classList.add('text-secondary');
+                                                const unitCell = document.createElement('td');
+                                                unitCell.textContent = item.unit;
+                                                unitCell.classList.add('text-secondary');
 
-                                            // 생성한 셀을 행에 추가
-                                            row.appendChild(itemCodeCell);
-                                            row.appendChild(nameCell);
-                                            row.appendChild(categoryCell);
-                                            row.appendChild(subCategoryCell);
+                                                const categoryCell = document.createElement('td');
+                                                categoryCell.textContent = item.category;
+                                                categoryCell.classList.add('text-secondary');
 
-                                            // 생성한 행을 테이블 바디에 추가
-                                            tbody.appendChild(row);
+                                                const subCategoryCell = document.createElement('td');
+                                                subCategoryCell.textContent = item.subCategory;
+                                                subCategoryCell.classList.add('text-secondary');
+
+                                                // 생성한 셀을 행에 추가
+                                                row.appendChild(itemCodeCell);
+                                                row.appendChild(nameCell);
+                                                row.appendChild(unitCell);
+                                                row.appendChild(categoryCell);
+                                                row.appendChild(subCategoryCell);
+
+                                                // 생성한 행을 테이블 바디에 추가
+                                                tbody.appendChild(row);
+                                            });
+
+                                            // 페이지 네이션 업데이트
+                                            const pagination = document.querySelector('.pagination');
+                                            pagination.innerHTML = ''; // 기존의 페이지네이션을 초기화
+
+                                            // 이전 버튼
+                                            const prevLi = document.createElement('li');
+                                            prevLi.classList.add('page-item');
+                                            if (data.pageNumber === 1) prevLi.classList.add('disabled');
+                                            const prevLink = document.createElement('a');
+                                            prevLink.classList.add('page-link', 'icon');
+                                            prevLink.href = '#';
+                                            prevLink.setAttribute('aria-label', 'Previous');
+                                            prevLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_left</i>';
+                                            prevLink.addEventListener('click', function (e) {
+                                                e.preventDefault();
+                                                if (data.pageNumber > 1) {
+                                                    fetchData(data.pageNumber - 1);
+                                                }
+                                            });
+                                            prevLi.appendChild(prevLink);
+                                            pagination.appendChild(prevLi);
+
+                                            // 페이지 번호 버튼 생성
+                                            for (let i = 1; i <= data.totalPages; i++) {
+                                                const pageLi = document.createElement('li');
+                                                pageLi.classList.add('page-item');
+                                                const pageLink = document.createElement('a');
+                                                pageLink.classList.add('page-link');
+                                                pageLink.href = '#';
+                                                pageLink.textContent = i;
+                                                pageLink.addEventListener('click', function (e) {
+                                                    e.preventDefault();
+                                                    fetchData(i);
+                                                });
+                                                // 현재 페이지에 'active' 클래스 추가
+                                                if (i === data.pageNumber) {
+                                                    pageLi.classList.add('active');
+                                                }
+                                                pageLi.appendChild(pageLink);
+                                                pagination.appendChild(pageLi);
+                                            }
+
+                                            // 다음 버튼
+                                            const nextLi = document.createElement('li');
+                                            nextLi.classList.add('page-item');
+                                            if (data.last) nextLi.classList.add('disabled');
+                                            const nextLink = document.createElement('a');
+                                            nextLink.classList.add('page-link', 'icon');
+                                            nextLink.href = '#';
+                                            nextLink.setAttribute('aria-label', 'Next');
+                                            nextLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_right</i>';
+                                            nextLink.addEventListener('click', function (e) {
+                                                e.preventDefault();
+                                                if (!data.last) {
+                                                    fetchData(data.pageNumber + 1);
+                                                }
+                                            });
+                                            nextLi.appendChild(nextLink);
+                                            pagination.appendChild(nextLi);
+                                        })
+                                        .catch(function (error) {
+                                            console.error('API 요청 중 오류 발생:', error);
                                         });
+                                }
 
-                                        // 페이지 네이션 업데이트
-                                        const pagination = document.querySelector('.pagination');
-                                        pagination.innerHTML = ''; // 기존의 페이지네이션을 초기화
+                                // 정렬 옵션 선택 시 데이터를 다시 가져오는 함수
+                                function setupSortOption() {
+                                    const sortSelect = document.getElementById('sortSelect'); // select 요소의 ID를 사용하여 가져옵니다.
+                                    sortSelect.addEventListener('change', function () {
+                                        const selectedValue = sortSelect.value;
 
-                                        // 이전 버튼
-                                        const prevLi = document.createElement('li');
-                                        prevLi.classList.add('page-item');
-                                        if (data.pageNumber === 1) prevLi.classList.add('disabled');
-                                        const prevLink = document.createElement('a');
-                                        prevLink.classList.add('page-link', 'icon');
-                                        prevLink.href = `#`;
-                                        prevLink.setAttribute('aria-label', 'Previous');
-                                        prevLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_left</i>';
-                                        prevLi.appendChild(prevLink);
-                                        pagination.appendChild(prevLi);
+                                        // 선택된 값에 따라 currentSortBy를 설정합니다.
+                                        if (selectedValue === 'recent') {
+                                            currentSortBy = 'recent';
+                                        } else if (selectedValue === 'oldest') {
+                                            currentSortBy = 'oldest';
+                                        } else if (selectedValue === 'unit') {
+                                            currentSortBy = 'unit';
+                                        } else {
+                                            currentSortBy = 'name'; // 기본값
+                                        }
 
-                                        // 현재 페이지 번호 표시
-                                        const currentLi = document.createElement('li');
-                                        currentLi.classList.add('page-item', 'active');
-                                        const currentLink = document.createElement('a');
-                                        currentLink.classList.add('page-link');
-                                        currentLink.href = '#';
-                                        currentLink.textContent = data.pageNumber;
-                                        currentLi.appendChild(currentLink);
-                                        pagination.appendChild(currentLi);
-
-                                        // 다음 버튼
-                                        const nextLi = document.createElement('li');
-                                        nextLi.classList.add('page-item');
-                                        if (data.last) nextLi.classList.add('disabled');
-                                        const nextLink = document.createElement('a');
-                                        nextLink.classList.add('page-link', 'icon');
-                                        nextLink.href = `#`;
-                                        nextLink.setAttribute('aria-label', 'Next');
-                                        nextLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_right</i>';
-                                        nextLi.appendChild(nextLink);
-                                        pagination.appendChild(nextLi);
-                                    })
-                                    .catch(function (error) {
-                                        console.error('API 요청 중 오류 발생:', error);
+                                        // 페이지를 1로 초기화하여 데이터를 다시 가져옵니다.
+                                        fetchData(1);
                                     });
+                                }
+
+                                // 페이지 로드 시 첫 번째 페이지의 데이터를 가져옵니다.
+                                window.addEventListener('load', function () {
+                                    setupSortOption();
+                                    fetchData(1);
+                                });
+
                             </script>
                         </div>
                     </div>

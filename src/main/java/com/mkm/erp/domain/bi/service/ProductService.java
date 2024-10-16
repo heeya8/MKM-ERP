@@ -34,7 +34,7 @@ public class ProductService {
             sort = Sort.by(Sort.Direction.DESC, "createdAt"); // 최신추가순
         } else if ("oldest".equals(sortBy)) {
             sort = Sort.by(Sort.Direction.ASC, "createdAt"); // 오래된 추가순
-        } else if ("unit".equals(sortBy)) {
+        } else if ("unit".equals(sortBy)) {                             // 단위별
             sort = Sort.by(Sort.Direction.ASC, "unit").and(Sort.by(Sort.Direction.ASC, "name")); // 유닛별, 이름순 정렬
         }
 
@@ -49,10 +49,10 @@ public class ProductService {
         return new ResponseDto<>(
                 filteredProducts.stream() // 필터링된 리스트를 사용
                         .map(product -> new ProductResponse(
-                                product.getId(),
                                 product.getItemCode(),
                                 product.getName(),
-                                product.getQuantity(),
+                                "생산품",
+                                product.getSubcategory().getName(),
                                 product.getUnit().toString()
                         ))
                         .collect(Collectors.toList()),
