@@ -189,7 +189,8 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list-tab-pane"
-                                type="button" role="tab" aria-controls="list-tab-pane" aria-selected="false" onclick="fetchData(1)">품목
+                                type="button" role="tab" aria-controls="list-tab-pane" aria-selected="false"
+                                onclick="fetchData(1)">품목
                             조회</button>
                     </li>
                 </ul>
@@ -198,7 +199,7 @@
                          aria-labelledby="register-tab" tabindex="0">
                         <div>
                             <h4 class="fw-bold mb-3">품목 등록</h4>
-                            <form onsubmit="submitProductForm(event); return false;">
+                            <form onsubmit="return false;">
                                 <div class="mb-3">
                                     <label for="productName" class="form-label">품목명</label>
                                     <input type="text" class="form-control" id="productName"
@@ -325,19 +326,32 @@
                         <div class="card-body p-0" style="padding-left: 10px; padding-right: 10px;">
                             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 p-4">
                                 <h3 class="mb-0">품목 리스트</h3>
-                                <select id="sortSelect" class="form-select month-select form-control p-0 h-auto border-0 w-90"
-                                        style="background-position: right 0 center;"
-                                        aria-label="Default select example">
-                                    <option value="name">이름순</option>
-                                    <option value="recent">최신순</option>
-                                    <option value="oldest">오래된순</option>
-                                    <option value="unit">단위순</option>
-                                </select>
+                                <form class="default-src-form">
+                                    <div class="d-sm-flex flex-wrap gap-3">
+                                        <div class="position-relative mb-2 mb-sm-0">
+                                            <input id="search-product" type="text" class="form-control rounded-1"
+                                                   placeholder="품목명을 검색하세요.">
+                                            <i
+                                                    class="material-symbols-outlined position-absolute top-50 start-0 translate-middle-y fs-18">search</i>
+                                        </div>
+                                        <div>
+                                            <select id="sortSelect"
+                                                    class="form-select form-control rounded-1 py-0 fs-14 ps-3 bg-transparent pe-5"
+                                                    aria-label="Default select example">
+                                                <option value="name">이름순</option>
+                                                <option value="recent">최신순</option>
+                                                <option value="oldest">오래된순</option>
+                                                <option value="unit">단위순</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
 
                             <div class="default-table-area">
                                 <div class="table-responsive" style="max-width: 100%;">
-                                    <table class="table align-middle" style="border: 1px solid #c4c4c4; border-radius: 15px; overflow: hidden;">
+                                    <table class="table align-middle"
+                                           style="border: 1px solid #c4c4c4; border-radius: 15px; overflow: hidden;">
                                         <thead>
                                         <tr>
                                             <th scope="col">품목코드</th>
@@ -385,127 +399,139 @@
                                 </nav>
                             </div>
                             <script>
-                                // 정렬 옵션을 저장할 변수를 선언합니다.
-                                let currentSortBy = 'name'; // 기본값은 가나다순
+                                let currentSearchTerm = ''; // 검색어의 기본값
+                                let currentSortBy = 'name'; // 정렬 기본값: 이름순
 
                                 // 데이터를 가져오는 함수를 정의합니다.
-                                function fetchData(pageNumber) {
-                                    fetch(`http://localhost:8080/information/products?page=${pageNumber}&size=5&sortBy=${currentSortBy}`)
-                                        .then(function (response) {
+                                // 데이터를 가져오는 함수 정의
+                                function fetchData(pageNumber = 1) {
+                                    const url = `http://localhost:8080/information/products?page=${pageNumber}&size=5&sortBy=${currentSortBy}&productName=${currentSearchTerm}`;
+
+                                    console.log(`API 호출 URL: ${url}`); // 디버깅용 URL 출력
+
+                                    fetch(url)
+                                        .then(response => {
                                             if (!response.ok) {
-                                                throw new Error('네트워크 응답에 문제가 있습니다.');
+                                                throw new Error('네트워크 응답에 문제가 있다.');
                                             }
                                             return response.json();
                                         })
-                                        .then(function (data) {
-                                            // 백엔드에서 반환된 데이터를 사용
-                                            console.log(data);
+                                        .then(data => {
+                                            console.log(data); // 응답 데이터 확인용
+
                                             const content = data.content;
-
-                                            // 테이블 바디 요소를 찾는다
                                             const tbody = document.querySelector('.table tbody');
-                                            tbody.innerHTML = ''; // 기존 내용을 제거하고 새 데이터를 채운다.
+                                            tbody.innerHTML = ''; // 기존 내용을 초기화
 
-                                            // 반환된 각 항목을 테이블 행으로 추가
-                                            content.forEach(item => {
-                                                const row = document.createElement('tr');
+                                            if (content.length === 0) {
+                                                const noDataRow = document.createElement('tr');
+                                                noDataRow.innerHTML = '<td colspan="5" class="text-center">검색된 데이터가 없습니다.</td>';
+                                                tbody.appendChild(noDataRow);
+                                            } else {
+                                                content.forEach(item => {
+                                                    const row = document.createElement('tr');
 
-                                                // 각 데이터를 테이블 셀(td)로 생성
-                                                const itemCodeCell = document.createElement('td');
-                                                itemCodeCell.textContent = item.itemCode;
-                                                itemCodeCell.classList.add('text-secondary');
+                                                    const itemCodeCell = document.createElement('td');
+                                                    itemCodeCell.textContent = item.itemCode;
+                                                    itemCodeCell.classList.add('text-secondary');
 
-                                                const nameCell = document.createElement('td');
-                                                nameCell.textContent = item.name;
-                                                nameCell.classList.add('text-secondary');
+                                                    const nameCell = document.createElement('td');
+                                                    nameCell.textContent = item.name;
+                                                    nameCell.classList.add('text-secondary');
 
-                                                const unitCell = document.createElement('td');
-                                                unitCell.textContent = item.unit;
-                                                unitCell.classList.add('text-secondary');
+                                                    const unitCell = document.createElement('td');
+                                                    unitCell.textContent = item.unit;
+                                                    unitCell.classList.add('text-secondary');
 
-                                                const categoryCell = document.createElement('td');
-                                                categoryCell.textContent = item.category;
-                                                categoryCell.classList.add('text-secondary');
+                                                    const categoryCell = document.createElement('td');
+                                                    categoryCell.textContent = item.category;
+                                                    categoryCell.classList.add('text-secondary');
 
-                                                const subCategoryCell = document.createElement('td');
-                                                subCategoryCell.textContent = item.subCategory;
-                                                subCategoryCell.classList.add('text-secondary');
+                                                    const subCategoryCell = document.createElement('td');
+                                                    subCategoryCell.textContent = item.subCategory;
+                                                    subCategoryCell.classList.add('text-secondary');
 
-                                                // 생성한 셀을 행에 추가
-                                                row.appendChild(itemCodeCell);
-                                                row.appendChild(nameCell);
-                                                row.appendChild(unitCell);
-                                                row.appendChild(categoryCell);
-                                                row.appendChild(subCategoryCell);
+                                                    row.appendChild(itemCodeCell);
+                                                    row.appendChild(nameCell);
+                                                    row.appendChild(unitCell);
+                                                    row.appendChild(categoryCell);
+                                                    row.appendChild(subCategoryCell);
 
-                                                // 생성한 행을 테이블 바디에 추가
-                                                tbody.appendChild(row);
-                                            });
-
-                                            // 페이지 네이션 업데이트
-                                            const pagination = document.querySelector('.pagination');
-                                            pagination.innerHTML = ''; // 기존의 페이지네이션을 초기화
-
-                                            // 이전 버튼
-                                            const prevLi = document.createElement('li');
-                                            prevLi.classList.add('page-item');
-                                            if (data.pageNumber === 1) prevLi.classList.add('disabled');
-                                            const prevLink = document.createElement('a');
-                                            prevLink.classList.add('page-link', 'icon');
-                                            prevLink.href = '#';
-                                            prevLink.setAttribute('aria-label', 'Previous');
-                                            prevLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_left</i>';
-                                            prevLink.addEventListener('click', function (e) {
-                                                e.preventDefault();
-                                                if (data.pageNumber > 1) {
-                                                    fetchData(data.pageNumber - 1);
-                                                }
-                                            });
-                                            prevLi.appendChild(prevLink);
-                                            pagination.appendChild(prevLi);
-
-                                            // 페이지 번호 버튼 생성
-                                            for (let i = 1; i <= data.totalPages; i++) {
-                                                const pageLi = document.createElement('li');
-                                                pageLi.classList.add('page-item');
-                                                const pageLink = document.createElement('a');
-                                                pageLink.classList.add('page-link');
-                                                pageLink.href = '#';
-                                                pageLink.textContent = i;
-                                                pageLink.addEventListener('click', function (e) {
-                                                    e.preventDefault();
-                                                    fetchData(i);
+                                                    tbody.appendChild(row);
                                                 });
-                                                // 현재 페이지에 'active' 클래스 추가
-                                                if (i === data.pageNumber) {
-                                                    pageLi.classList.add('active');
-                                                }
-                                                pageLi.appendChild(pageLink);
-                                                pagination.appendChild(pageLi);
                                             }
 
-                                            // 다음 버튼
-                                            const nextLi = document.createElement('li');
-                                            nextLi.classList.add('page-item');
-                                            if (data.last) nextLi.classList.add('disabled');
-                                            const nextLink = document.createElement('a');
-                                            nextLink.classList.add('page-link', 'icon');
-                                            nextLink.href = '#';
-                                            nextLink.setAttribute('aria-label', 'Next');
-                                            nextLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_right</i>';
-                                            nextLink.addEventListener('click', function (e) {
-                                                e.preventDefault();
-                                                if (!data.last) {
-                                                    fetchData(data.pageNumber + 1);
-                                                }
-                                            });
-                                            nextLi.appendChild(nextLink);
-                                            pagination.appendChild(nextLi);
+                                            // 페이지네이션 업데이트
+                                            updatePagination(data);
                                         })
-                                        .catch(function (error) {
+                                        .catch(error => {
                                             console.error('API 요청 중 오류 발생:', error);
                                         });
                                 }
+
+                                // 페이지네이션을 업데이트하는 함수 정의
+                                function updatePagination(data) {
+                                    const pagination = document.querySelector('.pagination');
+                                    pagination.innerHTML = ''; // 기존 페이지네이션 초기화
+
+                                    // 이전 버튼 생성
+                                    const prevLi = document.createElement('li');
+                                    prevLi.classList.add('page-item');
+                                    if (data.pageNumber === 1) prevLi.classList.add('disabled');
+                                    const prevLink = document.createElement('a');
+                                    prevLink.classList.add('page-link', 'icon');
+                                    prevLink.href = '#';
+                                    prevLink.setAttribute('aria-label', 'Previous');
+                                    prevLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_left</i>';
+                                    prevLink.addEventListener('click', function (e) {
+                                        e.preventDefault();
+                                        if (data.pageNumber > 1) {
+                                            fetchData(data.pageNumber - 1); // 이전 페이지 호출
+                                        }
+                                    });
+                                    prevLi.appendChild(prevLink);
+                                    pagination.appendChild(prevLi);
+
+                                    // 페이지 번호 버튼 생성
+                                    for (let i = 1; i <= data.totalPages; i++) {
+                                        const pageLi = document.createElement('li');
+                                        pageLi.classList.add('page-item');
+                                        const pageLink = document.createElement('a');
+                                        pageLink.classList.add('page-link');
+                                        pageLink.href = '#';
+                                        pageLink.textContent = i;
+                                        pageLink.addEventListener('click', function (e) {
+                                            e.preventDefault();
+                                            fetchData(i); // 해당 페이지로 이동
+                                        });
+
+                                        if (i === data.pageNumber) {
+                                            pageLi.classList.add('active');
+                                        }
+
+                                        pageLi.appendChild(pageLink);
+                                        pagination.appendChild(pageLi);
+                                    }
+
+                                    // 다음 버튼 생성
+                                    const nextLi = document.createElement('li');
+                                    nextLi.classList.add('page-item');
+                                    if (data.last) nextLi.classList.add('disabled');
+                                    const nextLink = document.createElement('a');
+                                    nextLink.classList.add('page-link', 'icon');
+                                    nextLink.href = '#';
+                                    nextLink.setAttribute('aria-label', 'Next');
+                                    nextLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_right</i>';
+                                    nextLink.addEventListener('click', function (e) {
+                                        e.preventDefault();
+                                        if (!data.last) {
+                                            fetchData(data.pageNumber + 1);
+                                        }
+                                    });
+                                    nextLi.appendChild(nextLink);
+                                    pagination.appendChild(nextLi);
+                                }
+
 
                                 // 정렬 옵션 선택 시 데이터를 다시 가져오는 함수
                                 function setupSortOption() {
@@ -529,10 +555,33 @@
                                     });
                                 }
 
-                                // 페이지 로드 시 첫 번째 페이지의 데이터를 가져옵니다.
+                                // 검색 기능 설정
+                                function setupSearch() {
+                                    const searchInput = document.getElementById('search-product');
+                                    const searchForm = document.querySelector('.default-src-form'); // 검색 폼
+
+                                    // 폼 제출 시 기본 동작 방지 및 첫 페이지부터 검색 수행
+                                    searchForm.addEventListener('submit', function (e) {
+                                        e.preventDefault();
+                                        currentSearchTerm = searchInput.value.trim(); // 검색어 저장
+                                        fetchData(1); // 항상 첫 페이지부터 검색
+                                    });
+
+                                    // 엔터 키 입력 시 검색
+                                    searchInput.addEventListener('keypress', function (e) {
+                                        if (e.key === 'Enter') {
+                                            e.preventDefault();
+                                            currentSearchTerm = searchInput.value.trim();
+                                            fetchData(1); // 항상 첫 페이지부터 검색
+                                        }
+                                    });
+                                }
+
+                                // 페이지가 로드될 때 검색 기능 설정 호출
                                 window.addEventListener('load', function () {
-                                    setupSortOption();
-                                    fetchData(1);
+                                    setupSortOption(); // 정렬 옵션 설정
+                                    setupSearch(); // 검색 기능 설정
+                                    fetchData(1); // 첫 페이지 데이터 불러오기
                                 });
 
                             </script>
@@ -544,12 +593,6 @@
         <!-- End Page Content Area -->
     </div>
 </div>
-
-<!-- Script -->
-<script>
-    var productName = document.getElementById('productName').value;
-    var productCode = document.getElementById('productCode').value;
-</script>
 
 <!-- Link Of JS File -->
 <script src="/assets/js/bootstrap.bundle.min.js"></script>

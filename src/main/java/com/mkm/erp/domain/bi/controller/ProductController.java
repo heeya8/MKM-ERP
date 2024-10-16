@@ -31,8 +31,9 @@ public class ProductController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(required = false) String sortBy,
-            @RequestParam(required = false) String unitType) {
-        return ResponseEntity.ok(productService.getProducts(page, size, sortBy, unitType));
+            @RequestParam(required = false) String unitType,
+            @RequestParam(required = false) String productName) {
+        return ResponseEntity.ok(productService.getProducts(page, size, sortBy, unitType, productName));
     }
 
     @PostMapping("/products")

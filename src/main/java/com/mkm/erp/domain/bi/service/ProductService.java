@@ -26,32 +26,39 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final SubcategoryRepository subcategoryRepository;
 
-    public ResponseDto<ProductResponse> getProducts(int page, int size, String sortBy, String unitType) {
-        Sort sort = Sort.by(Sort.Direction.ASC, "name"); // 기본 정렬을 이름순으로 설정
+    public ResponseDto<ProductResponse> getProducts(
+            int page, int size, String sortBy, String unitType, String productName) {
 
-        // sortBy 값에 따른 정렬 방식 변경
+        // 기본 정렬: 이름순(오름차순)
+        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+
+        // sortBy 값에 따라 정렬 방식 설정
         if ("recent".equals(sortBy)) {
-            sort = Sort.by(Sort.Direction.DESC, "createdAt"); // 최신추가순
+            sort = Sort.by(Sort.Direction.DESC, "createdAt"); // 최신 추가순
         } else if ("oldest".equals(sortBy)) {
             sort = Sort.by(Sort.Direction.ASC, "createdAt"); // 오래된 추가순
-        } else if ("unit".equals(sortBy)) {                             // 단위별
-            sort = Sort.by(Sort.Direction.ASC, "unit").and(Sort.by(Sort.Direction.ASC, "name")); // 유닛별, 이름순 정렬
+        } else if ("unit".equals(sortBy)) {
+            sort = Sort.by(Sort.Direction.ASC, "unit").and(Sort.by(Sort.Direction.ASC, "name")); // 유닛별 정렬
         }
 
         Pageable pageable = PageRequest.of(page - 1, size, sort);
+
         Page<Product> productPage = productRepository.findAll(pageable);
 
-        // 카테고리 및 유닛 필터링
+        // 카테고리, 유닛, 이름으로 필터링
         List<Product> filteredProducts = productPage.getContent().stream()
-                .filter(product -> (unitType == null || product.getUnit().toString().equals(unitType))) // 유닛 필터
+                .filter(product ->
+                        (unitType == null || product.getUnit().toString().equals(unitType)) && // 유닛 필터
+                                (productName == null || product.getName().contains(productName)) // 이름 검색 필터
+                )
                 .collect(Collectors.toList());
 
         return new ResponseDto<>(
-                filteredProducts.stream() // 필터링된 리스트를 사용
+                filteredProducts.stream()
                         .map(product -> new ProductResponse(
                                 product.getItemCode(),
                                 product.getName(),
-                                "생산품",
+                                "생산품", // 카테고리 예제
                                 product.getSubcategory().getName(),
                                 product.getUnit().toString()
                         ))
