@@ -7,6 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CompanyRequest {
     private String name;
+    private String owner;
     private String address;
     private String email;
     private String business_num;

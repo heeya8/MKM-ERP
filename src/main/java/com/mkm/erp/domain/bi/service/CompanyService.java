@@ -32,6 +32,7 @@ public class CompanyService {
                         .map(company -> new CompanyResponse(
                                 company.getId(),
                                 company.getName(),
+                                company.getOwner(),
                                 company.getAddress(),
                                 company.getEmail(),
                                 company.getBusiness_num()
@@ -59,6 +60,7 @@ public class CompanyService {
         if (existingCompany.isPresent()) {
             Company company = existingCompany.get();
             company.setName(request.getName());
+            company.setOwner(request.getOwner());
             company.setAddress(request.getAddress());
             company.setEmail(request.getEmail());
             company.setBusiness_num(request.getBusiness_num());
