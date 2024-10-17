@@ -71,10 +71,7 @@
     <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
         <ul class="menu-inner">
             <!-- 작업 관리 메뉴 -->
-            <li class="menu-title small text-uppercase">
-                <span class="menu-title-text">작업 관리</span>
-            </li>
-            <li class="menu-item open">
+            <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <span class="material-symbols-outlined menu-icon">dashboard</span>
                     <span class="title">작업 관리 메뉴</span>
@@ -92,7 +89,7 @@
                 </ul>
             </li>
             <!-- 자재 관리 메뉴 -->
-            <li class="menu-item open">
+            <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <span class="material-symbols-outlined menu-icon">dashboard</span>
                     <span class="title">자재 관리 메뉴</span>
@@ -110,14 +107,14 @@
                 </ul>
             </li>
             <!-- 기초 정보 관리 메뉴 -->
-            <li class="menu-item">
+            <li class="menu-item open">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <span class="material-symbols-outlined menu-icon">dashboard</span>
                     <span class="title">기초 정보 관리 메뉴</span>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="product.html" class="menu-link active">품목 등록</a>
+                        <a href="product.html" class="menu-link  active">품목 관리</a>
                     </li>
                     <li class="menu-item after-sub-menu menu-level">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -131,6 +128,9 @@
                                 <a href="bom-explosion.html" class="menu-link">BOM 정전개</a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="company.html" class="menu-link">회사 정보 관리</a>
                     </li>
                 </ul>
             </li>
@@ -177,10 +177,30 @@
         </header>
         <!-- End Header Area -->
 
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+            <h3 class="mb-0">품목 등록 및 품목 조회</h3>
+
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb align-items-center mb-0 lh-1">
+                    <li class="breadcrumb-item">
+                        <a href="#" class="d-flex align-items-center text-decoration-none">
+                            <i class="ri-home-4-line fs-18 text-primary me-1"></i>
+                            <span class="text-secondary fw-medium hover"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span class="fw-medium">기초 정보 관리 메뉴</span>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span class="fw-medium">품목 등록 및 품목 조회</span>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
         <!-- Tabs for 품목 등록 and 품목 조회 -->
         <div class="card bg-white border-0 rounded-3 mb-4">
             <div class="card-body p-4">
-                <h3 class="fs-24 mb-4">품목 등록 및 품목 조회</h3>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="register-tab" data-bs-toggle="tab"
