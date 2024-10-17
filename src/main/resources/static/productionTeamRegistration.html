@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Links Of CSS File -->
+  <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+  <link rel="stylesheet" href="assets/css/simplebar.css">
+  <link rel="stylesheet" href="assets/css/apexcharts.css">
+  <link rel="stylesheet" href="assets/css/prism.css">
+  <link rel="stylesheet" href="assets/css/rangeslider.css">
+  <link rel="stylesheet" href="assets/css/sweetalert.min.css">
+  <link rel="stylesheet" href="assets/css/quill.snow.css">
+  <link rel="stylesheet" href="assets/css/google-icon.css">
+  <link rel="stylesheet" href="assets/css/remixicon.css">
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="assets/css/fullcalendar.main.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <!-- Title -->
+  <title>MealKitMaker - 생산팀 등록 </title>
+
+</head>
+
+<body class="boxed-size">
+
+<!-- Start Sidebar Area -->
+<div class="sidebar-area" id="sidebar-area">
+  <div class="logo position-relative">
+    <a href="index.html" class="d-block text-decoration-none position-relative">
+      <img src="assets/images/logo-icon.png" alt="logo-icon">
+      <span class="logo-text fw-bold text-dark">MKM</span>
+    </a>
+    <button class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y" id="sidebar-burger-menu">
+      <i data-feather="x"></i>
+    </button>
+  </div>
+
+  <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
+    <ul class="menu-inner">
+      <!-- 작업 관리 메뉴 -->
+      <li class="menu-title small text-uppercase">
+        <span class="menu-title-text">작업 관리</span>
+      </li>
+      <li class="menu-item open">
+        <a href="javascript:void(0);" class="menu-link menu-toggle active">
+          <span class="material-symbols-outlined menu-icon">dashboard</span>
+          <span class="title">작업 관리 메뉴</span>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="index.html" class="menu-link">생산 계획 등록</a>
+          </li>
+          <li class="menu-item">
+            <a href="crm.html" class="menu-link">작업 지시 관리</a>
+          </li>
+          <li class="menu-item">
+            <a href="project-management.html" class="menu-link">작업 실적 등록</a>
+          </li>
+        </ul>
+      </li>
+      <!-- 자재 관리 메뉴 -->
+      <li class="menu-item open">
+        <a href="javascript:void(0);" class="menu-link menu-toggle active">
+          <span class="material-symbols-outlined menu-icon">dashboard</span>
+          <span class="title">자재 관리 메뉴</span>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="12.html" class="menu-link">자재 출고 관리</a>
+          </li>
+          <li class="menu-item">
+            <a href="crm.html" class="menu-link">재고 현황</a>
+          </li>
+          <li class="menu-item">
+            <a href="project-management.html" class="menu-link">발주 요청</a>
+          </li>
+        </ul>
+      </li>
+      <!-- 기초 정보 관리 메뉴 -->
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle active">
+          <span class="material-symbols-outlined menu-icon">dashboard</span>
+          <span class="title">기초 정보 관리 메뉴</span>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="product.html" class="menu-link">품목 등록</a>
+          </li>
+          <li class="menu-item">
+            <a href="productionTeamRegistration.html" class="menu-link active">생산팀 등록</a>
+          </li>
+          <li class="menu-item after-sub-menu menu-level">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <span class="title">BOM 관리</span>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="bomregistration.html" class="menu-link">BOM 등록</a>
+              </li>
+              <li class="menu-item">
+                <a href="bom-explosion.html" class="menu-link">BOM 정전개</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <!-- Logout -->
+      <li class="menu-item">
+        <a href="login.html" class="menu-link">
+          <span class="material-symbols-outlined menu-icon">logout</span>
+          <span class="title">로그아웃</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+
+<!-- Start Main Content Area -->
+<div class="container-fluid">
+  <div class="main-content d-flex flex-column">
+    <!-- Start Header Area -->
+    <header class="header-area bg-white mb-4 rounded-bottom-15" id="header-area">
+      <div class="row align-items-center">
+        <div class="col-lg-4 col-sm-6">
+          <div class="left-header-content">
+            <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled justify-content-center justify-content-sm-start">
+              <li>
+                <button class="header-burger-menu bg-transparent p-0 border-0" id="header-burger-menu">
+                  <span class="material-symbols-outlined">menu</span>
+                </button>
+              </li>
+              <li>
+                <form class="src-form position-relative">
+                  <input type="text" class="form-control" placeholder="Search here.....">
+                  <button type="submit" class="src-btn position-absolute top-50 end-0 translate-middle-y bg-transparent p-0 border-0">
+                    <span class="material-symbols-outlined">search</span>
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-6">
+        <div class="card bg-white border-0 rounded-3 mb-4">
+          <div class="card-body p-0">
+            <div class="p-4">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <h3 class="mb-0">생산팀 등록</h3>
+                <form class="position-relative table-src-form me-0">
+                  <input type="text" class="form-control" placeholder="검색하기">
+                  <i class="material-symbols-outlined position-absolute top-50 start-0 translate-middle-y">search</i>
+                </form>
+              </div>
+            </div>
+
+            <div class="default-table-area style-two production-team-registration padding-style">
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                  <tr>
+                    <th scope="col">
+                      <div class="form-check">
+                        <label class="position-relative top-2 ms-1">ID</label>
+                      </div>
+                    </th>
+                    <th scope="col">팀명</th>
+                    <th scope="col">팀장</th>
+                    <th scope="col">등록일</th>
+                    <th scope="col">상태</th>
+                    <th scope="col">수정</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="text-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                        <label class="position-relative top-2 ms-1" for="flexCheckDefault2">#001</label>
+                      </div>
+                    </td>
+                    <td>한식 제조팀</td>
+                    <td>김민수</td>
+                    <td class="text-body">2024-01-01</td>
+
+                    <td>
+                      <span class="badge bg-success bg-opacity-10 text-success p-2 fs-12 fw-normal">활성</span>
+                    </td>
+
+                    <td>
+
+                      <div class="d-flex align-items-center gap-1">
+                        <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                          <i class="material-symbols-outlined fs-16 text-primary">visibility</i>
+                        </button>
+                        <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                          <i class="material-symbols-outlined fs-16 text-body">edit</i>
+                        </button>
+                        <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                          <i class="material-symbols-outlined fs-16 text-danger">delete</i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- 추가 팀 데이터는 여기에 추가 -->
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="p-4 text-end">
+                <button class="btn btn-outline-primary py-1 px-2 px-sm-4 fs-14 fw-medium rounded-3 hover-bg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <span class="py-sm-1 d-block">
+                                <i class="ri-add-line"></i>
+                                <span>팀 추가</span>
+                            </span>
+                </button>
+
+
+                <!-- Start Create From Area -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                  <div class="offcanvas-header border-bottom p-4">
+                    <h5 class="offcanvas-title fs-18 mb-0" id="offcanvasRightLabel">팀 추가</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body p-4">
+                    <form id="teamForm">
+
+                      <div class="form-group mb-4">
+                        <label class="label">팀 ID (예: #001)</label>
+                        <input type="text" class="form-control text-dark"  placeholder="팀ID" id="teamId" name="teamId" pattern="#.{2,}" title="ID는 '#'으로 시작하고 3글자 이상이어야 합니다." required>
+                      </div>
+                      <div class="form-group mb-4">
+                        <label class="label">팀명</label>
+                        <input type="text" class="form-control text-gary" placeholder="팀명" required>
+                      </div>
+                      <div class="form-group mb-4">
+                        <label class="label">팀장</label>
+                        <input type="text" class="form-control text-dark" placeholder="팀장" required>
+                      </div>
+                      <div class="form-group mb-4">
+                        <label class="label">등록일</label>
+                        <input type="date" class="form-control text-dark" required>
+                      </div>
+
+                      <div class="form-group d-flex justify-content-center gap-3">
+                        <button type="submit" class="btn btn-primary text-white fw-semibold py-2 px-2 px-sm-3">
+                    <span class="py-sm-1 d-block">
+                        <i class="ri-add-line text-white"></i>
+                        <span>팀 추가</span>
+                    </span>
+                        </button>
+                        <button type="button" class="btn btn-secondary text-white fw-semibold py-2 px-2 px-sm-3" data-bs-dismiss="offcanvas">
+                          닫기
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card bg-white border-0 rounded-3 mb-4">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3 mb-lg-4">
+              <h3 class="mb-0">팀 성과 개요</h3>
+              <select class="form-select month-select form-control p-0 h-auto border-0 w-90" style="background-position: right 0 center;" aria-label="Default select example">
+                <option selected>최근 7일</option>
+                <option value="1">이번 달</option>
+                <option value="2">올해</option>
+              </select>
+            </div>
+
+            <div id="team_performance_overview"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+<!-- Link Of JS File -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/sidebar-menu.js"></script>
+<script src="assets/js/dragdrop.js"></script>
+<script src="assets/js/rangeslider.min.js"></script>
+<script src="assets/js/sweetalert.js"></script>
+<script src="assets/js/quill.min.js"></script>
+<script src="assets/js/data-table.js"></script>
+<script src="assets/js/prism.js"></script>
+<script src="assets/js/clipboard.min.js"></script>
+<script src="assets/js/feather.min.js"></script>
+<script src="assets/js/simplebar.min.js"></script>
+<script src="assets/js/apexcharts.min.js"></script>
+<script src="assets/js/swiper-bundle.min.js"></script>
+<script src="assets/js/fullcalendar.main.js"></script>
+<script src="assets/js/custom/apexcharts.js"></script>
+<script src="assets/js/custom/custom.js"></script>
+
+
+    </header>
+  </div>
+</div>
+
+</body>
+</html>
