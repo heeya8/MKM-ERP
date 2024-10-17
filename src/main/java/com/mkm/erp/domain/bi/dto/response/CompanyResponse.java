@@ -8,6 +8,7 @@ import lombok.Getter;
 public class CompanyResponse {
     private Long id;
     private String name;
+    private String owner;
     private String address;
     private String email;
     private String business_num;

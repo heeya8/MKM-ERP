@@ -19,6 +19,8 @@ public class Company extends Timestamped {
 
     @Column(name = "name", length = 50, nullable = false)
     private String name;
+    @Column(name = "owner", length = 50, nullable = false)
+    private String owner;
     @Column(name = "address", length = 50, nullable = false)
     private String address;
     @Column(name = "email", length = 50, nullable = false)
@@ -28,6 +30,7 @@ public class Company extends Timestamped {
 
     public Company(CompanyRequest request) {
         this.name = request.getName();
+        this.owner = request.getOwner();
         this.address = request.getAddress();
         this.email = request.getEmail();
         this.business_num = request.getBusiness_num();
