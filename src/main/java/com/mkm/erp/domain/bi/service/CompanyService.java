@@ -35,7 +35,8 @@ public class CompanyService {
                                 company.getOwner(),
                                 company.getAddress(),
                                 company.getEmail(),
-                                company.getBusiness_num()
+                                company.getBusinessNum(),
+                                company.getPhone()
                         ))
                         .collect(Collectors.toList()),  // content 변환
                 companiesPage.getNumber() + 1,          // 현재 페이지 번호 (0-based에서 1-based로)
@@ -63,8 +64,8 @@ public class CompanyService {
             company.setOwner(request.getOwner());
             company.setAddress(request.getAddress());
             company.setEmail(request.getEmail());
-            company.setBusiness_num(request.getBusiness_num());
-
+            company.setBusinessNum(request.getBusinessNum());
+            company.setPhone(request.getPhone());
             companyRepository.save(company);
         } else {
             throw new ResourceNotFoundException("회사를 찾을 수 없습니다. ID: " + id);
@@ -81,4 +82,14 @@ public class CompanyService {
             throw new ResourceNotFoundException("회사를 찾을 수 없습니다. ID: " + id);
         }
     }
+
+    public CompanyResponse getCompany() {
+        Long companyId = 1L;
+
+        Company company = companyRepository.findById(companyId)
+                .orElseThrow(() -> new RuntimeException("Company not found"));
+
+        return new CompanyResponse(company.getId(), company.getName(), company.getOwner(), company.getAddress(), company.getEmail(), company.getBusinessNum(), company.getPhone());
+    }
+
 }

@@ -26,13 +26,15 @@ public class Company extends Timestamped {
     @Column(name = "email", length = 50, nullable = false)
     private String email;
     @Column(name = "business_num", length = 50, nullable = false)
-    private String business_num;
+    private String businessNum;
+    private String phone;
 
     public Company(CompanyRequest request) {
         this.name = request.getName();
         this.owner = request.getOwner();
         this.address = request.getAddress();
         this.email = request.getEmail();
-        this.business_num = request.getBusiness_num();
+        this.businessNum = request.getBusinessNum();
+        this.phone = request.getPhone();
     }
 }

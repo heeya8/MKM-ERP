@@ -11,5 +11,6 @@ public class CompanyResponse {
     private String owner;
     private String address;
     private String email;
-    private String business_num;
+    private String businessNum;
+    private String phone;
 }
