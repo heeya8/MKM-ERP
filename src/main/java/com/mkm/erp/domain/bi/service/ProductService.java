@@ -26,9 +26,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final SubcategoryRepository subcategoryRepository;
 
-    public ResponseDto<ProductResponse> getProducts(
-            int page, int size, String sortBy, String unitType, String productName) {
-
+    public ResponseDto<ProductResponse> getProducts(int page, int size, String sortBy, String unitType, String productName) {
         // 기본 정렬: 이름순(오름차순)
         Sort sort = Sort.by(Sort.Direction.ASC, "name");
 
@@ -43,18 +41,21 @@ public class ProductService {
 
         Pageable pageable = PageRequest.of(page - 1, size, sort);
 
-        Page<Product> productPage = productRepository.findAll(pageable);
+        // 필터링 조건에 맞게 리포지토리 쿼리 수행
+        Page<Product> productPage;
+        if (productName != null && !productName.isEmpty() && unitType != null && !unitType.isEmpty()) {
+            productPage = productRepository.findByNameContainingAndUnit(productName, UnitType.valueOf(unitType), pageable);
+        } else if (productName != null && !productName.isEmpty()) {
+            productPage = productRepository.findByNameContaining(productName, pageable);
+        } else if (unitType != null && !unitType.isEmpty()) {
+            productPage = productRepository.findByUnit(UnitType.valueOf(unitType), pageable);
+        } else {
+            productPage = productRepository.findAll(pageable);
+        }
 
-        // 카테고리, 유닛, 이름으로 필터링
-        List<Product> filteredProducts = productPage.getContent().stream()
-                .filter(product ->
-                        (unitType == null || product.getUnit().toString().equals(unitType)) && // 유닛 필터
-                                (productName == null || product.getName().contains(productName)) // 이름 검색 필터
-                )
-                .collect(Collectors.toList());
-
+        // 응답 생성
         return new ResponseDto<>(
-                filteredProducts.stream()
+                productPage.getContent().stream()
                         .map(product -> new ProductResponse(
                                 product.getItemCode(),
                                 product.getName(),

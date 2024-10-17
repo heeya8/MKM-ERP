@@ -403,7 +403,6 @@
                                 let currentSortBy = 'name'; // 정렬 기본값: 이름순
 
                                 // 데이터를 가져오는 함수를 정의합니다.
-                                // 데이터를 가져오는 함수 정의
                                 function fetchData(pageNumber = 1) {
                                     const url = `http://localhost:8080/information/products?page=${pageNumber}&size=5&sortBy=${currentSortBy}&productName=${currentSearchTerm}`;
 
@@ -555,10 +554,9 @@
                                     });
                                 }
 
-                                // 검색 기능 설정
                                 function setupSearch() {
                                     const searchInput = document.getElementById('search-product');
-                                    const searchForm = document.querySelector('.default-src-form'); // 검색 폼
+                                    const searchForm = document.querySelector('.src-form'); // 검색 폼
 
                                     // 폼 제출 시 기본 동작 방지 및 첫 페이지부터 검색 수행
                                     searchForm.addEventListener('submit', function (e) {
