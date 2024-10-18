@@ -4,11 +4,14 @@ import com.mkm.erp.domain.bi.dto.request.BOMRequest;
 import com.mkm.erp.domain.bi.dto.response.BOMResponse;
 import com.mkm.erp.domain.bi.dto.response.ResponseDto;
 import com.mkm.erp.domain.bi.entity.BOM;
+import com.mkm.erp.domain.bi.entity.Material;
 import com.mkm.erp.domain.bi.entity.Recipe;
 import com.mkm.erp.domain.bi.exception.ResourceNotFoundException;
 import com.mkm.erp.domain.bi.repository.BOMRepository;
+import com.mkm.erp.domain.bi.repository.MaterialRepository;  // 추가된 부분
 import com.mkm.erp.domain.bi.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.antlr.v4.runtime.misc.LogManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 public class BOMService {
     private final BOMRepository bomRepository;
     private final ProductRepository productRepository;
+    private final MaterialRepository materialRepository;  // 추가된 부분
 
     // BOM 목록 조회
     public ResponseDto<BOMResponse> getBOMs(int page, int size) {
@@ -54,7 +57,14 @@ public class BOMService {
 
         // 레시피 추가
         List<Recipe> recipes = bomRequest.getRecipes().stream()
-                .map(recipeRequest -> new Recipe(bom, recipeRequest.getChildId(), recipeRequest.getQuantity()))
+                .map(recipeRequest -> {
+                    // Material 조회
+                    Material material = materialRepository.findByName(recipeRequest.getChildId())
+                            .orElseThrow(() -> new ResourceNotFoundException("자재를 찾을 수 없습니다. 이름: " + recipeRequest.getChildId()));
+
+                    // Recipe 생성
+                    return new Recipe(bom, material, recipeRequest.getQuantity());
+                })
                 .collect(Collectors.toList());
         bom.setRecipes(recipes);
 
@@ -84,14 +94,21 @@ public class BOMService {
         // BOM 필드 업데이트
         existingBOM.setProduct(product);
 
-        // 기존 레시피를 삭제하지 않고 새 레시피를 설정
+        // 레시피 업데이트
         List<Recipe> recipes = bomRequest.getRecipes().stream()
-                .map(recipeRequest -> new Recipe(existingBOM, recipeRequest.getChildId(), recipeRequest.getQuantity()))
+                .map(recipeRequest -> {
+                    // Material 조회
+                    Material material = materialRepository.findById(recipeRequest.getChildId())
+                            .orElseThrow(() -> new ResourceNotFoundException("자재를 찾을 수 없습니다. ID: " + recipeRequest.getChildId()));
+
+                    // Recipe 생성
+                    return new Recipe(existingBOM, material, recipeRequest.getQuantity());
+                })
                 .collect(Collectors.toList());
 
         // 기존 레시피를 모두 삭제하고 새 레시피로 교체
-        existingBOM.getRecipes().clear(); // 기존 레시피 삭제
-        existingBOM.getRecipes().addAll(recipes); // 새 레시피 추가
+        existingBOM.getRecipes().clear();
+        existingBOM.getRecipes().addAll(recipes);
 
         // BOM 저장
         bomRepository.save(existingBOM);
@@ -100,10 +117,10 @@ public class BOMService {
     // BOM 삭제
     @Transactional
     public void deleteBOM(Long id) {
-        if (!bomRepository.existsById(String.valueOf(id))) {
+        if (!bomRepository.existsById(id)) {
             throw new ResourceNotFoundException("BOM을 찾을 수 없습니다. ID: " + id);
         }
-        bomRepository.deleteById(String.valueOf(id));
+        bomRepository.deleteById(id);
     }
 
     // BOMResponse로 변환하는 메서드
@@ -115,7 +132,7 @@ public class BOMService {
                 .map(recipe -> {
                     BOMResponse.RecipeResponse recipeResponse = new BOMResponse.RecipeResponse();
                     recipeResponse.setId(recipe.getId());
-                    recipeResponse.setChildId(recipe.getChildId());
+                    recipeResponse.setChildId(recipe.getMaterial().getName());  // 수정된 부분: childId 대신 material의 name 사용
                     recipeResponse.setQuantity(recipe.getQuantity());
                     return recipeResponse;
                 })

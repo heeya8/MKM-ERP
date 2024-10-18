@@ -14,4 +14,6 @@ public interface MaterialRepository extends JpaRepository<Material, String> {
     // 가장 큰 품목코드 값을 찾는 메서드
     @Query("SELECT MAX(m.itemCode) FROM Material m WHERE m.itemCode LIKE 'M%'")
     String findMaxItemCode();
+
+    Optional<Material> findByName(String name); // 자재 이름으로 조회하는 메서드 추가
 }

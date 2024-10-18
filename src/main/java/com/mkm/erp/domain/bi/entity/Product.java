@@ -2,10 +2,13 @@ package com.mkm.erp.domain.bi.entity;
 
 import com.mkm.erp.domain.bi.dto.request.ProductRequest;
 import com.mkm.erp.domain.common.entity.Timestamped;
+import com.mkm.erp.domain.manage.entity.ProductionPlan;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -13,7 +16,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Product extends Timestamped {
 
-    // Primary Key로 설정된 품목코드
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
@@ -40,6 +42,10 @@ public class Product extends Timestamped {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subcategory_id", nullable = false)
     private Subcategory subcategory; // 소분류와의 관계
+
+    // ProductionPlan과의 관계 추가
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductionPlan> productionPlans;
 
     public Product(ProductRequest request) {
         this.unit = UnitType.valueOf(request.getUnit());

@@ -20,15 +20,18 @@ public class Recipe {
     @JoinColumn(name = "bom_id", nullable = false)
     private BOM bom;
 
-    @Column(name = "child_id", nullable = false)
-    private String childId; // 자품목 ID
+    // Material과의 다대일 관계 설정
+    @ManyToOne
+    @JoinColumn(name = "material_id", nullable = false)
+    private Material material; // 자품목 이름 대신 Material 객체로 설정
 
     @Column(name = "quantity", nullable = false)
     private int quantity; // 필요 수량
 
-    public Recipe(BOM bom, String childId, int quantity) {
+    public Recipe(BOM bom, Material material, int quantity) {
         this.bom = bom;
-        this.childId = childId;
+        this.material = material;
         this.quantity = quantity;
     }
 }
+
