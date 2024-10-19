@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Links Of CSS File -->
+    <link rel="stylesheet" href="/assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="/assets/css/simplebar.css">
+    <link rel="stylesheet" href="/assets/css/apexcharts.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/rangeslider.css">
+    <link rel="stylesheet" href="/assets/css/sweetalert.min.css">
+    <link rel="stylesheet" href="/assets/css/quill.snow.css">
+    <link rel="stylesheet" href="/assets/css/google-icon.css">
+    <link rel="stylesheet" href="/assets/css/remixicon.css">
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/css/fullcalendar.main.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="/image/png" href="/assets/images/favicon.png">
+    <!-- Title -->
+    <title>MKM - 회원가입</title>
+</head>
+<body class="boxed-size bg-white">
+<!-- Start Preloader Area -->
+<div class="preloader" id="preloader">
+    <div class="preloader">
+        <div class="waviy position-relative">
+            <span class="d-inline-block">M</span>
+            <span class="d-inline-block">K</span>
+            <span class="d-inline-block">M</span>
+        </div>
+    </div>
+</div>
+<!-- End Preloader Area -->
+
+<!-- Start Main Content Area -->
+<div class="container">
+    <div class="main-content d-flex flex-column p-0">
+        <div class="m-auto m-1230">
+            <div class="row align-items-center">
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="/assets/images/register.jpg" class="rounded-3" alt="register">
+                </div>
+                <div class="col-lg-6">
+                    <div class="mw-480 ms-lg-auto">
+                        <div class="d-inline-block mb-4">
+                            <img src="/assets/images/logo-icon.png" class="rounded-3 for-light-logo" alt="signup">
+                        </div>
+                        <h3 class="fs-28 mb-2">회원 가입</h3>
+                        <p class="fw-medium fs-16 mb-4">사원 정보를 입력해주세요.</p>
+                        <form method="POST" id="signupForm">
+                            <div class="form-group mb-3">
+                                <label class="label text-secondary">이름</label>
+                                <input id="name" name="name" type="text" class="form-control" placeholder="이름을 입력하세요" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label text-secondary">이메일</label>
+                                <input id="email" name="email" type="email" class="form-control" placeholder="example@mkm.com" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label text-secondary">비밀번호</label>
+                                <input id="password" name="password" type="password" class="form-control" placeholder="비밀번호를 입력하세요" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label text-secondary">권한</label>
+                                <select id="role" name="userRole" class="form-select form-control h-55" required>
+                                    <option value="USER">일반사용자</option>
+                                    <option value="ADMIN">관리자</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-primary fw-medium py-2 px-3 w-100">
+                                    <div class="d-flex align-items-center justify-content-center py-1">
+                                        <i class="material-symbols-outlined text-white fs-20 me-2">person_4</i>
+                                        <span>가입하기</span>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <p>이미 계정이 있으신가요?
+                                    <a href="/" class="fw-medium text-primary text-decoration-none"> 로그인</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 회원가입 폼 제출 이벤트 처리
+    document.getElementById('signupForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // 기본 폼 제출 방지
+
+        // 폼 데이터 수집
+        const formData = {
+            email: document.getElementById('email').value.trim(), // 공백 제거
+            name: document.getElementById('name').value.trim(),
+            password: document.getElementById('password').value.trim(),
+            userRole: document.getElementById('role').value
+        };
+
+        // 폼 데이터 출력하여 확인 (콘솔)
+        console.log('폼 데이터:', formData);
+
+        try {
+            // fetch를 사용한 POST 요청
+            const response = await fetch('http://localhost:8080/api/auth/signup', { // 로컬 서버 주소 명시적으로 설정
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                // 서버 응답이 성공적인 경우
+                const result = await response.json();
+                alert(result.message || '회원가입이 완료되었습니다.');
+                window.location.href = '/'; // 회원가입 후 메인 페이지로 이동
+            } else {
+                // 서버 응답이 오류인 경우
+                const errorText = await response.text();
+                console.error('서버 오류 응답:', errorText); // 서버 오류 응답 콘솔에 출력
+                // 서버에서 반환한 오류 메시지 표시 (가능한 경우)
+                alert('회원가입 중 오류가 발생했습니다: ' + errorText);
+            }
+        } catch (error) {
+            // 네트워크 오류 또는 다른 예외 처리
+            console.error('네트워크 오류:', error); // 네트워크 오류 콘솔에 출력
+            alert('회원가입 중 오류가 발생했습니다: ' + error.message);
+        }
+    });
+</script>
+
+
+<!-- Link Of JS File -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/sidebar-menu.js"></script>
+<script src="/assets/js/dragdrop.js"></script>
+<script src="/assets/js/rangeslider.min.js"></script>
+<script src="/assets/js/sweetalert.js"></script>
+<script src="/assets/js/quill.min.js"></script>
+<script src="/assets/js/data-table.js"></script>
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/clipboard.min.js"></script>
+<script src="/assets/js/feather.min.js"></script>
+<script src="/assets/js/simplebar.min.js"></script>
+<script src="/assets/js/apexcharts.min.js"></script>
+<script src="/assets/js/swiper-bundle.min.js"></script>
+<script src="/assets/js/fullcalendar.main.js"></script>
+<script src="/assets/js/custom/apexcharts.js"></script>
+<script src="/assets/js/custom/custom.js"></script>
+</body>
+</html>
