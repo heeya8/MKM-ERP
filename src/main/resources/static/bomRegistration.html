@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Links Of CSS File -->
+    <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="assets/css/simplebar.css">
+    <link rel="stylesheet" href="assets/css/apexcharts.css">
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link rel="stylesheet" href="assets/css/rangeslider.css">
+    <link rel="stylesheet" href="assets/css/sweetalert.min.css">
+    <link rel="stylesheet" href="assets/css/quill.snow.css">
+    <link rel="stylesheet" href="assets/css/google-icon.css">
+    <link rel="stylesheet" href="assets/css/remixicon.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/fullcalendar.main.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* Custom additional styling */
+        .bom-table {
+            margin-top: 20px;
+        }
+        .centered-btn {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .centered-btn2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .bom-header {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 1px;
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+         .table th, .table td {
+             vertical-align: middle;
+             padding: 10px;
+         }
+
+        /* 테이블 헤더의 글씨 크기 조정 */
+        .table th {
+            font-size: 16px;
+        }
+
+        /* 테이블 바디의 글씨 크기 조정 */
+        .table td input, .table td select {
+            font-size: 14px;
+        }
+
+
+
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- Title -->
+    <title>MealKitMaker - BOM 등록 </title>
+
+</head>
+
+<body class="boxed-size">
+
+<!-- Start Sidebar Area -->
+<div class="sidebar-area" id="sidebar-area">
+    <div class="logo position-relative">
+        <a href="index.html" class="d-block text-decoration-none position-relative">
+            <img src="assets/images/logo-icon.png" alt="logo-icon">
+            <span class="logo-text fw-bold text-dark">MKM</span>
+        </a>
+        <button class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y" id="sidebar-burger-menu">
+            <i data-feather="x"></i>
+        </button>
+    </div>
+
+    <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
+        <ul class="menu-inner">
+            <!-- 작업 관리 메뉴 -->
+            <li class="menu-title small text-uppercase">
+                <span class="menu-title-text">생산 ERP 관리</span>
+            </li>
+            <li class="menu-item open">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">작업 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="index.html" class="menu-link">생산 계획 등록</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="crm.html" class="menu-link">작업 지시 관리</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="project-management.html" class="menu-link">작업 실적 등록</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 자재 관리 메뉴 -->
+            <li class="menu-item open">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">자재 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="12.html" class="menu-link">자재 출고 관리</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="crm.html" class="menu-link">재고 현황</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="project-management.html" class="menu-link">발주 요청</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 기초 정보 관리 메뉴 -->
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">기초 정보 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="product.html" class="menu-link">품목 등록</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="productionTeamRegistration.html" class="menu-link">생산팀 등록</a>
+                    </li>
+                    <li class="menu-item after-sub-menu menu-level">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <span class="title">BOM 관리</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="bomRegistration.html" class="menu-link active">BOM 등록</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="bom-explosion.html" class="menu-link">BOM 조회</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <!-- Logout -->
+            <li class="menu-item">
+                <a href="login.html" class="menu-link">
+                    <span class="material-symbols-outlined menu-icon">logout</span>
+                    <span class="title">로그아웃</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+</div>
+
+<!-- Start Main Content Area -->
+<div class="container-fluid">
+    <div class="main-content d-flex flex-column">
+        <!-- Start Header Area -->
+        <header class="header-area bg-white mb-4 rounded-bottom-15" id="header-area">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="left-header-content">
+                        <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled justify-content-center justify-content-sm-start">
+                            <li>
+                                <button class="header-burger-menu bg-transparent p-0 border-0" id="header-burger-menu">
+                                    <span class="material-symbols-outlined">menu</span>
+                                </button>
+                            </li>
+                            <li>
+                                <form class="src-form position-relative">
+                                    <input type="text" class="form-control" placeholder="Search here.....">
+                                    <button type="submit" class="src-btn position-absolute top-50 end-0 translate-middle-y bg-transparent p-0 border-0">
+                                        <span class="material-symbols-outlined">search</span>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- BOM 등록 영역 시작 -->
+
+        <div class="card bg-white border-0 rounded-3 mb-4">
+            <div class="card-body p-4">
+                <div class="bom-header">
+                    <h3 class="fs-24 mb-4">BOM 등록</h3>
+                </div>
+
+                <div class="tab-content" id="myTabContent" style="padding: 20px;">
+                    <div class="tab-pane fade show active" id="register-tab-pane" role="tabpanel"
+                         aria-labelledby="register-tab" tabindex="0">
+                        <div>
+                            <form onsubmit="return false;">
+                                <div class="mb-3">
+                                    <label class="form-label" for="product-search">BOM 상품 검색</label>
+                                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-0">
+                                        <form class="position-relative table-src-form me-0">
+                                            <input type="text" class="form-control ps-3" placeholder="등록할 상품 검색하기" id="product-search" style="padding-left: 40px;">
+                                            <!-- <i class="material-symbols-outlined position-absolute" style="right: 50px; top: 35%; transform: translateY(-50%); color: gray;">search</i> -->
+                                        </form>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                                </div>
+
+                                <!-- BOM 테이블 시작 -->
+                    <div class="default-table-area style-two production-team-registration padding-style">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                        <thead>
+                                        <tr>
+                                            <th style="min-width: 150px;">원자재명</th>
+                                            <th style="min-width: 100px;">수량</th>
+                                            <th style="min-width: 100px;">단위</th>
+                                            <th style="min-width: 0px;">삭제</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="material-rows">
+                                        <tr>
+                                            <td>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control mb-2" placeholder="원자재를 입력하세요" style="height: 50px;">
+                                                    <i class="material-symbols-outlined position-absolute top-50 end-10 translate-middle-y" style="right: 10px;">search</i>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control mb-2" placeholder="수량을 입력하세요" style="height: 50px;">
+                                            </td>
+                                            <td>
+                                                <select class="form-select form-control mb-2 unit-select" id="unit" style="height: 50px;">
+                                                    <option value="G">G</option>
+                                                    <option value="KG">KG</option>
+                                                    <option value="ML">ML</option>
+                                                    <option value="L">L</option>
+                                                    <option value="EA">EA</option>
+                                                    <option value="PACK">PACK</option>
+                                                    <option value="BAG">BAG</option>
+                                                    <option value="BOX">BOX</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                                                    <i class="material-symbols-outlined fs-20 text-danger">delete</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- BOM 테이블 끝 -->
+                            </form>
+
+                            </table>
+                                    <!-- 원자재 추가 버튼 -->
+                                    <div class="centered-btn2">
+                                        <button type="button" class="btn btn-transparent btn-sm" onclick="addMaterialRow()">
+                                        <i class="ri-add-line"></i> 원자재 추가
+                                    </button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 등록하기 버튼 -->
+                            <div class="centered-btn">
+                                <button type="submit" class="btn btn-primary" onclick="submitBom();">
+                                    <i class="ri-add-line"></i> 등록하기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <!-- BOM 등록 영역 끝 -->
+
+<script>
+    function addMaterialRow() {
+        const row = `
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" placeholder="원자재를 입력하세요" style="height: 50px;" >
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" placeholder="수량을 입력하세요" style="height: 50px;" >
+                    </td>
+                    <td>
+                         <select class="form-select form-control mb-2 unit-select" id="unit" style="height: 50px;">
+                            <option value="G">G</option>
+                            <option value="KG">KG</option>
+                            <option value="ML">ML</option>
+                            <option value="L">L</option>
+                            <option value="EA">EA</option>
+                            <option value="PACK">PACK</option>
+                            <option value="BAG">BAG</option>
+                            <option value="BOX">BOX</option>
+                        </select>
+                    </td>
+                    <td>
+
+                                                <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2" onclick="removeMaterialRow(this)">
+                                                    <i class="material-symbols-outlined fs-20 text-danger">delete</i>
+                     </button>
+                    </td>
+                </tr>
+            `;
+        document.getElementById('material-rows').insertAdjacentHTML('beforeend', row);
+    }
+
+    function removeMaterialRow(button) {
+        const row = button.closest('tr');
+        row.remove();
+    }
+
+    function submitBom() {
+        // BOM 등록 로직을 여기에 추가합니다.
+        alert('BOM이 등록되었습니다.');
+    }
+</script>
+
+
+
+<!-- Link Of JS File -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/sidebar-menu.js"></script>
+<script src="assets/js/dragdrop.js"></script>
+<script src="assets/js/rangeslider.min.js"></script>
+<script src="assets/js/sweetalert.js"></script>
+<script src="assets/js/quill.min.js"></script>
+<script src="assets/js/data-table.js"></script>
+<script src="assets/js/prism.js"></script>
+<script src="assets/js/clipboard.min.js"></script>
+<script src="assets/js/feather.min.js"></script>
+<script src="assets/js/simplebar.min.js"></script>
+<script src="assets/js/apexcharts.min.js"></script>
+<script src="assets/js/swiper-bundle.min.js"></script>
+<script src="assets/js/fullcalendar.main.js"></script>
+<script src="assets/js/custom/apexcharts.js"></script>
+<script src="assets/js/custom/custom.js"></script>
+
+
+
+
+</body>
+</html>
