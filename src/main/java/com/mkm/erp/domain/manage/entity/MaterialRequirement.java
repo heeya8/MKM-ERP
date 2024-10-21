@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MaterialRequirement {
-    private String materialId;
+    private String materialName;
     private int requiredQuantity;
 }
