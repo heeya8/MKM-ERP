@@ -28,7 +28,7 @@ public class PurchaseOrder extends Timestamped {
     @Column(name = "order_date", nullable = false)
     private LocalDate orderDate;
 
-    public PurchaseOrder(String materialCode, int orderQuantity, LocalDate orderDate) {
+    public PurchaseOrder(String materialName, int orderQuantity, LocalDate orderDate) {
         this.materialName = materialName;
         this.orderQuantity = orderQuantity;
         this.orderDate = orderDate;

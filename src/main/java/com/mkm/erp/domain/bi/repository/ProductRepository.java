@@ -24,4 +24,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     // 단위 타입에 따른 검색 메서드
     Page<Product> findByUnit(UnitType unit, Pageable pageable);
+
+    Optional<Product> findByName(String name);
 }

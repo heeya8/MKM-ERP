@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Links Of CSS File -->
+  <link rel="stylesheet" href="/assets/css/sidebar-menu.css">
+  <link rel="stylesheet" href="/assets/css/simplebar.css">
+  <link rel="stylesheet" href="/assets/css/apexcharts.css">
+  <link rel="stylesheet" href="/assets/css/prism.css">
+  <link rel="stylesheet" href="/assets/css/rangeslider.css">
+  <link rel="stylesheet" href="/assets/css/sweetalert.min.css">
+  <link rel="stylesheet" href="/assets/css/quill.snow.css">
+  <link rel="stylesheet" href="/assets/css/google-icon.css">
+  <link rel="stylesheet" href="/assets/css/remixicon.css">
+  <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/assets/css/fullcalendar.main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- Favicon -->
+  <link rel="icon" type="/image/png" href="/assets/images/favicon.png">
+  <!-- Title -->
+  <title>MKM - 생산 계획 관리</title>
+  <style>
+    #suggestions {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      background-color: white;
+    }
+  </style>
+</head>
+<body class="boxed-size">
+<!-- Start Sidebar Area -->
+<div class="sidebar-area" id="sidebar-area">
+  <div class="logo position-relative">
+    <a href="index.html" class="d-block text-decoration-none position-relative">
+      <img src="/assets/images/logo-icon.png" alt="logo-icon">
+      <span class="logo-text fw-bold text-dark">MKM</span>
+    </a>
+    <button
+            class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y"
+            id="sidebar-burger-menu">
+      <i data-feather="x"></i>
+    </button>
+  </div>
+
+  <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
+    <ul class="menu-inner">
+      <!-- 작업 관리 메뉴 -->
+      <li class="menu-item open">
+        <a href="javascript:void(0);" class="menu-link menu-toggle active">
+          <span class="material-symbols-outlined menu-icon">dashboard</span>
+          <span class="title">작업 관리 메뉴</span>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="index.html" class="menu-link  active">생산 계획 관리</a>
+          </li>
+          <li class="menu-item">
+            <a href="crm.html" class="menu-link">작업 지시 관리</a>
+          </li>
+          <li class="menu-item">
+            <a href="project-management.html" class="menu-link">작업 실적 등록</a>
+          </li>
+        </ul>
+      </li>
+      <!-- 자재 관리 메뉴 -->
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle active">
+          <span class="material-symbols-outlined menu-icon">dashboard</span>
+          <span class="title">자재 관리 메뉴</span>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="12.html" class="menu-link">자재 출고 관리</a>
+          </li>
+          <li class="menu-item">
+            <a href="crm.html" class="menu-link">재고 현황</a>
+          </li>
+          <li class="menu-item">
+            <a href="project-management.html" class="menu-link">발주 요청</a>
+          </li>
+        </ul>
+      </li>
+      <!-- 기초 정보 관리 메뉴 -->
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle active">
+          <span class="material-symbols-outlined menu-icon">dashboard</span>
+          <span class="title">기초 정보 관리 메뉴</span>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="product.html" class="menu-link">품목 관리</a>
+          </li>
+          <li class="menu-item after-sub-menu menu-level">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <span class="title">BOM 관리</span>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="bom-registration.html" class="menu-link">BOM 등록</a>
+              </li>
+              <li class="menu-item">
+                <a href="bom-explosion.html" class="menu-link">BOM 정전개</a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item">
+            <a href="company.html" class="menu-link">회사 정보 관리</a>
+          </li>
+        </ul>
+      </li>
+      <!-- Logout -->
+      <li class="menu-item">
+        <a href="login.html" class="menu-link">
+          <span class="material-symbols-outlined menu-icon">logout</span>
+          <span class="title">로그아웃</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+
+<!-- Start Main Content Area -->
+<div class="container-fluid">
+  <div class="main-content d-flex flex-column">
+    <!-- Start Header Area -->
+    <header class="header-area bg-white mb-4 rounded-bottom-15" id="header-area">
+      <div class="row align-items-center">
+        <div class="col-lg-4 col-sm-6">
+          <div class="left-header-content">
+            <ul
+                    class="d-flex align-items-center ps-0 mb-0 list-unstyled justify-content-center justify-content-sm-start">
+              <li>
+                <button class="header-burger-menu bg-transparent p-0 border-0"
+                        id="header-burger-menu">
+                  <span class="material-symbols-outlined">menu</span>
+                </button>
+              </li>
+              <li>
+                <form class="src-form position-relative">
+                  <input type="text" class="form-control" placeholder="Search here.....">
+                  <button type="submit"
+                          class="src-btn position-absolute top-50 end-0 translate-middle-y bg-transparent p-0 border-0">
+                    <span class="material-symbols-outlined">search</span>
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End Header Area -->
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+      <h3 class="mb-0">생산 계획 관리</h3>
+
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb align-items-center mb-0 lh-1">
+          <li class="breadcrumb-item">
+            <a href="#" class="d-flex align-items-center text-decoration-none">
+              <i class="ri-home-4-line fs-18 text-primary me-1"></i>
+              <span class="text-secondary fw-medium hover"></span>
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <span class="fw-medium">작업 관리 메뉴</span>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <span class="fw-medium">생산 계획 관리</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <!-- Tabs for 생산 계획 등록 및 생산 계획 조회 -->
+    <div class="card bg-white border-0 rounded-3 mb-4">
+      <div class="card-body p-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="register-tab" data-bs-toggle="tab"
+                    data-bs-target="#register-tab-pane" type="button" role="tab"
+                    aria-controls="register-tab-pane" aria-selected="true">생산 계획 등록</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list-tab-pane"
+                    type="button" role="tab" aria-controls="list-tab-pane" aria-selected="false"
+                    onclick="fetchData(1)">생산 계획 조회</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent" style="padding: 20px;">
+          <div class="tab-pane fade show active" id="register-tab-pane" role="tabpanel"
+               aria-labelledby="register-tab" tabindex="0">
+            <div>
+              <h4 class="fw-bold mb-3">생산 계획 등록</h4>
+              <form onsubmit="submitProductForm(event)">
+                <div class="mb-3 row">
+                  <div class="col-6">
+                    <label for="productName" class="form-label">생산품 이름</label>
+                    <input type="text" class="form-control" id="productName" placeholder="품목명을 입력하세요" oninput="fetchProducts(this.value)">
+                    <ul id="suggestions" class="list-group" style="position: absolute; z-index: 1000; display: none;"></ul>
+                  </div>
+                  <div class="col-6">
+                    <label for="quantity" class="form-label">수량</label>
+                    <input type="number" class="form-control" id="quantity" placeholder="수량을 입력하세요">
+                  </div>
+                </div>
+                <div class="mb-3 row">
+                  <div class="col-6">
+                    <label for="startDate" class="form-label">생산 시작일</label>
+                    <input type="datetime-local" class="form-control" id="startDate">
+                  </div>
+                  <div class="col-6">
+                    <label for="endDate" class="form-label">생산 마감일</label>
+                    <input type="datetime-local" class="form-control" id="endDate">
+                  </div> <!--현재-->
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="calculateMaterialRequirements()">
+                  소요량 계산
+                </button>
+                <div id="materialRequirements" class="mt-3"></div>
+                <button type="submit" class="btn btn-primary">
+                  <i class="ri-add-line me-1"></i>등록하기
+                </button>
+              </form>
+
+              <script>
+                async function fetchProducts(query) {
+                  const suggestionsList = document.getElementById('suggestions');
+
+                  // 입력값이 비어있으면 추천 목록 숨기기
+                  if (!query) {
+                    suggestionsList.style.display = 'none';
+                    suggestionsList.innerHTML = '';
+                    return;
+                  }
+
+                  try {
+                    const response = await fetch(`http://localhost:8080/information/products?productName=${query}`);
+                    const data = await response.json();
+                    const products = data.content;
+
+                    // 추천 목록 초기화
+                    suggestionsList.innerHTML = '';
+
+                    // 제품 목록이 있을 경우 추천 목록 표시
+                    if (products.length > 0) {
+                      products.forEach(product => {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item list-group-item-action';
+                        listItem.textContent = product.name;
+                        listItem.onclick = function () {
+                          document.getElementById('productName').value = product.name; // 선택된 제품 이름으로 입력 필드 설정
+                          suggestionsList.style.display = 'none'; // 추천 목록 숨기기
+                        };
+                        suggestionsList.appendChild(listItem);
+                      });
+                      suggestionsList.style.display = 'block'; // 추천 목록 표시
+                    } else {
+                      suggestionsList.style.display = 'none'; // 추천 목록 숨기기
+                    }
+                  } catch (error) {
+                    console.error('Error fetching products:', error);
+                  }
+                }
+
+                async function submitProductForm(event) {
+                  event.preventDefault();
+
+                  const productName = document.getElementById("productName").value;
+                  const quantity = document.getElementById("quantity").value;
+                  const startDate = document.getElementById("startDate").value;
+                  const endDate = document.getElementById("endDate").value;
+
+                  // 제품 이름을 통해 제품 ID 조회
+                  const productIdResponse = await fetch(`http://localhost:8080/manage/work/productId?productName=${encodeURIComponent(productName)}`);
+                  const productId = await productIdResponse.json(); // { id: <productId> } 형태로 응답받기
+
+                  const productionPlanRequest = {
+                    productId: productId.id, // 요청 본문에 ID 설정
+                    quantity: quantity,
+                    start: startDate,
+                    finish: endDate
+                  };
+
+                  // 이후 생산 계획 등록 요청
+                  const response = await fetch("http://localhost:8080/manage/work/plan", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(productionPlanRequest)
+                  });
+
+                  if (response.ok) {
+                    // 성공적으로 등록된 경우 처리
+                    alert("생산 계획이 등록되었습니다.");
+                    return response.text();
+                  } else {
+                    // 오류 처리
+                    console.error("생산 계획 등록 실패");
+                  }
+                }
+
+                async function calculateMaterialRequirements() {
+                  const productName = document.getElementById("productName").value;
+                  const quantity = document.getElementById("quantity").value;
+
+                  console.log("Product Name: " + productName);
+                  console.log("Quantity: " + quantity);
+
+                  const url = `http://localhost:8080/manage/work/mrp?productName=${productName}&productionQuantity=${quantity}`;
+                  // 서버로 데이터 전송
+                  try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    displayMaterialRequirements(data);
+                  } catch (error) {
+                    console.error("Error fetching material requirements:", error);
+                  }
+                }
+
+                function displayMaterialRequirements(data) {
+                  const requirementsDiv = document.getElementById("materialRequirements");
+                  requirementsDiv.innerHTML = ''; // Clear previous results
+
+                  const materials = data.materials.map(m => `<li>${m.materialName}: ${m.requiredQuantity}</li>`).join('');
+                  const shortages = data.shortages.map(s => `<li>${s.materialName}: ${s.requiredQuantity}</li>`).join('');
+
+                  requirementsDiv.innerHTML = `
+                        <h5>필요한 원자재:</h5>
+                        <ul>${materials}</ul>
+                        <h5>부족한 원자재(자동발주):</h5>
+                        <ul>${shortages}</ul>
+                  `;
+                }
+              </script>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="list-tab-pane" role="tabpanel" aria-labelledby="list-tab"
+               tabindex="0">
+            <div class="card-body p-0" style="padding-left: 10px; padding-right: 10px;">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 p-4">
+                <h3 class="mb-0">생산 계획 리스트</h3>
+                <form class="default-src-form">
+                  <div class="d-sm-flex flex-wrap gap-3">
+                    <div class="position-relative mb-2 mb-sm-0">
+                      <input id="search-product" type="text" class="form-control rounded-1"
+                             placeholder="품목명을 검색하세요.">
+                      <i
+                              class="material-symbols-outlined position-absolute top-50 start-0 translate-middle-y fs-18">search</i>
+                    </div>
+                    <div>
+                      <select id="sortSelect"
+                              class="form-select form-control rounded-1 py-0 fs-14 ps-3 bg-transparent pe-5"
+                              aria-label="Default select example">
+                        <option value="recent">등록일</option>
+                        <option value="startAsc">시작일</option>
+                        <option value="finishAsc">마감일</option>
+                        <option value="quantityAsc">수량</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="default-table-area">
+                <div class="table-responsive" style="max-width: 100%;">
+                  <table class="table align-middle"
+                         style="border: 1px solid #c4c4c4; border-radius: 15px; overflow: hidden;">
+                    <thead>
+                    <tr>
+                      <th scope="col">생산계획번호</th>
+                      <th scope="col">품목명</th>
+                      <th scope="col">수량</th>
+                      <th scope="col">시작일</th>
+                      <th scope="col">마감일</th>
+                      <th scope="col">등록일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td class="text-secondary">생산계획번호</td>
+                      <td class="text-secondary">품목명</td>
+                      <td class="text-secondary">수량</td>
+                      <td class="text-secondary">시작일</td>
+                      <td class="text-secondary">마감일</td>
+                      <td class="text-secondary">등록일</td>
+                    </tr>
+                    <tr>
+                      <td class="text-secondary">생산계획번호</td>
+                      <td class="text-secondary">품목명</td>
+                      <td class="text-secondary">수량</td>
+                      <td class="text-secondary">시작일</td>
+                      <td class="text-secondary">마감일</td>
+                      <td class="text-secondary">등록일</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <br>
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination mb-0 justify-content-center">
+                    <li class="page-item disabled">
+                      <a class="page-link icon" href="#" aria-label="Previous">
+                        <i class="material-symbols-outlined">keyboard_arrow_left</i>
+                      </a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item disabled">
+                      <a class="page-link icon" href="#" aria-label="Next">
+                        <i class="material-symbols-outlined">keyboard_arrow_right</i>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <script>
+                let currentSearchTerm = ''; // 검색어의 기본값
+                let currentSortBy = 'recent'; // 정렬 기본값: 이름순
+
+                // 데이터를 가져오는 함수를 정의합니다.
+                function fetchData(pageNumber = 1) {
+                  const url = `http://localhost:8080/manage/work/plan?page=${pageNumber}&size=5&sortBy=${currentSortBy}&productName=${currentSearchTerm}`;
+
+                  console.log(`API 호출 URL: ${url}`); // 디버깅용 URL 출력
+
+                  fetch(url)
+                          .then(response => {
+                            if (!response.ok) {
+                              throw new Error('네트워크 응답에 문제가 있다.');
+                            }
+                            return response.json();
+                          })
+                          .then(data => {
+                            console.log(data); // 응답 데이터 확인용
+
+                            const content = data.content;
+                            const tbody = document.querySelector('.table tbody');
+                            tbody.innerHTML = ''; // 기존 내용을 초기화
+
+                            if (content.length === 0) {
+                              const noDataRow = document.createElement('tr');
+                              noDataRow.innerHTML = '<td colspan="5" class="text-center">검색된 데이터가 없습니다.</td>';
+                              tbody.appendChild(noDataRow);
+                            } else {
+                              content.forEach(item => {
+                                const row = document.createElement('tr');
+
+                                const productIdCell = document.createElement('td');
+                                productIdCell.textContent = item.id;
+                                productIdCell.classList.add('text-secondary');
+
+                                const nameCell = document.createElement('td');
+                                nameCell.textContent = item.productName;
+                                nameCell.classList.add('text-secondary');
+
+                                const quantityCell = document.createElement('td');
+                                quantityCell.textContent = item.quantity;
+                                quantityCell.classList.add('text-secondary');
+
+                                const startCell = document.createElement('td');
+                                startCell.textContent = formatDate(item.start);
+                                startCell.classList.add('text-secondary');
+
+                                const finishCell = document.createElement('td');
+                                finishCell.textContent = formatDate(item.finish);
+                                finishCell.classList.add('text-secondary');
+
+                                const createdAtCell = document.createElement('td');
+                                createdAtCell.textContent = formatDate(item.createdAt);
+                                createdAtCell.classList.add('text-secondary');
+
+                                row.appendChild(productIdCell);
+                                row.appendChild(nameCell);
+                                row.appendChild(quantityCell);
+                                row.appendChild(startCell);
+                                row.appendChild(finishCell);
+                                row.appendChild(createdAtCell);
+
+                                tbody.appendChild(row);
+                              });
+                            }
+
+                            // 페이지네이션 업데이트
+                            updatePagination(data);
+                          })
+                          .catch(error => {
+                            console.error('API 요청 중 오류 발생:', error);
+                          });
+                }
+
+                // 날짜를 YYYY-MM-DD HH:mm:ss 형식으로 포맷팅하는 함수
+                function formatDate(dateString) {
+                  const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+                  const date = new Date(dateString);
+
+                  // toLocaleString 메서드를 사용하여 원하는 형식으로 변환
+                  return date.toLocaleString('sv-SE', options).replace(' ', 'T').replace('T', ' ').replace(',', '');
+                }
+
+                // 페이지네이션을 업데이트하는 함수 정의
+                function updatePagination(data) {
+                  const pagination = document.querySelector('.pagination');
+                  pagination.innerHTML = ''; // 기존 페이지네이션 초기화
+
+                  // 이전 버튼 생성
+                  const prevLi = document.createElement('li');
+                  prevLi.classList.add('page-item');
+                  if (data.pageNumber === 1) prevLi.classList.add('disabled');
+                  const prevLink = document.createElement('a');
+                  prevLink.classList.add('page-link', 'icon');
+                  prevLink.href = '#';
+                  prevLink.setAttribute('aria-label', 'Previous');
+                  prevLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_left</i>';
+                  prevLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (data.pageNumber > 1) {
+                      fetchData(data.pageNumber - 1); // 이전 페이지 호출
+                    }
+                  });
+                  prevLi.appendChild(prevLink);
+                  pagination.appendChild(prevLi);
+
+                  // 페이지 번호 버튼 생성
+                  for (let i = 1; i <= data.totalPages; i++) {
+                    const pageLi = document.createElement('li');
+                    pageLi.classList.add('page-item');
+                    const pageLink = document.createElement('a');
+                    pageLink.classList.add('page-link');
+                    pageLink.href = '#';
+                    pageLink.textContent = i;
+                    pageLink.addEventListener('click', function (e) {
+                      e.preventDefault();
+                      fetchData(i); // 해당 페이지로 이동
+                    });
+
+                    if (i === data.pageNumber) {
+                      pageLi.classList.add('active');
+                    }
+
+                    pageLi.appendChild(pageLink);
+                    pagination.appendChild(pageLi);
+                  }
+
+                  // 다음 버튼 생성
+                  const nextLi = document.createElement('li');
+                  nextLi.classList.add('page-item');
+                  if (data.last) nextLi.classList.add('disabled');
+                  const nextLink = document.createElement('a');
+                  nextLink.classList.add('page-link', 'icon');
+                  nextLink.href = '#';
+                  nextLink.setAttribute('aria-label', 'Next');
+                  nextLink.innerHTML = '<i class="material-symbols-outlined">keyboard_arrow_right</i>';
+                  nextLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (!data.last) {
+                      fetchData(data.pageNumber + 1);
+                    }
+                  });
+                  nextLi.appendChild(nextLink);
+                  pagination.appendChild(nextLi);
+                }
+
+
+                // 정렬 옵션 선택 시 데이터를 다시 가져오는 함수
+                function setupSortOption() {
+                  const sortSelect = document.getElementById('sortSelect'); // select 요소의 ID를 사용하여 가져옵니다.
+                  sortSelect.addEventListener('change', function () {
+                    const selectedValue = sortSelect.value;
+
+                    // 선택된 값에 따라 currentSortBy를 설정합니다.
+                    if (selectedValue === 'recent') {
+                      currentSortBy = 'recent';
+                    } else if (selectedValue === 'startAsc') {
+                      currentSortBy = 'startAsc';
+                    } else if (selectedValue === 'finishAsc') {
+                      currentSortBy = 'finishAsc';
+                    } else if (selectedValue === 'quantityAsc') {
+                      currentSortBy = 'quantityAsc';
+                    }else {
+                      currentSortBy = 'recent'; // 기본값
+                    }
+
+                    // 페이지를 1로 초기화하여 데이터를 다시 가져옵니다.
+                    fetchData(1);
+                  });
+                }
+
+                function setupSearch() {
+                  const searchInput = document.getElementById('search-product');
+                  const searchForm = document.querySelector('.src-form'); // 검색 폼
+
+                  // 폼 제출 시 기본 동작 방지 및 첫 페이지부터 검색 수행
+                  searchForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    currentSearchTerm = searchInput.value.trim(); // 검색어 저장
+                    fetchData(1); // 항상 첫 페이지부터 검색
+                  });
+
+                  // 엔터 키 입력 시 검색
+                  searchInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      currentSearchTerm = searchInput.value.trim();
+                      fetchData(1); // 항상 첫 페이지부터 검색
+                    }
+                  });
+                }
+
+                // 페이지가 로드될 때 검색 기능 설정 호출
+                window.addEventListener('load', function () {
+                  setupSortOption(); // 정렬 옵션 설정
+                  setupSearch(); // 검색 기능 설정
+                  fetchData(1); // 첫 페이지 데이터 불러오기
+                });
+
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page Content Area -->
+    <div class="flex-grow-1"></div>
+
+    <!-- Start Footer Area -->
+    <footer class="footer-area bg-white text-center rounded-top-7">
+      <p class="fs-14">© <span class="text-primary-div">mkm</span> is Proudly Owned by <a
+              href="https://envytheme.com/" target="_blank"
+              class="text-decoration-none text-primary">Code Monkeys</a></p>
+    </footer>
+  </div>
+</div>
+
+<!-- Link Of JS File -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/sidebar-menu.js"></script>
+<script src="/assets/js/dragdrop.js"></script>
+<script src="/assets/js/rangeslider.min.js"></script>
+<script src="/assets/js/sweetalert.js"></script>
+<script src="/assets/js/quill.min.js"></script>
+<script src="/assets/js/data-table.js"></script>
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/clipboard.min.js"></script>
+<script src="/assets/js/feather.min.js"></script>
+<script src="/assets/js/simplebar.min.js"></script>
+<script src="/assets/js/apexcharts.min.js"></script>
+<script src="/assets/js/swiper-bundle.min.js"></script>
+<script src="/assets/js/fullcalendar.main.js"></script>
+<script src="/assets/js/custom/apexcharts.js"></script>
+<script src="/assets/js/custom/custom.js"></script>
+</body>
+</html>

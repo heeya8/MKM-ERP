@@ -1,10 +1,7 @@
 package com.mkm.erp.domain.manage.service;
 
 import com.mkm.erp.domain.bi.dto.response.ResponseDto;
-import com.mkm.erp.domain.bi.entity.BOM;
-import com.mkm.erp.domain.bi.entity.Material;
-import com.mkm.erp.domain.bi.entity.Product;
-import com.mkm.erp.domain.bi.entity.Recipe;
+import com.mkm.erp.domain.bi.entity.*;
 import com.mkm.erp.domain.bi.repository.BOMRepository;
 import com.mkm.erp.domain.bi.repository.MaterialRepository;
 import com.mkm.erp.domain.bi.repository.ProductRepository;
@@ -58,7 +55,7 @@ public class ProductionPlanService {
     }
 
     @Transactional(readOnly = true)
-    public ResponseDto<ProductionPlanResponse> getAllProductionPlans(int page, int size, String sortBy) {
+    public ResponseDto<ProductionPlanResponse> getAllProductionPlans(int page, int size, String sortBy, String productName) {
         Sort sort = Sort.by(Sort.Direction.ASC, "id"); // 기본 정렬
 
         if ("recent".equals(sortBy)) {  // 생성 최신순
@@ -80,7 +77,14 @@ public class ProductionPlanService {
         }
 
         Pageable pageable = PageRequest.of(page - 1, size, sort);
-        Page<ProductionPlan> productionPlanPage = productionPlanRepository.findAll(pageable);
+
+        // 필터링 조건에 맞게 리포지토리 쿼리 수행
+        Page<ProductionPlan> productionPlanPage;
+        if (productName != null && !productName.isEmpty()) {
+            productionPlanPage = productionPlanRepository.findByProductNameContaining(productName, pageable);
+        } else {
+            productionPlanPage = productionPlanRepository.findAll(pageable);
+        }
 
         return new ResponseDto<>(
                 productionPlanPage.getContent().stream()
@@ -131,12 +135,12 @@ public class ProductionPlanService {
 
     // 생산 계획 생성 및 자재 소요량 계산
     @Transactional
-    public MaterialRequirementResponse calculateMaterialRequirement(Long productId, int productionQuantity) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid product ID: " + productId));
+    public MaterialRequirementResponse calculateMaterialRequirement(String productName, int productionQuantity) {
+        Product product = productRepository.findByName(productName)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product ID: " + productName));
 
-        BOM bom = bomRepository.findByProductId(productId)
-                .orElseThrow(() -> new IllegalArgumentException("BOM not found for product ID: " + productId));
+        BOM bom = bomRepository.findByProductId(product.getId())
+                .orElseThrow(() -> new IllegalArgumentException("BOM not found for product ID: " + product.getId()));
 
         // 자재 소요량 계산
         List<MaterialRequirement> materialRequirements = new ArrayList<>();
@@ -145,7 +149,11 @@ public class ProductionPlanService {
         for (Recipe recipe : bom.getRecipes()) {
             int requiredQuantity = recipe.getQuantity() * productionQuantity;
             int availableQuantity = getAvailableMaterialQuantity(recipe.getMaterial().getId());
-            int shortageQuantity = requiredQuantity - availableQuantity;
+
+            // Debugging log for checking values
+            System.out.println("Material: " + recipe.getMaterial().getName() + ", Required: " + requiredQuantity + ", Available: " + availableQuantity);
+
+            int shortageQuantity = Math.max(0, requiredQuantity - availableQuantity); // 0보다 작은 값은 0으로 처리
 
             materialRequirements.add(new MaterialRequirement(recipe.getMaterial().getName(), requiredQuantity));
 
@@ -154,6 +162,9 @@ public class ProductionPlanService {
                 shortages.add(new MaterialRequirement(recipe.getMaterial().getName(), shortageQuantity + 10));
             }
         }
+
+        System.out.println("Shortages 확인 : " + shortages);
+
 
         // 부족한 자재 자동 발주
         if (!shortages.isEmpty()) {
@@ -173,8 +184,9 @@ public class ProductionPlanService {
     private void createPurchaseOrders(List<MaterialRequirement> shortages) {
         for (MaterialRequirement shortage : shortages) {
             PurchaseOrderRequest orderRequest = new PurchaseOrderRequest();
-            orderRequest.setMaterialName(shortage.getMaterialId());
+            orderRequest.setMaterialName(shortage.getMaterialName());
             orderRequest.setOrderQuantity(shortage.getRequiredQuantity());
+            System.out.println("orderRequest 확인 : " +orderRequest);
 
             // PurchaseOrderService를 통해 발주 요청 생성
             purchaseOrderService.createPurchaseOrder(orderRequest);

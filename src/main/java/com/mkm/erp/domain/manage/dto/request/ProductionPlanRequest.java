@@ -10,4 +10,6 @@ public class ProductionPlanRequest {
     private int quantity;   // 수량
     private LocalDateTime start;   // 작업 시작일
     private LocalDateTime finish;  // 작업 마감일
+
+
 }
