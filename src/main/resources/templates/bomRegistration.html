@@ -24,29 +24,33 @@
         .bom-table {
             margin-top: 20px;
         }
+
         .centered-btn {
             text-align: right;
             margin-top: 20px;
         }
+
         .centered-btn2 {
             text-align: center;
             margin-top: 20px;
         }
+
         .bom-header {
             border-bottom: 1px solid #ccc;
             padding-bottom: 1px;
             margin-bottom: 20px;
         }
+
         .form-label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
         }
 
-         .table th, .table td {
-             vertical-align: middle;
-             padding: 10px;
-         }
+        .table th, .table td {
+            vertical-align: middle;
+            padding: 10px;
+        }
 
         /* 테이블 헤더의 글씨 크기 조정 */
         .table th {
@@ -59,13 +63,12 @@
         }
 
 
-
     </style>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/images/favicon.png">
     <!-- Title -->
-    <title>MealKitMaker - BOM 등록 </title>
+    <title>MKM - BOM 등록 </title>
 
 </head>
 
@@ -74,11 +77,12 @@
 <!-- Start Sidebar Area -->
 <div class="sidebar-area" id="sidebar-area">
     <div class="logo position-relative">
-        <a href="index.html" class="d-block text-decoration-none position-relative">
+        <a href="/main" class="d-block text-decoration-none position-relative">
             <img src="/assets/images/logo-icon.png" alt="logo-icon">
             <span class="logo-text fw-bold text-dark">MKM</span>
         </a>
-        <button class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y" id="sidebar-burger-menu">
+        <button class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y"
+                id="sidebar-burger-menu">
             <i data-feather="x"></i>
         </button>
     </div>
@@ -96,7 +100,7 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="index.html" class="menu-link">생산 계획 등록</a>
+                        <a href="/manage/work/plans" class="menu-link">생산 계획 등록</a>
                     </li>
                     <li class="menu-item">
                         <a href="crm.html" class="menu-link">작업 지시 관리</a>
@@ -142,11 +146,14 @@
                             <span class="title">BOM 관리</span>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item active">
+                            <li class="menu-item">
                                 <a href="/information/bom/register" class="menu-link">BOM 등록</a>
                             </li>
+                            <li class="menu-item active">
+                                <a href="/information/bom/inquiry" class="menu-link">BOM 조회</a>
+                            </li>
                             <li class="menu-item">
-                                <a href="bom-explosion.html" class="menu-link">BOM 정전개</a>
+                                <a href="#" class="menu-link">BOM 정전개</a>
                             </li>
                         </ul>
                     </li>
@@ -183,7 +190,8 @@
                             <li>
                                 <form class="src-form position-relative">
                                     <input type="text" class="form-control" placeholder="Search here.....">
-                                    <button type="submit" class="src-btn position-absolute top-50 end-0 translate-middle-y bg-transparent p-0 border-0">
+                                    <button type="submit"
+                                            class="src-btn position-absolute top-50 end-0 translate-middle-y bg-transparent p-0 border-0">
                                         <span class="material-symbols-outlined">search</span>
                                     </button>
                                 </form>
@@ -211,7 +219,8 @@
                                     <label class="form-label" for="product-search">BOM 상품 검색</label>
                                     <div class="d-flex justify-content-between align-items-center flex-wrap gap-0">
                                         <form class="position-relative table-src-form me-0">
-                                            <input type="text" class="form-control ps-3" placeholder="등록할 상품 검색하기" id="product-search" style="padding-left: 40px;">
+                                            <input type="text" class="form-control ps-3" placeholder="등록할 상품 검색하기"
+                                                   id="product-search" style="padding-left: 40px;">
                                             <!-- <i class="material-symbols-outlined position-absolute" style="right: 50px; top: 35%; transform: translateY(-50%); color: gray;">search</i> -->
                                         </form>
                                     </div>
@@ -219,99 +228,80 @@
                             </form>
 
                         </div>
-                                </div>
+                    </div>
 
-                                <!-- BOM 테이블 시작 -->
+                    <!-- BOM 테이블 시작 -->
                     <div class="default-table-area style-two production-team-registration padding-style">
                         <div class="table-responsive">
                             <table class="table align-middle">
-                                        <thead>
-                                        <tr>
-                                            <th style="min-width: 150px;">원자재명</th>
-                                            <th style="min-width: 100px;">수량</th>
-                                            <th style="min-width: 100px;">단위</th>
-                                            <th style="min-width: 0px;">삭제</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="material-rows">
-                                        <tr>
-                                            <td>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control mb-2" placeholder="원자재를 입력하세요" style="height: 50px;">
-                                                    <i class="material-symbols-outlined position-absolute top-50 end-10 translate-middle-y" style="right: 10px;">search</i>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control mb-2" placeholder="수량을 입력하세요" style="height: 50px;">
-                                            </td>
-                                            <td>
-                                                <select class="form-select form-control mb-2 unit-select" id="unit" style="height: 50px;">
-                                                    <option value="G">G</option>
-                                                    <option value="KG">KG</option>
-                                                    <option value="ML">ML</option>
-                                                    <option value="L">L</option>
-                                                    <option value="EA">EA</option>
-                                                    <option value="PACK">PACK</option>
-                                                    <option value="BAG">BAG</option>
-                                                    <option value="BOX">BOX</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                    <i class="material-symbols-outlined fs-20 text-danger">delete</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- BOM 테이블 끝 -->
-                            </form>
-
+                                <thead>
+                                <tr>
+                                    <th style="min-width: 150px;">원자재명</th>
+                                    <th style="min-width: 100px;">수량</th>
+                                    <th style="min-width: 0px;">삭제</th>
+                                </tr>
+                                </thead>
+                                <tbody id="material-rows">
+                                <tr>
+                                    <td>
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control mb-2" placeholder="원자재를 입력하세요"
+                                                   style="height: 50px;">
+                                            <i class="material-symbols-outlined position-absolute top-50 end-10 translate-middle-y"
+                                               style="right: 10px;">search</i>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control mb-2" placeholder="수량을 입력하세요"
+                                               style="height: 50px;">
+                                    </td>
+                                    <td>
+                                        <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                                            <i class="material-symbols-outlined fs-20 text-danger">delete</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
                             </table>
-                                    <!-- 원자재 추가 버튼 -->
-                                    <div class="centered-btn2">
-                                        <button type="button" class="btn btn-transparent btn-sm" onclick="addMaterialRow()">
-                                        <i class="ri-add-line"></i> 원자재 추가
-                                    </button>
+                        </div>
+                        <!-- BOM 테이블 끝 -->
+                        </form>
 
-                                    </div>
-                                </div>
-                            </div>
+                        </table>
+                        <!-- 원자재 추가 버튼 -->
+                        <div class="centered-btn2">
+                            <button type="button" class="btn btn-transparent btn-sm" onclick="addMaterialRow()">
+                                <i class="ri-add-line"></i> 원자재 추가
+                            </button>
 
-                            <!-- 등록하기 버튼 -->
-                            <div class="centered-btn">
-                                <button type="submit" class="btn btn-primary" onclick="submitBom();">
-                                    <i class="ri-add-line"></i> 등록하기
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- 등록하기 버튼 -->
+                <div class="centered-btn">
+                    <button type="submit" class="btn btn-primary" onclick="submitBom();">
+                        <i class="ri-add-line"></i> 등록하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-        <!-- BOM 등록 영역 끝 -->
+<!-- BOM 등록 영역 끝 -->
 
 <script>
     function addMaterialRow() {
         const row = `
                 <tr>
                     <td>
-                        <input type="text" class="form-control" placeholder="원자재를 입력하세요" style="height: 50px;" >
+                        <div class="position-relative">
+                            <input type="text" class="form-control mb-2" placeholder="원자재를 입력하세요" style="height: 50px;">
+                            <i class="material-symbols-outlined position-absolute top-50 end-10 translate-middle-y" style="right: 10px;">search</i>
+                        </div>
                     </td>
                     <td>
                         <input type="number" class="form-control" placeholder="수량을 입력하세요" style="height: 50px;" >
-                    </td>
-                    <td>
-                         <select class="form-select form-control mb-2 unit-select" id="unit" style="height: 50px;">
-                            <option value="G">G</option>
-                            <option value="KG">KG</option>
-                            <option value="ML">ML</option>
-                            <option value="L">L</option>
-                            <option value="EA">EA</option>
-                            <option value="PACK">PACK</option>
-                            <option value="BAG">BAG</option>
-                            <option value="BOX">BOX</option>
-                        </select>
                     </td>
                     <td>
 
@@ -330,11 +320,44 @@
     }
 
     function submitBom() {
-        // BOM 등록 로직을 여기에 추가합니다.
-        alert('BOM이 등록되었습니다.');
+        const productId = document.getElementById('product-search').value;
+        const materialRows = document.querySelectorAll('#material-rows tr');
+
+        const recipes = Array.from(materialRows).map(row => {
+            const childId = row.querySelector('input[type="text"]').value;
+            const quantity = row.querySelector('input[type="number"]').value;
+
+            return {
+                childId: childId,
+                quantity: parseInt(quantity, 10)
+            };
+        });
+
+        const bomRequest = {
+            productId: parseInt(productId, 10),
+            recipes: recipes
+        };
+
+        fetch('/boms', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bomRequest)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('BOM이 등록되었습니다.');
+                } else {
+                    alert('BOM 등록에 실패했습니다. 다시 시도해주세요.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('BOM 등록 중 오류가 발생했습니다.');
+            });
     }
 </script>
-
 
 
 <!-- Link Of JS File -->
@@ -354,8 +377,6 @@
 <script src="/assets/js/fullcalendar.main.js"></script>
 <script src="/assets/js/custom/apexcharts.js"></script>
 <script src="/assets/js/custom/custom.js"></script>
-
-
 
 
 </body>

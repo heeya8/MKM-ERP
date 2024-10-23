@@ -172,12 +172,10 @@
             })
                 .then(response => response.text())  // 서버 응답을 텍스트로 처리
                 .then(data => {
-                    // 서버에서 받은 텍스트 응답 처리
                     console.log('Server Response:', data);
-                    // 예: 로그인 성공 시 다른 페이지로 이동
                     if (data === "로그인이 완료되었습니다.") {
                         alert("로그인 성공");
-                        //window.location.href = 'index.html'; // 성공 시 페이지 이동
+                        window.location.href = '/main';
                     } else {
                         // 실패 메시지를 화면에 표시하거나 처리
                         alert(data); // 응답을 사용자에게 알림으로 표시
