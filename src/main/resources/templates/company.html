@@ -54,10 +54,13 @@
         </button>
     </div>
 
-    <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
+    <aside id="layout-menu" class="layout-menu menu-vertical menu" data-simplebar>
         <ul class="menu-inner">
             <!-- 작업 관리 메뉴 -->
-            <li class="menu-item">
+            <li class="menu-title small text-uppercase">
+                <span class="menu-title-text">작업 관리</span>
+            </li>
+            <li class="menu-item open">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <span class="material-symbols-outlined menu-icon">dashboard</span>
                     <span class="title">작업 관리 메뉴</span>
@@ -75,8 +78,8 @@
                 </ul>
             </li>
             <!-- 자재 관리 메뉴 -->
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+            <li class="menu-item open">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <span class="material-symbols-outlined menu-icon">dashboard</span>
                     <span class="title">자재 관리 메뉴</span>
                 </a>
@@ -93,14 +96,17 @@
                 </ul>
             </li>
             <!-- 기초 정보 관리 메뉴 -->
-            <li class="menu-item open">
+            <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle active">
                     <span class="material-symbols-outlined menu-icon">dashboard</span>
                     <span class="title">기초 정보 관리 메뉴</span>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="product.html" class="menu-link">품목 관리</a>
+                        <a href="product.html" class="menu-link">품목 등록</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="product.html" class="menu-link">생산팀 등록</a>
                     </li>
                     <li class="menu-item after-sub-menu menu-level">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -115,8 +121,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
-                        <a href="company.html" class="menu-link active">회사 정보 관리</a>
+                    <li class="menu-item active">
+                        <a href="company.html" class="menu-link">회사 정보 관리</a>
                     </li>
                 </ul>
             </li>

@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Links Of CSS File -->
-  <link rel="stylesheet" href="/assets/css/sidebar-menu.css">
-  <link rel="stylesheet" href="/assets/css/simplebar.css">
-  <link rel="stylesheet" href="/assets/css/apexcharts.css">
-  <link rel="stylesheet" href="/assets/css/prism.css">
-  <link rel="stylesheet" href="/assets/css/rangeslider.css">
-  <link rel="stylesheet" href="/assets/css/sweetalert.min.css">
-  <link rel="stylesheet" href="/assets/css/quill.snow.css">
-  <link rel="stylesheet" href="/assets/css/google-icon.css">
-  <link rel="stylesheet" href="/assets/css/remixicon.css">
-  <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
-  <link rel="stylesheet" href="/assets/css/fullcalendar.main.css">
-  <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Links Of CSS File -->
+    <link rel="stylesheet" href="/assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="/assets/css/simplebar.css">
+    <link rel="stylesheet" href="/assets/css/apexcharts.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/rangeslider.css">
+    <link rel="stylesheet" href="/assets/css/sweetalert.min.css">
+    <link rel="stylesheet" href="/assets/css/quill.snow.css">
+    <link rel="stylesheet" href="/assets/css/google-icon.css">
+    <link rel="stylesheet" href="/assets/css/remixicon.css">
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/css/fullcalendar.main.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
-  <!-- Title -->
-  <title>MealKitMaker - 생산팀 등록 </title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <!-- Title -->
+    <title>MealKitMaker - 생산팀 등록 </title>
 
 </head>
 
@@ -30,285 +30,478 @@
 
 <!-- Start Sidebar Area -->
 <div class="sidebar-area" id="sidebar-area">
-  <div class="logo position-relative">
-    <a href="index.html" class="d-block text-decoration-none position-relative">
-      <img src="/assets/images/logo-icon.png" alt="logo-icon">
-      <span class="logo-text fw-bold text-dark">MKM</span>
-    </a>
-    <button class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y" id="sidebar-burger-menu">
-      <i data-feather="x"></i>
-    </button>
-  </div>
+    <div class="logo position-relative">
+        <a href="index.html" class="d-block text-decoration-none position-relative">
+            <img src="/assets/images/logo-icon.png" alt="logo-icon">
+            <span class="logo-text fw-bold text-dark">MKM</span>
+        </a>
+        <button class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y"
+                id="sidebar-burger-menu">
+            <i data-feather="x"></i>
+        </button>
+    </div>
 
-  <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
-    <ul class="menu-inner">
-      <!-- 작업 관리 메뉴 -->
-      <li class="menu-title small text-uppercase">
-        <span class="menu-title-text">작업 관리</span>
-      </li>
-      <li class="menu-item open">
-        <a href="javascript:void(0);" class="menu-link menu-toggle active">
-          <span class="material-symbols-outlined menu-icon">dashboard</span>
-          <span class="title">작업 관리 메뉴</span>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="index.html" class="menu-link">생산 계획 등록</a>
-          </li>
-          <li class="menu-item">
-            <a href="crm.html" class="menu-link">작업 지시 관리</a>
-          </li>
-          <li class="menu-item">
-            <a href="project-management.html" class="menu-link">작업 실적 등록</a>
-          </li>
+    <aside id="layout-menu" class="layout-menu menu-vertical menu" data-simplebar>
+        <ul class="menu-inner">
+            <!-- 작업 관리 메뉴 -->
+            <li class="menu-title small text-uppercase">
+                <span class="menu-title-text">작업 관리</span>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">작업 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="index.html" class="menu-link">생산 계획 등록</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="crm.html" class="menu-link">작업 지시 관리</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="project-management.html" class="menu-link">작업 실적 등록</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 자재 관리 메뉴 -->
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">자재 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="12.html" class="menu-link">자재 출고 관리</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="crm.html" class="menu-link">재고 현황</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="project-management.html" class="menu-link">발주 요청</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 기초 정보 관리 메뉴 -->
+            <li class="menu-item open">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">기초 정보 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="/information/product" class="menu-link">품목 등록</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/information/team" class="menu-link active">생산팀 등록</a>
+                    </li>
+                    <li class="menu-item after-sub-menu menu-level">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <span class="title">BOM 관리</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/information/bom/register" class="menu-link">BOM 등록</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="bom-explosion.html" class="menu-link">BOM 정전개</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/information/company" class="menu-link">회사 정보 관리</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Logout -->
+            <li class="menu-item">
+                <a href="/" class="menu-link">
+                    <span class="material-symbols-outlined menu-icon">logout</span>
+                    <span class="title">로그아웃</span>
+                </a>
+            </li>
         </ul>
-      </li>
-      <!-- 자재 관리 메뉴 -->
-      <li class="menu-item open">
-        <a href="javascript:void(0);" class="menu-link menu-toggle active">
-          <span class="material-symbols-outlined menu-icon">dashboard</span>
-          <span class="title">자재 관리 메뉴</span>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="12.html" class="menu-link">자재 출고 관리</a>
-          </li>
-          <li class="menu-item">
-            <a href="crm.html" class="menu-link">재고 현황</a>
-          </li>
-          <li class="menu-item">
-            <a href="project-management.html" class="menu-link">발주 요청</a>
-          </li>
-        </ul>
-      </li>
-      <!-- 기초 정보 관리 메뉴 -->
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle active">
-          <span class="material-symbols-outlined menu-icon">dashboard</span>
-          <span class="title">기초 정보 관리 메뉴</span>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="product.html" class="menu-link active">품목 등록</a>
-          </li>
-          <li class="menu-item after-sub-menu menu-level">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <span class="title">BOM 관리</span>
-            </a>
-            <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="bom-registration.html" class="menu-link">BOM 등록</a>
-              </li>
-              <li class="menu-item">
-                <a href="bom-explosion.html" class="menu-link">BOM 정전개</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <!-- Logout -->
-      <li class="menu-item">
-        <a href="login.html" class="menu-link">
-          <span class="material-symbols-outlined menu-icon">logout</span>
-          <span class="title">로그아웃</span>
-        </a>
-      </li>
-    </ul>
-  </aside>
+    </aside>
 </div>
 
 <!-- Start Main Content Area -->
 <div class="container-fluid">
-  <div class="main-content d-flex flex-column">
-    <!-- Start Header Area -->
-    <header class="header-area bg-white mb-4 rounded-bottom-15" id="header-area">
-      <div class="row align-items-center">
-        <div class="col-lg-4 col-sm-6">
-          <div class="left-header-content">
-            <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled justify-content-center justify-content-sm-start">
-              <li>
-                <button class="header-burger-menu bg-transparent p-0 border-0" id="header-burger-menu">
-                  <span class="material-symbols-outlined">menu</span>
-                </button>
-              </li>
-              <li>
-                <form class="src-form position-relative">
-                  <input type="text" class="form-control" placeholder="Search here.....">
-                  <button type="submit" class="src-btn position-absolute top-50 end-0 translate-middle-y bg-transparent p-0 border-0">
-                    <span class="material-symbols-outlined">search</span>
-                  </button>
-                </form>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-6">
-        <div class="card bg-white border-0 rounded-3 mb-4">
-          <div class="card-body p-0">
-            <div class="p-4">
-              <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-                <h3 class="mb-0">생산팀 등록</h3>
-                <form class="position-relative table-src-form me-0">
-                  <input type="text" class="form-control" placeholder="검색하기">
-                  <i class="material-symbols-outlined position-absolute top-50 start-0 translate-middle-y">search</i>
-                </form>
-              </div>
+    <div class="main-content d-flex flex-column">
+        <!-- Start Header Area -->
+        <header class="header-area bg-white mb-4 rounded-bottom-15" id="header-area">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="left-header-content">
+                        <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled justify-content-center justify-content-sm-start">
+                            <li>
+                                <button class="header-burger-menu bg-transparent p-0 border-0" id="header-burger-menu">
+                                    <span class="material-symbols-outlined">menu</span>
+                                </button>
+                            </li>
+                            <li>
+                                <form class="src-form position-relative">
+                                    <input type="text" class="form-control" placeholder="Search here.....">
+                                    <button type="submit"
+                                            class="src-btn position-absolute top-50 end-0 translate-middle-y bg-transparent p-0 border-0">
+                                        <span class="material-symbols-outlined">search</span>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+        </header>
 
-            <div class="default-table-area style-two production-team-registration padding-style">
-              <div class="table-responsive">
-                <table class="table align-middle">
-                  <thead>
-                  <tr>
-                    <th scope="col">
-                      <div class="form-check">
-                        <label class="position-relative top-2 ms-1">ID</label>
-                      </div>
-                    </th>
-                    <th scope="col">팀명</th>
-                    <th scope="col">팀장</th>
-                    <th scope="col">등록일</th>
-                    <th scope="col">상태</th>
-                    <th scope="col">수정</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td class="text-body">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
-                        <label class="position-relative top-2 ms-1" for="flexCheckDefault2">#001</label>
-                      </div>
-                    </td>
-                    <td>한식 제조팀</td>
-                    <td>김민수</td>
-                    <td class="text-body">2024-01-01</td>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-6">
+                <div class="card bg-white border-0 rounded-3 mb-4">
+                    <div class="card-body p-0">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                                <h3 class="mb-0">생산팀 등록</h3>
+                                <form class="position-relative table-src-form me-0">
+                                    <input type="text" class="form-control" placeholder="검색하기">
+                                    <i class="material-symbols-outlined position-absolute top-50 start-0 translate-middle-y">search</i>
+                                </form>
+                            </div>
+                        </div>
 
-                    <td>
-                      <span class="badge bg-success bg-opacity-10 text-success p-2 fs-12 fw-normal">활성</span>
-                    </td>
+                        <div class="default-table-area style-two production-team-registration padding-style">
+                            <div class="table-responsive">
+                                <table class="table align-middle">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="form-check">
+                                                <label class="position-relative top-2 ms-1">ID</label>
+                                            </div>
+                                        </th>
+                                        <th scope="col">팀명</th>
+                                        <th scope="col">팀장</th>
+                                        <th scope="col">등록일</th>
+                                        <th scope="col">상태</th>
+                                        <th scope="col">수정</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       id="flexCheckDefault2">
+                                                <label class="position-relative top-2 ms-1"
+                                                       for="flexCheckDefault2">#001</label>
+                                            </div>
+                                        </td>
+                                        <td>한식 제조팀</td>
+                                        <td>김민수</td>
+                                        <td class="text-body">2024-01-01</td>
 
-                    <td>
+                                        <td>
+                                            <span class="badge bg-success bg-opacity-10 text-success p-2 fs-12 fw-normal">활성</span>
+                                        </td>
 
-                      <div class="d-flex align-items-center gap-1">
-                        <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                          <i class="material-symbols-outlined fs-16 text-primary">visibility</i>
-                        </button>
-                        <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                          <i class="material-symbols-outlined fs-16 text-body">edit</i>
-                        </button>
-                        <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                          <i class="material-symbols-outlined fs-16 text-danger">delete</i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                   <!-- 추가 팀 데이터는 여기에 추가 -->
-                  </tbody>
-                </table>
-              </div>
+                                        <td>
 
-              <div class="p-4 text-end">
-                <button class="btn btn-outline-primary py-1 px-2 px-sm-4 fs-14 fw-medium rounded-3 hover-bg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                            <div class="d-flex align-items-center gap-1">
+                                                <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                                                    <i class="material-symbols-outlined fs-16 text-primary">visibility</i>
+                                                </button>
+                                                <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                                                    <i class="material-symbols-outlined fs-16 text-body">edit</i>
+                                                </button>
+                                                <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                                                    <i class="material-symbols-outlined fs-16 text-danger">delete</i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- 추가 팀 데이터는 여기에 추가 -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="p-4 text-end">
+                                <button class="btn btn-outline-primary py-1 px-2 px-sm-4 fs-14 fw-medium rounded-3 hover-bg"
+                                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                        aria-controls="offcanvasRight">
                             <span class="py-sm-1 d-block">
                                 <i class="ri-add-line"></i>
                                 <span>팀 추가</span>
                             </span>
-                </button>
+                                </button>
 
 
-                <!-- Start Create From Area -->
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                  <div class="offcanvas-header border-bottom p-4">
-                    <h5 class="offcanvas-title fs-18 mb-0" id="offcanvasRightLabel">팀 추가</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
-                  <div class="offcanvas-body p-4">
-                    <form id="teamForm">
-
-                      <div class="form-group mb-4">
-                        <label class="label">팀 ID (예: #001)</label>
-                        <input type="text" class="form-control text-dark"  placeholder="팀ID" id="teamId" name="teamId" pattern="#.{2,}" title="ID는 '#'으로 시작하고 3글자 이상이어야 합니다." required>
-                      </div>
-                      <div class="form-group mb-4">
-                        <label class="label">팀명</label>
-                        <input type="text" class="form-control text-gary" placeholder="팀명" required>
-                      </div>
-                      <div class="form-group mb-4">
-                        <label class="label">팀장</label>
-                        <input type="text" class="form-control text-dark" placeholder="팀장" required>
-                      </div>
-                      <div class="form-group mb-4">
-                        <label class="label">등록일</label>
-                        <input type="date" class="form-control text-dark" required>
-                      </div>
-
-                      <div class="form-group d-flex justify-content-center gap-3">
-                        <button type="submit" class="btn btn-primary text-white fw-semibold py-2 px-2 px-sm-3">
-                    <span class="py-sm-1 d-block">
-                        <i class="ri-add-line text-white"></i>
-                        <span>팀 추가</span>
-                    </span>
-                        </button>
-                        <button type="button" class="btn btn-secondary text-white fw-semibold py-2 px-2 px-sm-3" data-bs-dismiss="offcanvas">
-                          닫기
-                        </button>
-                      </div>
-                    </form>
-                  </div>
+                                <!-- Start Create From Area -->
+                                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                                     aria-labelledby="offcanvasRightLabel">
+                                    <div class="offcanvas-header border-bottom p-4">
+                                        <h5 class="offcanvas-title fs-18 mb-0" id="offcanvasRightLabel">팀 추가</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body p-4">
+                                        <form id="teamForm">
+                                            <div class="form-group mb-4">
+                                                <label class="label">팀명</label>
+                                                <input type="text" id="teamName" class="form-control" placeholder="팀명" required>
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label class="label">팀장</label>
+                                                <input type="text" id="teamLead" class="form-control" placeholder="팀장" required>
+                                            </div>
+                                            <div class="form-group d-flex justify-content-center gap-3">
+                                                <button type="submit" class="btn btn-primary">팀 추가</button>
+                                                <button type="button" class="btn btn-secondary" onclick="resetForm()">초기화</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-lg-4 col-md-6">
-        <div class="card bg-white border-0 rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3 mb-lg-4">
-              <h3 class="mb-0">팀 성과 개요</h3>
-              <select class="form-select month-select form-control p-0 h-auto border-0 w-90" style="background-position: right 0 center;" aria-label="Default select example">
-                <option selected>최근 7일</option>
-                <option value="1">이번 달</option>
-                <option value="2">올해</option>
-              </select>
             </div>
 
-            <div id="team_performance_overview"></div>
-          </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-white border-0 rounded-3 mb-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3 mb-lg-4">
+                            <h3 class="mb-0">팀 성과 개요</h3>
+                            <select class="form-select month-select form-control p-0 h-auto border-0 w-90"
+                                    style="background-position: right 0 center;" aria-label="Default select example">
+                                <option selected>최근 7일</option>
+                                <option value="1">이번 달</option>
+                                <option value="2">올해</option>
+                            </select>
+                        </div>
+
+                        <div id="team_performance_overview"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+
+        <script>
+            // 페이지 로드 시 팀 목록 불러오기
+            document.addEventListener("DOMContentLoaded", () => {
+                fetchTeams(); // 페이지가 로드되면 팀 목록을 가져온다.
+            });
+
+            // 팀 추가
+            document.getElementById("teamForm").addEventListener("submit", async function (event) {
+                event.preventDefault(); // 폼 기본 동작 중단
+
+                const teamName = document.getElementById("teamName").value.trim();
+                const teamLead = document.getElementById("teamLead").value.trim();
+
+                if (!teamName || !teamLead) {
+                    alert("팀명과 팀장을 모두 입력해주세요.");
+                    return;
+                }
+
+                const requestData = {
+                    name: teamName,
+                    lead: teamLead,
+                    active: "ACTIVE" // 기본 활성 상태 설정
+                };
+
+                console.log("요청 데이터:", requestData); // 요청 데이터 확인
+
+                try {
+                    const response = await fetch("/api/information/teams", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(requestData)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        alert("팀이 성공적으로 추가되었습니다!");
+                        console.log("응답 데이터:", result); // 서버 응답 확인
+
+                        resetForm(); // 폼 초기화
+                        fetchTeams(); // 팀 목록 갱신
+                    } else {
+                        const errorData = await response.json();
+                        alert(`오류 발생: ${errorData.message || "팀 추가 실패"}`);
+                        console.error("응답 오류:", errorData);
+                    }
+                } catch (error) {
+                    console.error("네트워크 오류:", error);
+                    alert("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+                }
+            });
+
+            // 팀 목록 가져오기 함수
+            async function fetchTeams(page = 1, size = 10) {
+                try {
+                    const response = await fetch(`/api/information/teams?page=${page}&size=${size}`);
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error("팀 목록 로드 오류:", errorData);
+                        alert(`오류 발생: ${errorData.message || "팀 목록을 불러오는 데 실패했습니다."}`);
+                        return;
+                    }
+
+                    const result = await response.json(); // 서버로부터 팀 목록 응답 받기
+                    console.log("서버 응답:", result);
+
+                    if (Array.isArray(result.content)) {
+                        populateTable(result.content); // 받은 데이터로 테이블 채우기
+                    } else {
+                        console.warn("팀 목록이 없습니다.");
+                        alert("팀 목록이 비어있습니다.");
+                    }
+                } catch (error) {
+                    console.error("네트워크 오류:", error);
+                    alert("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+                }
+            }
+
+            // 테이블에 팀 목록 추가 함수
+            function populateTable(teams) {
+                const tableBody = document.querySelector("table tbody");
+                tableBody.innerHTML = ""; // 기존 테이블 비우기
+
+                teams.forEach((team) => {
+                    const newRow = document.createElement("tr");
+                    newRow.innerHTML = `
+            <td class="text-body">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="${team.id}" id="flexCheck${team.id}">
+                    <label class="position-relative top-2 ms-1" for="flexCheck${team.id}">#${team.id}</label>
+                </div>
+            </td>
+            <td>${team.name}</td>
+            <td>${team.lead}</td>
+            <td class="text-body">${formatDate(team.createdAt)}</td>
+            <td>
+                <span class="badge ${team.active === 'ACTIVE' ? 'bg-success' : 'bg-danger'} bg-opacity-10 text-${team.active === 'ACTIVE' ? 'success' : 'danger'} p-2 fs-12 fw-normal">
+                    ${team.active === 'ACTIVE' ? '활성' : '비활성'}
+                </span>
+            </td>
+            <td>
+                <div class="d-flex align-items-center gap-1">
+                    <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                        <i class="material-symbols-outlined fs-16 text-primary">visibility</i>
+                    </button>
+                    <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                        <i class="material-symbols-outlined fs-16 text-body">edit</i>
+                    </button>
+                    <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2" onclick="deleteTeam(${team.id})">
+                        <i class="material-symbols-outlined fs-16 text-danger">delete</i>
+                    </button>
+                </div>
+            </td>
+        `;
+                    tableBody.appendChild(newRow); // 새 행 추가
+                });
+            }
+
+            // 날짜 포맷 함수 (YYYY-MM-DD 형식으로 변환)
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toISOString().split("T")[0];
+            }
+
+            // 폼 초기화 함수
+            function resetForm() {
+                document.getElementById("teamForm").reset();
+            }
+
+            // 팀 삭제 함수
+            async function deleteTeam(id) {
+                if (confirm("정말로 이 팀을 삭제하시겠습니까?")) {
+                    try {
+                        const response = await fetch(`/api/information/teams/${id}`, {
+                            method: "DELETE",
+                        });
+
+                        if (response.ok) {
+                            alert("팀이 성공적으로 삭제되었습니다.");
+                            document.querySelector(`#flexCheck${id}`).closest("tr").remove(); // 삭제된 팀 제거
+                        } else {
+                            const errorData = await response.json();
+                            alert(`오류 발생: ${errorData.message || "팀 삭제 실패"}`);
+                            console.error("삭제 오류:", errorData);
+                        }
+                    } catch (error) {
+                        console.error("네트워크 오류:", error);
+                        alert("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+                    }
+                }
+            }
+
+            // 팀 검색
+            // 검색 폼에 이벤트 리스너 추가
+            document.querySelector('.table-src-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const searchInput = this.querySelector('input');
+                const searchTerm = searchInput.value.trim();
+                fetchTeams(1, 10, searchTerm);  // 검색어와 함께 fetchTeams 호출
+            });
+
+            // fetchTeams 함수 수정
+            async function fetchTeams(page = 1, size = 10, searchTerm = '') {
+                try {
+                    let url = `/api/information/teams?page=${page}&size=${size}`;
+                    if (searchTerm) {
+                        url += `&name=${encodeURIComponent(searchTerm)}`;
+                    }
+
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error("팀 목록 로드 오류:", errorData);
+                        alert(`오류 발생: ${errorData.message || "팀 목록을 불러오는 데 실패했습니다."}`);
+                        return;
+                    }
+
+                    const result = await response.json();
+                    console.log("서버 응답:", result);
+
+                    if (Array.isArray(result.content)) {
+                        populateTable(result.content);
+                    } else {
+                        console.warn("팀 목록이 없습니다.");
+                        alert("팀 목록이 비어있습니다.");
+                    }
+                } catch (error) {
+                    console.error("네트워크 오류:", error);
+                    alert("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+                }
+            }
+        </script>
+
+        <!-- Link Of JS File -->
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/sidebar-menu.js"></script>
+        <script src="/assets/js/dragdrop.js"></script>
+        <script src="/assets/js/rangeslider.min.js"></script>
+        <script src="/assets/js/sweetalert.js"></script>
+        <script src="/assets/js/quill.min.js"></script>
+        <script src="/assets/js/data-table.js"></script>
+        <script src="/assets/js/prism.js"></script>
+        <script src="/assets/js/clipboard.min.js"></script>
+        <script src="/assets/js/feather.min.js"></script>
+        <script src="/assets/js/simplebar.min.js"></script>
+        <script src="/assets/js/apexcharts.min.js"></script>
+        <script src="/assets/js/swiper-bundle.min.js"></script>
+        <script src="/assets/js/fullcalendar.main.js"></script>
+        <script src="/assets/js/custom/apexcharts.js"></script>
+        <script src="/assets/js/custom/custom.js"></script>
+
+
+        </header>
     </div>
-
-
-
-<!-- Link Of JS File -->
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/js/sidebar-menu.js"></script>
-<script src="/assets/js/dragdrop.js"></script>
-<script src="/assets/js/rangeslider.min.js"></script>
-<script src="/assets/js/sweetalert.js"></script>
-<script src="/assets/js/quill.min.js"></script>
-<script src="/assets/js/data-table.js"></script>
-<script src="/assets/js/prism.js"></script>
-<script src="/assets/js/clipboard.min.js"></script>
-<script src="/assets/js/feather.min.js"></script>
-<script src="/assets/js/simplebar.min.js"></script>
-<script src="/assets/js/apexcharts.min.js"></script>
-<script src="/assets/js/swiper-bundle.min.js"></script>
-<script src="/assets/js/fullcalendar.main.js"></script>
-<script src="/assets/js/custom/apexcharts.js"></script>
-<script src="/assets/js/custom/custom.js"></script>
-
-
-    </header>
-  </div>
 </div>
 
 </body>

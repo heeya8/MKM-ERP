@@ -19,19 +19,14 @@ import com.mkm.erp.domain.bi.entity.Product;
 import java.util.Collections;
 import java.util.Map;
 
-@Controller
-@RequestMapping("/manage/work")
+@RestController
+@RequestMapping("api/manage/work")
 @RequiredArgsConstructor
 public class ProductionPlanController {
 
     private final ProductionPlanService productionPlanService;
     private final ProductRepository productRepository;
     private final ProductService productService;
-
-    @GetMapping("/plans")
-    public String loadProductionPlanPage(Model model) {
-        return "production_plan";
-    }
 
     @GetMapping("/plan")
     public ResponseEntity<ResponseDto<ProductionPlanResponse>> getAllProductionPlans(
