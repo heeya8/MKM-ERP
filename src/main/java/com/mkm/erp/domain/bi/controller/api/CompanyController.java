@@ -1,4 +1,4 @@
-package com.mkm.erp.domain.bi.controller;
+package com.mkm.erp.domain.bi.controller.api;
 
 import com.mkm.erp.domain.bi.dto.request.CompanyRequest;
 import com.mkm.erp.domain.bi.dto.response.CompanyResponse;
@@ -15,23 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/information")
+@RequestMapping("/api/information")
 public class CompanyController {
 
     private final CompanyService companyService;
-
-    @GetMapping("/company")
-    public String loadCompanyPage(Model model) {
-        CompanyResponse company = companyService.getCompany();
-        model.addAttribute("name", company.getName());
-        model.addAttribute("owner", company.getOwner());
-        model.addAttribute("businessNum", company.getBusinessNum());
-        model.addAttribute("email", company.getEmail());
-        model.addAttribute("phone", company.getPhone());
-        model.addAttribute("address", company.getAddress());
-        return "company";
-    }
-
 
     @GetMapping("/companies")
     public ResponseEntity<ResponseDto<CompanyResponse>> getCompanies(

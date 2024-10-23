@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface TeamRepository extends JpaRepository<Team, Long> {
-    Page<Team> findAllByIdOrderByModifiedAtDesc(Long id, Pageable pageable);
     Optional<Team> findById(Long id);
+    Page<Team> findByNameContainingIgnoreCase(String name, Pageable pageable);
 }
 

@@ -1,4 +1,4 @@
-package com.mkm.erp.domain.bi.controller;
+package com.mkm.erp.domain.bi.controller.api;
 
 import com.mkm.erp.domain.bi.dto.request.MaterialRequest;
 import com.mkm.erp.domain.bi.dto.response.MaterialResponse;

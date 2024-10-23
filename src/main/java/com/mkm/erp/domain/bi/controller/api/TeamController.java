@@ -1,4 +1,4 @@
-package com.mkm.erp.domain.bi.controller;
+package com.mkm.erp.domain.bi.controller.api;
 
 import com.mkm.erp.domain.bi.dto.request.TeamRequest;
 import com.mkm.erp.domain.bi.dto.response.TeamResponse;
@@ -6,12 +6,11 @@ import com.mkm.erp.domain.bi.dto.response.ResponseDto;
 import com.mkm.erp.domain.bi.service.TeamService;
 import com.mkm.erp.domain.common.annotation.Auth;
 import com.mkm.erp.domain.common.dto.AuthUser;
+import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,9 +22,10 @@ public class TeamController {
     @GetMapping("/teams")
     public ResponseEntity<ResponseDto<TeamResponse>> getTeams(
             @Auth AuthUser authUser,
+            @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size) {
-        return ResponseEntity.ok(teamService.getTeams(page, size));
+        return ResponseEntity.ok(teamService.getTeams(name, page, size));
     }
 
     @PostMapping("/teams")

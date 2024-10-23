@@ -1,4 +1,4 @@
-package com.mkm.erp.domain.manage.controller;
+package com.mkm.erp.domain.manage.controller.api;
 
 import com.mkm.erp.domain.bi.dto.response.ResponseDto;
 import com.mkm.erp.domain.bi.repository.ProductRepository;
@@ -12,15 +12,13 @@ import com.mkm.erp.domain.manage.service.ProductionPlanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.mkm.erp.domain.bi.entity.Product;
 import java.util.Collections;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/manage/work")
+@RequestMapping("/api/manage/work")
 @RequiredArgsConstructor
 public class ProductionPlanController {
 

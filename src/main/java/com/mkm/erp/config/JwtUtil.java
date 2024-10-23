@@ -52,7 +52,7 @@ public class JwtUtil {
         Cookie jwtCookie = new Cookie("JWT_TOKEN", token);
         jwtCookie.setHttpOnly(true);
         jwtCookie.setPath("/");
-        jwtCookie.setMaxAge(3600); // 1시간
+        jwtCookie.setMaxAge(3600*3); // 3시간
 
         response.addCookie(jwtCookie);
     }

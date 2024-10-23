@@ -19,10 +19,17 @@ public class TeamService {
 
     private final TeamRepository teamRepository;
 
-    public ResponseDto<TeamResponse> getTeams(int page, int size) {
+    public ResponseDto<TeamResponse> getTeams(String name, int page, int size) {
         Pageable pageable = PageRequest.of(page - 1, size);
+        Page<Team> teamPage;
 
-        Page<Team> teamPage = teamRepository.findAll(pageable);
+        if (name != null && !name.trim().isEmpty()) {
+            // name으로 검색
+            teamPage = teamRepository.findByNameContainingIgnoreCase(name, pageable);
+        } else {
+            // 전체 검색
+            teamPage = teamRepository.findAll(pageable);
+        }
 
         return new ResponseDto<>(
                 teamPage.getContent().stream()
@@ -30,7 +37,8 @@ public class TeamService {
                                 team.getId(),
                                 team.getName(),
                                 team.getLead(),
-                                team.getActive()
+                                team.getActive(),
+                                team.getCreatedAt()
                         ))
                         .collect(Collectors.toList()),
                 teamPage.getNumber() + 1,
@@ -45,7 +53,7 @@ public class TeamService {
     public TeamResponse createTeam(TeamRequest request) {
         Team team = new Team(request);
         teamRepository.save(team);
-        return new TeamResponse(team.getId(), team.getName(), team.getLead(), team.getActive());
+        return new TeamResponse(team.getId(), team.getName(), team.getLead(), team.getActive(), team.getCreatedAt());
     }
 
     @Transactional
@@ -59,7 +67,7 @@ public class TeamService {
 
         teamRepository.save(team);
 
-        return new TeamResponse(team.getId(), team.getName(), team.getLead(), team.getActive());
+        return new TeamResponse(team.getId(), team.getName(), team.getLead(), team.getActive(), team.getCreatedAt());
     }
 
     @Transactional

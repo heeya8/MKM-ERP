@@ -1,4 +1,4 @@
-package com.mkm.erp.domain.bi.controller;
+package com.mkm.erp.domain.bi.controller.api;
 
 import com.mkm.erp.domain.bi.dto.request.ProductRequest;
 import com.mkm.erp.domain.bi.dto.response.ProductResponse;
@@ -13,17 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
-@RequestMapping("/information")
+@RequestMapping("/api/information")
 public class ProductController {
 
     private final ProductService productService;
-
-    @GetMapping("/product")
-    public String loadProductPage(Model model) {
-        return "product";
-    }
 
     @GetMapping("/products")
     public ResponseEntity<ResponseDto<ProductResponse>> getProducts(

@@ -1,4 +1,4 @@
-package com.mkm.erp.domain.bi.controller;
+package com.mkm.erp.domain.bi.controller.api;
 
 import com.mkm.erp.domain.bi.dto.request.BOMRequest; // BOMRequest DTO import
 import com.mkm.erp.domain.bi.dto.response.BOMResponse; // BOMResponse DTO import
@@ -7,14 +7,13 @@ import com.mkm.erp.domain.bi.service.BOMService; // BOMService import
 import com.mkm.erp.domain.common.annotation.Auth;
 import com.mkm.erp.domain.common.dto.AuthUser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/information")
+@RequestMapping("/api/information")
 public class BOMController {
 
     private final BOMService bomService; // BOMService 주입

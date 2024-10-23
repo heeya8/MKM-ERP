@@ -1,4 +1,4 @@
-package com.mkm.erp.domain.manage.controller;
+package com.mkm.erp.domain.manage.controller.api;
 
 import com.mkm.erp.domain.bi.dto.response.ResponseDto;
 import com.mkm.erp.domain.manage.dto.request.PurchaseOrderRequest;
@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/manage/inventory")
