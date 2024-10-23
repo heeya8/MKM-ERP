@@ -11,4 +11,9 @@ public class HomeController {
     public String home(Model model) {
         return "signin";
     }
+
+    @GetMapping("/main")
+    public String main(Model model) {
+        return "index";
+    }
 }

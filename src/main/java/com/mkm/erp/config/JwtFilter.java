@@ -34,9 +34,9 @@ public class JwtFilter implements Filter {
         String url = httpRequest.getRequestURI();
 
         // 이 경로에 대해서는 필터를 적용하지 않음
-        if (url.startsWith("/api/auth") || url.equals("/") || url.startsWith("/assets/") ||
+        if (url.startsWith("/auth/") || url.equals("/") || url.startsWith("/assets/") ||
                 url.startsWith("/css/") || url.startsWith("/js/") || url.startsWith("/images/") ||
-                url.startsWith("/fonts/") || url.startsWith("/scss/")) {
+                url.startsWith("/fonts/") || url.startsWith("/scss/") || url.startsWith("/api/auth/")) {
             chain.doFilter(request, response);
             return;
         }

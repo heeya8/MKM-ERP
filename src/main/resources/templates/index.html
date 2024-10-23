@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Links Of CSS File -->
+    <link rel="stylesheet" href="/assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="/assets/css/simplebar.css">
+    <link rel="stylesheet" href="/assets/css/apexcharts.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/rangeslider.css">
+    <link rel="stylesheet" href="/assets/css/sweetalert.min.css">
+    <link rel="stylesheet" href="/assets/css/quill.snow.css">
+    <link rel="stylesheet" href="/assets/css/google-icon.css">
+    <link rel="stylesheet" href="/assets/css/remixicon.css">
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/css/fullcalendar.main.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <!-- Title -->
+    <title>MKM - 메인</title>
+</head>
+
+<body class="boxed-size">
+<!-- Start Preloader Area -->
+<div class="preloader" id="preloader">
+    <div class="preloader">
+        <div class="waviy position-relative">
+            <span class="d-inline-block">M</span>
+            <span class="d-inline-block">K</span>
+            <span class="d-inline-block">M</span>
+        </div>
+    </div>
+</div>
+<!-- End Preloader Area -->
+
+<!-- Start Sidebar Area -->
+<div class="sidebar-area" id="sidebar-area">
+    <div class="logo position-relative">
+        <a href="index.html" class="d-block text-decoration-none position-relative">
+            <img src="/assets/images/logo-icon.png" alt="logo-icon">
+            <span class="logo-text fw-bold text-dark">MKM</span>
+        </a>
+        <button
+                class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y"
+                id="sidebar-burger-menu">
+            <i data-feather="x"></i>
+        </button>
+    </div>
+
+    <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
+        <ul class="menu-inner">
+            <!-- 작업 관리 메뉴 -->
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">작업 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="index.html" class="menu-link">생산 계획 등록</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="crm.html" class="menu-link">작업 지시 관리</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="project-management.html" class="menu-link">작업 실적 등록</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 자재 관리 메뉴 -->
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">자재 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="12.html" class="menu-link">자재 출고 관리</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="crm.html" class="menu-link">재고 현황</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="project-management.html" class="menu-link">발주 요청</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 기초 정보 관리 메뉴 -->
+            <li class="menu-item open">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">기초 정보 관리 메뉴</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="product.html" class="menu-link">품목 관리</a>
+                    </li>
+                    <li class="menu-item after-sub-menu menu-level">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <span class="title">BOM 관리</span>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="bom-registration.html" class="menu-link">BOM 등록</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="bom-explosion.html" class="menu-link">BOM 정전개</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="company.html" class="menu-link active">회사 정보 관리</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Logout -->
+            <li class="menu-item">
+                <a href="login.html" class="menu-link">
+                    <span class="material-symbols-outlined menu-icon">logout</span>
+                    <span class="title">로그아웃</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+</div>
+
+
+<!-- Start Main Content Area -->
+<div class="container-fluid">
+    <div class="main-content d-flex flex-column">
+        <!-- Start Header Area -->
+        <header class="header-area bg-white mb-4 rounded-bottom-15" id="header-area">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="left-header-content">
+                        <ul
+                                class="d-flex align-items-center ps-0 mb-0 list-unstyled justify-content-center justify-content-sm-start">
+                            <li>
+                                <button class="header-burger-menu bg-transparent p-0 border-0"
+                                        id="header-burger-menu">
+                                    <span class="material-symbols-outlined">menu</span>
+                                </button>
+                            </li>
+                            <li>
+                                <form class="src-form position-relative">
+                                    <input type="text" class="form-control" placeholder="Search here.....">
+                                    <button type="submit"
+                                            class="src-btn position-absolute top-50 end-0 translate-middle-y bg-transparent p-0 border-0">
+                                        <span class="material-symbols-outlined">search</span>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End Header Area -->
+
+        <div class="main-content-container overflow-hidden">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                <h3 class="mb-0">회사 정보 관리</h3>
+
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb align-items-center mb-0 lh-1">
+                        <li class="breadcrumb-item">
+                            <a href="#" class="d-flex align-items-center text-decoration-none">
+                                <i class="ri-home-4-line fs-18 text-primary me-1"></i>
+                                <span class="text-secondary fw-medium hover"></span>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <span class="fw-medium">기초 정보 관리 메뉴</span>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <span class="fw-medium">회사 정보 관리</span>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card bg-white border-0 rounded-3 mb-4">
+                        <div class="card-body p-4">
+                            <!-- 회사 정보 수정 폼 -->
+                            <form id="company-form">
+                                <input type="hidden" name="_method" value="patch"/>
+                                <!-- 회사 정보 수정 -->
+                                <div class="row">
+                                    <!-- 회사 이름 -->
+                                    <div class="col-lg-12">
+                                        <div class="form-group mb-4">
+                                            <label class="label">회사명</label>
+                                            <div class="form-group position-relative">
+                                                <input id="name" type="text"
+                                                       class="form-control text-dark ps-5 h-55"
+                                                       th:field="*{name}" placeholder="회사 이름 입력">
+                                                <i class="ri-information-line position-absolute top-3 start-0 fs-20 text-gray-light ps-20 pt-2"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- 대표자 성명 -->
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label class="label">대표자 성명</label>
+                                            <div class="form-group position-relative">
+                                                <input id="owner" type="text"
+                                                       class="form-control text-dark ps-5 h-55"
+                                                       th:field="*{owner}" placeholder="대표자 성명 입력">
+                                                <i class="ri-user-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 사업자등록번호 -->
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label class="label">사업자등록번호</label>
+                                            <div class="form-group position-relative">
+                                                <input id="business_num" type="text"
+                                                       class="form-control text-dark ps-5 h-55"
+                                                       th:field="*{businessNum}" placeholder="사업자등록번호 입력">
+                                                <i class="ri-hashtag position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- 대표 이메일 -->
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label class="label">대표 이메일</label>
+                                            <div class="form-group position-relative">
+                                                <input id="email" type="email"
+                                                       class="form-control text-dark ps-5 h-55"
+                                                       th:field="*{email}" placeholder="Enter Email Address">
+                                                <i class="ri-mail-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 대표 전화 -->
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label class="label">대표 전화</label>
+                                            <div class="form-group position-relative">
+                                                <input id="phone" type="text"
+                                                       class="form-control text-dark ps-5 h-55"
+                                                       th:field="*{phone}" placeholder="Enter Phone Number">
+                                                <i class="ri-phone-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- 주소 -->
+                                    <div class="col-lg-12">
+                                        <div class="form-group mb-4">
+                                            <label class="label">주소</label>
+                                            <div class="form-group position-relative">
+                                                <input id="address" type="text"
+                                                       class="form-control text-dark ps-5 h-55"
+                                                       th:field="*{address}" placeholder="사업장 주소 입력">
+                                                <i class="ri-map-pin-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 저장 버튼 -->
+                                <div class="col-lg-12">
+                                    <div class="form-group d-flex gap-3">
+                                        <button id="update-company" type="submit" class="btn btn-primary">
+                                            <i class="ri-add-line me-1"></i>수정하기
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- 회사 정보 수정 폼 종료 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-grow-1"></div>
+
+        <!-- Start Footer Area -->
+        <footer class="footer-area bg-white text-center rounded-top-7">
+            <p class="fs-14">© <span class="text-primary-div">mkm</span> is Proudly Owned by <a
+                    href="https://envytheme.com/" target="_blank"
+                    class="text-decoration-none text-primary">Code Monkeys</a></p>
+        </footer>
+        <!-- End Footer Area -->
+    </div>
+</div>
+<!-- Start Main Content Area -->
+
+<script>
+    $('#update-company').click(function (event) {
+        event.preventDefault(); // 기본 폼 제출 동작 막기
+
+        // 폼의 데이터를 수집
+        const companyData = {
+            name: $('#name').val(),
+            owner: $('#owner').val(),
+            businessNum: $('#business_num').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
+            address: $('#address').val()
+        };
+
+        // 회사 ID (예를 들어, 1로 고정)
+        const companyId = 1;
+
+        // PATCH 요청을 통해 회사 정보 업데이트
+        $.ajax({
+            url: '/information/companies/' + companyId,
+            type: 'PATCH',
+            contentType: 'application/json',
+            data: JSON.stringify(companyData),
+            success: function () {
+                alert('수정되었습니다.');
+                location.reload(); // 페이지를 다시 로드하여 업데이트된 내용 반영
+            },
+            error: function () {
+                alert('수정 중 오류가 발생했습니다.');
+            }
+        });
+    });
+
+</script>
+
+<!-- Link Of JS File -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/sidebar-menu.js"></script>
+<script src="/assets/js/dragdrop.js"></script>
+<script src="/assets/js/rangeslider.min.js"></script>
+<script src="/assets/js/sweetalert.js"></script>
+<script src="/assets/js/quill.min.js"></script>
+<script src="/assets/js/data-table.js"></script>
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/clipboard.min.js"></script>
+<script src="/assets/js/feather.min.js"></script>
+<script src="/assets/js/simplebar.min.js"></script>
+<script src="/assets/js/apexcharts.min.js"></script>
+<script src="/assets/js/swiper-bundle.min.js"></script>
+<script src="/assets/js/fullcalendar.main.js"></script>
+<script src="/assets/js/custom/apexcharts.js"></script>
+<script src="/assets/js/custom/custom.js"></script>
+</body>
+<!-- 나머지 JS 파일들 -->
+</html>

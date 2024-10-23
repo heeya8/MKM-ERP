@@ -4,10 +4,12 @@ import com.mkm.erp.domain.auth.dto.request.SigninRequest;
 import com.mkm.erp.domain.auth.dto.request.SignupRequest;
 import com.mkm.erp.domain.auth.service.AuthService;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth") // 공통 경로 설정
@@ -18,7 +20,6 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody SignupRequest signupRequest, HttpServletResponse servletResponse) {
-        System.out.println("d요청들어옴");
         authService.signup(signupRequest, servletResponse); // 회원가입 처리
         return ResponseEntity.ok("회원가입이 완료되었습니다."); // 성공 메시지 반환
     }
