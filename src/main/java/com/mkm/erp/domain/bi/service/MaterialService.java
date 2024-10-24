@@ -6,6 +6,7 @@ import com.mkm.erp.domain.bi.dto.response.ResponseDto;
 import com.mkm.erp.domain.bi.entity.Material;
 import com.mkm.erp.domain.bi.entity.Product;
 import com.mkm.erp.domain.bi.entity.Subcategory;
+import com.mkm.erp.domain.bi.entity.UnitType;
 import com.mkm.erp.domain.bi.exception.ResourceNotFoundException;
 import com.mkm.erp.domain.bi.repository.MaterialRepository;
 import com.mkm.erp.domain.bi.repository.SubcategoryRepository;
@@ -29,7 +30,7 @@ public class MaterialService {
     private final SubcategoryRepository subcategoryRepository;
 
     // 원자재 CRUD - 페이징 처리된 원자재 목록을 반환
-    public ResponseDto<MaterialResponse> getMaterials(int page, int size, String sortBy, String unitType) {
+    public ResponseDto<MaterialResponse> getMaterials(int page, int size, String sortBy, String unitType, String materialName) {
         Sort sort = Sort.by(Sort.Direction.ASC, "name"); // 기본 정렬을 이름순으로 설정
 
         // sortBy 값에 따른 정렬 방식 변경
@@ -42,15 +43,27 @@ public class MaterialService {
         }
 
         Pageable pageable = PageRequest.of(page - 1, size, sort); // 페이지 인덱스는 0부터 시작하므로 -1
-        Page<Material> materialsPage = materialRepository.findAll(pageable);
+        //Page<Material> materialsPage = materialRepository.findAll(pageable);
 
         // 카테고리 및 유닛 필터링
-        List<Material> filteredMaterials = materialsPage.getContent().stream()
+        /*List<Material> filteredMaterials = materialsPage.getContent().stream()
                 .filter(material -> (unitType == null || material.getUnit().toString().equals(unitType))) // 유닛 필터
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
+
+        // 필터링 조건에 맞게 리포지토리 쿼리 수행
+        Page<Material> materialsPage;
+        if (materialName != null && !materialName.isEmpty() && unitType != null && !unitType.isEmpty()) {
+            materialsPage = materialRepository.findByNameContainingAndUnit(materialName, UnitType.valueOf(unitType), pageable);
+        } else if (materialName != null && !materialName.isEmpty()) {
+            materialsPage = materialRepository.findByNameContaining(materialName, pageable);
+        } else if (unitType != null && !unitType.isEmpty()) {
+            materialsPage = materialRepository.findByUnit(UnitType.valueOf(unitType), pageable);
+        } else {
+            materialsPage = materialRepository.findAll(pageable);
+        }
 
         return new ResponseDto<>(
-                filteredMaterials.stream()
+                materialsPage.stream()
                         .map(material -> new MaterialResponse(
                                 material.getId(),
                                 material.getItemCode(),
