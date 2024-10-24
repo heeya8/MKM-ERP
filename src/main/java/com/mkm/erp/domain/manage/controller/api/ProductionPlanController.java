@@ -24,7 +24,6 @@ public class ProductionPlanController {
 
     private final ProductionPlanService productionPlanService;
     private final ProductRepository productRepository;
-    private final ProductService productService;
 
     @GetMapping("/plan")
     public ResponseEntity<ResponseDto<ProductionPlanResponse>> getAllProductionPlans(
